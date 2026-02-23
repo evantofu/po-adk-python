@@ -1,16 +1,21 @@
 """
-Agent definition — the only file you need to edit to build your own agent.
+healthcare_agent — Agent definition.
+
+This agent has read-only access to a patient's FHIR R4 record.
+FHIR credentials (server URL, bearer token, patient ID) are injected via the
+A2A message metadata by the caller (e.g. Prompt Opinion) and extracted into
+session state by extract_fhir_context before every LLM call.
 
 To customise:
   • Change model, description, and instruction below.
   • Add or remove tools from the tools=[...] list.
-  • Write new tool functions in the tools/ package (see tools/__init__.py).
-  • Swap out the before_model_callback if you need a different context hook.
+  • Add new FHIR tools in shared/tools/fhir.py and export from shared/tools/__init__.py.
+  • Add non-FHIR tools in shared/tools/ or locally in a tools/ folder here.
 """
 from google.adk.agents import Agent
 
-from .fhir_hook import extract_fhir_context
-from .tools import (
+from shared.fhir_hook import extract_fhir_context
+from shared.tools import (
     get_active_conditions,
     get_active_medications,
     get_patient_demographics,

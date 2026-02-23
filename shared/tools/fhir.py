@@ -1,7 +1,7 @@
 """
 FHIR tools — query a FHIR R4 server on behalf of the patient in context.
 
-These tools are registered with root_agent in agent.py.  At call time, each
+These tools are registered with the agent in agent.py.  At call time, each
 tool reads the FHIR credentials (fhir_url, fhir_token, patient_id) from
 tool_context.state — values that were injected by fhir_hook.extract_fhir_context
 before the LLM was called.  The credentials never appear in the prompt.
@@ -9,11 +9,11 @@ before the LLM was called.  The credentials never appear in the prompt.
 ─────────────────────────────────────────────────────────────────────────────
 Adding your own FHIR tools
 ─────────────────────────────────────────────────────────────────────────────
-1. Write a new function in this file (or create a new file in tools/).
+1. Write a new function in this file (or create a new file in shared/tools/).
 2. Add tool_context: ToolContext as the LAST parameter.
 3. Start with  ctx = _get_fhir_context(tool_context); if isinstance(ctx, dict): return ctx
-4. Export it from tools/__init__.py.
-5. Add it to the tools=[...] list in agent.py.
+4. Export it from shared/tools/__init__.py.
+5. Add it to the tools=[...] list in whichever agent(s) need it.
 
 All FHIR REST calls go through _fhir_get(), which attaches the Bearer token
 and sets the Accept header.  httpx is used (already a transitive dependency of
@@ -122,20 +122,17 @@ def get_patient_demographics(tool_context: ToolContext) -> dict:
     except Exception as e:
         return _connection_error_result(e)
 
-    # Name
     names    = patient.get("name", [])
     official = next((n for n in names if n.get("use") == "official"), names[0] if names else {})
     given    = " ".join(official.get("given", []))
     family   = official.get("family", "")
     full_name = f"{given} {family}".strip() or "Unknown"
 
-    # Telecom
     contacts = [
         {"system": t.get("system"), "value": t.get("value"), "use": t.get("use")}
         for t in patient.get("telecom", [])
     ]
 
-    # Address
     addrs   = patient.get("address", [])
     address = None
     if addrs:
@@ -186,9 +183,9 @@ def get_active_medications(tool_context: ToolContext) -> dict:
 
     medications = []
     for entry in bundle.get("entry", []):
-        res        = entry.get("resource", {})
+        res         = entry.get("resource", {})
         med_concept = res.get("medicationCodeableConcept", {})
-        med_name   = (
+        med_name    = (
             med_concept.get("text")
             or _coding_display(med_concept.get("coding", []))
             or res.get("medicationReference", {}).get("display", "Unknown")
@@ -238,17 +235,17 @@ def get_active_conditions(tool_context: ToolContext) -> dict:
 
     conditions = []
     for entry in bundle.get("entry", []):
-        res  = entry.get("resource", {})
-        code = res.get("code", {})
+        res   = entry.get("resource", {})
+        code  = res.get("code", {})
         onset = res.get("onsetDateTime") or (res.get("onsetPeriod") or {}).get("start")
         conditions.append({
-            "condition":      code.get("text") or _coding_display(code.get("coding", [])),
+            "condition":       code.get("text") or _coding_display(code.get("coding", [])),
             "clinical_status": (
                 (res.get("clinicalStatus") or {}).get("coding", [{}])[0].get("code")
             ),
-            "severity":       (res.get("severity") or {}).get("text"),
-            "onset":          onset,
-            "recorded_date":  res.get("recordedDate"),
+            "severity":        (res.get("severity") or {}).get("text"),
+            "onset":           onset,
+            "recorded_date":   res.get("recordedDate"),
         })
 
     return {
@@ -297,7 +294,6 @@ def get_recent_observations(category: str, tool_context: ToolContext) -> dict:
         code = res.get("code", {})
         obs_name = code.get("text") or _coding_display(code.get("coding", []))
 
-        # Scalar value
         value, unit = None, None
         if "valueQuantity" in res:
             vq    = res["valueQuantity"]
@@ -309,7 +305,6 @@ def get_recent_observations(category: str, tool_context: ToolContext) -> dict:
         elif "valueString" in res:
             value = res["valueString"]
 
-        # Components (e.g. systolic / diastolic blood pressure)
         components = []
         for comp in res.get("component", []):
             comp_code = (comp.get("code") or {})

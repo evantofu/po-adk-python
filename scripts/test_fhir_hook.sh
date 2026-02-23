@@ -10,7 +10,7 @@
 #   API_KEY=my-key ./scripts/test_fhir_hook.sh         # custom API key
 #
 # Run the server first:
-#   uvicorn multi_tool_agent.app:a2a_app --host 127.0.0.1 --port 8001 --log-level info
+#   uvicorn healthcare_agent.app:a2a_app --host 127.0.0.1 --port 8001 --log-level info
 set -euo pipefail
 
 BASE_URL="${1:-http://127.0.0.1:8001}"
@@ -158,7 +158,7 @@ payload_malformed_fhir='{
 echo "Target RPC endpoint: ${RPC_URL}"
 echo "Using API key prefix: ${API_KEY:0:6}..."
 echo "Run your server separately, for example:"
-echo "  uvicorn multi_tool_agent.app:a2a_app --host 127.0.0.1 --port 8001 --log-level info"
+echo "  uvicorn healthcare_agent.app:a2a_app --host 127.0.0.1 --port 8001 --log-level info"
 
 # Case A: no API key → 401, pipeline never reaches the agent
 post_json "Case A - Missing API key (expect 401)" "no" "$payload_no_metadata"

@@ -1,5 +1,5 @@
 """
-multi_tool_agent — ADK + A2A template package.
+orchestrator — Multi-agent orchestrator that delegates to specialist sub-agents.
 
 Package initialisation order:
   1. Load .env so every subsequent import sees the right environment variables.
@@ -19,8 +19,8 @@ warnings.filterwarnings(
     category=UserWarning,
 )
 
-from .logging_utils import configure_logging  # noqa: E402
-configure_logging()
+from shared.logging_utils import configure_logging  # noqa: E402
+configure_logging("orchestrator")
 
 from .agent import root_agent  # noqa: E402, F401
 

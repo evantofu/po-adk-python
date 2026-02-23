@@ -19,13 +19,13 @@ import json
 import logging
 import os
 
-from .logging_utils import safe_pretty_json, serialize_for_log, token_fingerprint
+from shared.logging_utils import safe_pretty_json, serialize_for_log, token_fingerprint
 
 logger = logging.getLogger(__name__)
 
 LOG_HOOK_RAW_OBJECTS = os.getenv("LOG_HOOK_RAW_OBJECTS", "false").lower() == "true"
 
-# Must match the AgentExtension URI declared in app.py → agent_card.
+# Must match the AgentExtension URI declared in each agent's app.py.
 FHIR_CONTEXT_KEY = "fhir-context"
 
 
@@ -187,9 +187,9 @@ def extract_fhir_context(callback_context, llm_request):
         callback_context.state["fhir_url"]   = fhir_data.get("fhirUrl",   "")
         callback_context.state["fhir_token"] = fhir_data.get("fhirToken", "")
         callback_context.state["patient_id"] = fhir_data.get("patientId", "")
-        logger.info("FHIR_URL_FOUND value=%s",       callback_context.state["fhir_url"]   or "[EMPTY]")
+        logger.info("FHIR_URL_FOUND value=%s",         callback_context.state["fhir_url"]   or "[EMPTY]")
         logger.info("FHIR_TOKEN_FOUND fingerprint=%s", token_fingerprint(callback_context.state["fhir_token"]))
-        logger.info("FHIR_PATIENT_FOUND value=%s",   callback_context.state["patient_id"] or "[EMPTY]")
+        logger.info("FHIR_PATIENT_FOUND value=%s",     callback_context.state["patient_id"] or "[EMPTY]")
         logger.info(
             "hook_called_fhir_found task_id=%s context_id=%s message_id=%s "
             "patient_id=%s fhir_url_set=%s fhir_token=%s",

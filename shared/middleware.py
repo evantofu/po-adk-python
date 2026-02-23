@@ -16,8 +16,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request  # kept for type hints in dispatch signature
 from starlette.responses import JSONResponse
 
-from .fhir_hook import extract_fhir_from_payload
-from .logging_utils import redact_headers, safe_pretty_json, token_fingerprint
+from shared.fhir_hook import extract_fhir_from_payload
+from shared.logging_utils import redact_headers, safe_pretty_json, token_fingerprint
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ class ApiKeyMiddleware(BaseHTTPMiddleware):
         body_text  = body_bytes.decode("utf-8", errors="replace")
         parsed     = {}
         try:
-            parsed     = json.loads(body_text) if body_text else {}
+            parsed      = json.loads(body_text) if body_text else {}
             pretty_body = safe_pretty_json(parsed)
         except json.JSONDecodeError:
             pretty_body = body_text

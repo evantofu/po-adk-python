@@ -1,9 +1,10 @@
 """
 Logging utilities — ANSI colour formatter and shared log helpers.
 
-Call configure_logging() once at startup (done automatically by __init__.py).
-All sub-modules obtain their logger via logging.getLogger(__name__); they
-inherit the handler registered here on the 'multi_tool_agent' package logger.
+Call configure_logging(package_name) once at startup (done automatically by
+each agent's __init__.py).  All sub-modules obtain their logger via
+logging.getLogger(__name__); they inherit the handler registered here on the
+named package logger.
 """
 import ctypes
 import hashlib
@@ -51,16 +52,19 @@ def _enable_windows_ansi():
         return
 
 
-def configure_logging():
+def configure_logging(package_name: str):
     """
-    Configure the 'multi_tool_agent' package logger.
+    Configure a named package logger with an ANSI-colour handler.
 
-    All child loggers (multi_tool_agent.agent, .middleware, etc.) propagate
-    to this logger and share the same ANSI-colour handler.
-    Idempotent — safe to call multiple times.
+    All child loggers (e.g. healthcare_agent.agent, general_agent.middleware)
+    propagate to their package logger and share this handler.
+    Idempotent — safe to call multiple times with the same package name.
+
+    Args:
+        package_name: The top-level package to configure, e.g. "healthcare_agent".
     """
     _enable_windows_ansi()
-    pkg = logging.getLogger("multi_tool_agent")
+    pkg = logging.getLogger(package_name)
     if pkg.handlers:
         return
     pkg.setLevel(logging.INFO)
