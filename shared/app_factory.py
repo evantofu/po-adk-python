@@ -117,8 +117,8 @@ def create_a2a_app(
         # No security scheme — agent is publicly accessible.
         # The empty values tell callers (including Prompt Opinion) that no
         # authentication is required.
-        security_schemes = {}
-        security = []
+        security_schemes = None 
+        security = None
 
     agent_card = AgentCard(
         name=name,
