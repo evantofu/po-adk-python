@@ -24,11 +24,11 @@ a2a_app = create_a2a_app(
         "healthcare_fhir_agent for patient record queries, "
         "general_agent for date/time and ICD-10 lookups."
     ),
-    url=os.getenv("ORCHESTRATOR_URL", "http://localhost:8003"),
+    url=os.getenv("ORCHESTRATOR_URL", os.getenv("BASE_URL", "http://localhost:8003")),
     port=8003,
     # The orchestrator supports FHIR context so it can pass credentials through
     # to the healthcare sub-agent.
-    fhir_extension_uri="http://localhost:5139/schemas/a2a/v1/fhir-context",
+    fhir_extension_uri=f"{os.getenv('PO_PLATFORM_BASE_URL', 'http://localhost:5139')}/schemas/a2a/v1/fhir-context",
     skills=[
         AgentSkill(
             id="clinical-orchestration",

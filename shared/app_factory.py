@@ -98,7 +98,7 @@ def create_a2a_app(
             AgentExtension(
                 uri=fhir_extension_uri,
                 description="FHIR R4 context — allows the agent to query the patient's FHIR server.",
-                required=False,
+                required=True,
             )
         ]
 

@@ -28,7 +28,7 @@ a2a_app = create_a2a_app(
         "A general-purpose clinical assistant for date/time queries and ICD-10-CM "
         "code lookups. Does not require patient context or FHIR credentials."
     ),
-    url=os.getenv("GENERAL_AGENT_URL", "http://localhost:8002"),
+    url=os.getenv("GENERAL_AGENT_URL", os.getenv("BASE_URL", "http://localhost:8002")),
     port=8002,
     # No fhir_extension_uri — this agent does not use FHIR context.
     # require_api_key=False — this agent is publicly accessible, no key needed.
