@@ -1,5 +1,5 @@
 """
-healthcare_agent — A2A application entry point.
+healthcare_agent/app.py — Claims Agent A2A application entry point.
 
 Start the server with:
     uvicorn healthcare_agent.app:a2a_app --host 0.0.0.0 --port 8001
@@ -8,6 +8,11 @@ The agent card is served publicly at:
     GET http://localhost:8001/.well-known/agent-card.json
 
 All other endpoints require an X-API-Key header (see shared/middleware.py).
+
+Environment variables (set in .env):
+    HEALTHCARE_AGENT_URL  — public ngrok URL for this agent, e.g. https://xxxx.ngrok-free.app
+    CLAIMS_MCP_URL        — URL of your po-community-mcp server, e.g. http://localhost:5000/mcp
+    PO_PLATFORM_BASE_URL  — Prompt Opinion workspace base URL (for FHIR extension URI)
 """
 import os
 
@@ -18,40 +23,46 @@ from .agent import root_agent
 
 a2a_app = create_a2a_app(
     agent=root_agent,
-    name="healthcare_fhir_agent",
+    name="claims_coding_agent",
     description=(
-        "A clinical assistant that queries a patient's FHIR health record to answer "
-        "questions about demographics, active medications, conditions, and observations."
+        "A medical billing specialist that reads a patient's FHIR clinical record, "
+        "assigns CPT procedure codes, runs a pre-flight denial check against "
+        "payer-specific rules, and produces an auditable claims summary with "
+        "cited evidence for every coding decision."
     ),
     url=os.getenv("HEALTHCARE_AGENT_URL", os.getenv("BASE_URL", "http://localhost:8001")),
     port=8001,
-    # This URI is the key under which callers send FHIR credentials in the
-    # A2A message metadata.  Update to match your Prompt Opinion workspace URL.
     fhir_extension_uri=f"{os.getenv('PO_PLATFORM_BASE_URL', 'http://localhost:5139')}/schemas/a2a/v1/fhir-context",
     skills=[
         AgentSkill(
-            id="patient-demographics",
-            name="patient-demographics",
-            description="Retrieve patient demographics like name, DOB, and contacts.",
-            tags=["demographics", "fhir"],
+            id="auto-coding",
+            name="auto-coding",
+            description=(
+                "Reads a patient's clinical notes and assigns the correct CPT procedure "
+                "codes for the encounter. Cites the specific clinical note sentence that "
+                "justifies each code."
+            ),
+            tags=["claims", "cpt", "coding", "billing", "fhir"],
         ),
         AgentSkill(
-            id="active-medications",
-            name="active-medications",
-            description="Get a list of the patient's active medications and dosages.",
-            tags=["medications", "fhir"],
+            id="denial-prediction",
+            name="denial-prediction",
+            description=(
+                "Runs a pre-flight denial check for each CPT code against CMS baseline "
+                "rules and payer-specific policy PDFs. Flags hard stops, auto-applies "
+                "required modifiers, and cites the payer PDF section that requires them."
+            ),
+            tags=["claims", "denial", "modifiers", "payer-rules", "billing"],
         ),
         AgentSkill(
-            id="active-conditions",
-            name="active-conditions",
-            description="Get the patient's active conditions and diagnoses.",
-            tags=["conditions", "fhir"],
-        ),
-        AgentSkill(
-            id="recent-observations",
-            name="recent-observations",
-            description="Retrieve recent vitals, lab results, and social history.",
-            tags=["observations", "fhir"],
+            id="claims-summary",
+            name="claims-summary",
+            description=(
+                "Produces a structured, auditable claims summary including billable codes, "
+                "modifiers, denial risk flags, documentation gaps, and payer-specific "
+                "evidence citations. Ready for human reviewer sign-off before submission."
+            ),
+            tags=["claims", "summary", "audit", "billing"],
         ),
     ],
 )
