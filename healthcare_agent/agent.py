@@ -21,6 +21,7 @@ from shared.tools import (
     get_active_conditions,
     get_active_medications,
     get_patient_demographics,
+    get_patient_coverage,
     get_recent_observations,
 )
 from .tools.claims import get_clinical_documents
@@ -68,8 +69,9 @@ for the patient encounter currently in context.
 
 ### Step 1: Gather Patient Context
 Call get_patient_demographics to retrieve the patient's name, date of birth,
-gender, and insurance payer. You will need the payer name and patient age
-for denial prediction in Step 3.
+gender, and payer. The payer field in the demographics result is the
+authoritative payer name — use it directly for all subsequent steps including
+GetPayerRequirements. Do not call get_patient_coverage unless payer is empty.
 
 ### Step 2: Retrieve Clinical Documentation
 Call get_clinical_documents to retrieve the patient's clinical notes and
@@ -83,7 +85,19 @@ clinical picture from structured FHIR data.
 Based on the clinical documentation, identify every billable procedure,
 service, and immunization performed during the encounter.
 
-For each CPT code you identify:
+**MANDATORY FIRST CODE — do this before anything else:**
+Determine the encounter type and assign the primary visit code:
+- If the note documents a preventive, wellness, or annual visit for an
+  ESTABLISHED patient → assign the age-banded preventive E&M code:
+  99391 (infant), 99392 (1-4y), 99393 (5-11y), 99394 (12-17y),
+  99395 (18-39y), 99396 (40-64y), 99397 (65+y)
+- If it is a Medicare Annual Wellness Visit → G0438 (initial) or G0439 (subsequent)
+- If it is a NEW patient preventive visit → 99381-99387 (age-banded)
+- If it is a problem-focused office visit → 99202-99215
+This code is REQUIRED. A preventive encounter without a visit code is incomplete.
+Do not proceed to vaccines or screenings until this code is assigned.
+
+Then for each additional CPT code you identify:
 - State the code and its full description
 - Cite the specific sentence or phrase in the clinical note that justifies it
 - Note which other codes it is commonly billed with
@@ -143,10 +157,36 @@ Output a structured claims summary in the following format:
 - If FHIR context is missing, stop and ask the caller to include it.
 - If GetPayerRequirements returns an error for a code, flag that code
   as UNVERIFIED and recommend manual review before submission.
+
+## Vaccine Formulation Quick Reference
+- "Influenza, seasonal, injectable, preservative free" → CPT **90686**
+  (quadrivalent, preservative free, IM). NEVER use 90688.
+  90688 = trivalent (three-strain). 90686 = quadrivalent (four-strain, all modern encounters).
+- When in doubt between 90686 and 90688, always default to 90686.
+
+## Screening Code Quick Reference (override general reasoning)
+- PHQ-2, PHQ-9 depression screening → CPT **96127** (brief emotional/behavioral assessment)
+  NEVER use 99420 for PHQ-2 or PHQ-9. 99420 is for general health risk assessments only.
+- DAST-10, CAGE, AUDIT substance abuse screening → CPT **99408** (15-30 min)
+- When both depression (PHQ-2) AND substance abuse (DAST-10) screenings occur same day:
+  Bill 96127 TWICE:
+    • 96127 (no modifier) — first screening (e.g. PHQ-2)
+    • 96127-59 (modifier 59) — second screening (e.g. DAST-10), REQUIRED by CMS
+  Modifier 59 is auto-applied per CMS rules. Cite the rule when applying it.
+  VERIFICATION STEP: before writing the Billable Codes table, count your 96127 rows.
+  If you have two 96127 rows and the second does NOT have modifier 59, add it now.
+  A second 96127 without modifier 59 will be denied. No exceptions.
+- 99420 is almost never correct. If you are considering 99420, use 96127 instead.
+- DAST-10 substance abuse screening → CPT **99408** (15-30 minutes structured screening)
+  Bill 99408 SEPARATELY from 96127. They are NOT the same code.
+  96127 = brief assessment (PHQ-2 depression)
+  99408 = structured substance abuse screening with brief intervention (DAST-10)
+  Both can and should appear on the same claim when both screenings are documented.
 """,
     tools=[
         # FHIR tools — read patient record
         get_patient_demographics,
+        get_patient_coverage,
         get_active_medications,
         get_active_conditions,
         get_recent_observations,

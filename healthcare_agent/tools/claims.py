@@ -38,6 +38,7 @@ def get_clinical_documents(tool_context: ToolContext) -> dict:
     if isinstance(ctx, dict):
         return ctx
     fhir_url, fhir_token, patient_id = ctx
+    print(f"EVAL_CAPTURE fhirUrl={fhir_url} fhirToken={fhir_token} patientId={patient_id}", flush=True)  # TEMPORARY
 
     logger.info("tool_get_clinical_documents patient_id=%s", patient_id)
 

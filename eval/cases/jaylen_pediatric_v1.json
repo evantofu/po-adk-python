@@ -1,0 +1,42 @@
+{
+    "case_id": "jaylen_pediatric_v1",
+    "description": "Jaylen Torres — 2024-11-05 well-child visit age 4 with DTaP, IPV, MMR vaccines, ASQ developmental screening, and PSC-17 behavioral screening",
+    "patient_id": "b7d14c22-e892-4a1f-bc08-2f3ae9d1554b",
+    "payer": "Medicaid CHIP",
+    "expected": {
+      "codes": [
+        { "cpt": "99392", "modifier": null },
+        { "cpt": "90700", "modifier": null },
+        { "cpt": "90713", "modifier": null },
+        { "cpt": "90707", "modifier": null },
+        { "cpt": "90471", "modifier": null },
+        { "cpt": "90472", "modifier": null },
+        { "cpt": "96110", "modifier": null },
+        { "cpt": "96127", "modifier": null }
+      ],
+      "must_not_include": ["99391", "99393", "96160", "90473", "90474"],
+      "hard_stops_expected": []
+    },
+    "scoring": {
+      "required_codes": ["99392", "90471", "90472", "96110", "96127"],
+      "required_modifier_pairs": [],
+      "partial_credit": {
+        "99391": "wrong_age_band_critical_error"
+      }
+    },
+    "metadata": {
+      "encounter_type": "well-child-visit",
+      "encounter_date": "2024-11-05",
+      "age": 4,
+      "gender": "male",
+      "complexity": "medium",
+      "key_challenges": [
+        "age_banded_preventive_code_selection_99392_not_99391",
+        "immunization_admin_tiered_billing_90471_first_90472_additional",
+        "two_screenings_same_day_no_modifier_59_needed",
+        "96110_vs_96127_distinct_instruments_both_required",
+        "90472_billed_once_per_additional_vaccine_count_correctly"
+      ],
+      "regression_notes": "Common agent failures: (1) picks 99391 (infant) instead of 99392 (1-4 yrs); (2) bills 90472 only once for two additional shots instead of twice; (3) adds modifier 59 to 96110 or 96127 unnecessarily; (4) omits one of the two screenings. 90473/90474 are intranasal admin codes — wrong route for these vaccines."
+    }
+  }

@@ -20,6 +20,7 @@ from .fhir import (
     get_active_medications,
     get_patient_demographics,
     get_recent_observations,
+    get_patient_coverage,
 )
 
 __all__ = [

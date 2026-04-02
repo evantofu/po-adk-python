@@ -1,0 +1,41 @@
+{
+    "case_id": "tamera_preventive_v1",
+    "description": "Tamera Wisozk929 — 2024-02-18 preventive visit with influenza vaccine, Td vaccine, PHQ-2 depression screening x2, and DAST-10 substance abuse screening",
+    "patient_id": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+    "payer": "Blue Cross Blue Shield",
+    "expected": {
+      "codes": [
+        { "cpt": "99396", "modifier": null },
+        { "cpt": "90686", "modifier": null },
+        { "cpt": "90471", "modifier": null },
+        { "cpt": "96127", "modifier": null },
+        { "cpt": "96127", "modifier": "59" },
+        { "cpt": "99408", "modifier": null }
+      ],
+      "must_not_include": ["99420", "96160", "G0396", "99395", "G0442"],
+      "hard_stops_expected": []
+    },
+    "scoring": {
+      "required_codes": ["99396", "90686", "90471", "96127", "99408"],
+      "required_modifier_pairs": [["96127", "59"]],
+      "partial_credit": {
+        "90714": "acceptable_alternative_to_90686",
+        "90472": "acceptable_addition_for_second_vaccine"
+      }
+    },
+    "metadata": {
+      "encounter_type": "preventive",
+      "encounter_date": "2024-02-18",
+      "age": 44,
+      "gender": "female",
+      "complexity": "medium",
+      "key_challenges": [
+        "modifier_59_on_repeated_screening",
+        "vaccine_pair_required_90471_with_90686",
+        "substance_abuse_bundling_flag",
+        "dast10_false_positive_suppression",
+        "primary_visit_code_mandatory"
+      ],
+      "regression_notes": "This is the baseline case. Any regression here is a critical failure."
+    }
+  }

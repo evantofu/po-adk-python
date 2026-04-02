@@ -152,6 +152,7 @@ def get_patient_demographics(tool_context: ToolContext) -> dict:
         "contacts":       contacts,
         "address":        address,
         "marital_status": (patient.get("maritalStatus") or {}).get("text"),
+        "payer":          tool_context.state.get("payer", ""),  # ← injected by fhir_hook
     }
 
 
@@ -253,6 +254,91 @@ def get_active_conditions(tool_context: ToolContext) -> dict:
         "patient_id": patient_id,
         "count":      len(conditions),
         "conditions": conditions,
+    }
+
+
+
+# ── Tool: patient coverage (payer / insurance) ────────────────────────────────
+
+def get_patient_coverage(tool_context: ToolContext) -> dict:
+    """
+    Retrieves the patient's active insurance coverage and payer information
+    from the FHIR server.
+
+    Queries Coverage resources for the patient and returns the payer name,
+    plan name, subscriber ID, and coverage period. This is the authoritative
+    source for payer name — use this in Step 1 before running GetPayerRequirements.
+
+    No arguments required — patient identity comes from session context.
+    """
+    ctx = _get_fhir_context(tool_context)
+    if isinstance(ctx, dict):
+        return ctx
+    fhir_url, fhir_token, patient_id = ctx
+
+    logger.info("tool_get_patient_coverage patient_id=%s", patient_id)
+    try:
+        bundle = _fhir_get(
+            fhir_url, fhir_token, "Coverage",
+            params={
+                "patient": patient_id,
+                "status":  "active",
+                "_count":  "5",
+            },
+        )
+    except httpx.HTTPStatusError as e:
+        return _http_error_result(e)
+    except Exception as e:
+        return _connection_error_result(e)
+
+    coverages = []
+    for entry in bundle.get("entry", []):
+        res = entry.get("resource", {})
+
+        # Payer name — Coverage.payor is a list of References with display or id
+        payer_name = None
+        for payor in res.get("payor", []):
+            payer_name = (
+                payor.get("display")
+                or payor.get("reference", "").split("/")[-1]
+            )
+            if payer_name:
+                break
+
+        # Plan / class name
+        plan_name = None
+        for cls in res.get("class", []):
+            cls_type = (cls.get("type") or {})
+            type_code = (
+                cls_type.get("text")
+                or _coding_display(cls_type.get("coding", []))
+            )
+            if "plan" in (type_code or "").lower():
+                plan_name = cls.get("name") or cls.get("value")
+                break
+
+        period = res.get("period", {})
+        coverages.append({
+            "coverage_id":   res.get("id"),
+            "status":        res.get("status"),
+            "payer":         payer_name or "Unknown",
+            "plan":          plan_name,
+            "subscriber_id": res.get("subscriberId"),
+            "period_start":  period.get("start"),
+            "period_end":    period.get("end"),
+            "order":         res.get("order", 1),   # 1 = primary
+        })
+
+    # Sort so primary coverage (order=1) comes first
+    coverages.sort(key=lambda c: c["order"])
+    primary_payer = coverages[0]["payer"] if coverages else "Unknown"
+
+    return {
+        "status":        "success",
+        "patient_id":    patient_id,
+        "primary_payer": primary_payer,
+        "count":         len(coverages),
+        "coverages":     coverages,
     }
 
 

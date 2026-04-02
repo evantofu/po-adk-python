@@ -1,0 +1,625 @@
+{
+  "case_id": "tamera_preventive_v1",
+  "raw_a2a_response": {
+    "id": "eval-tamera_preventive_v1",
+    "jsonrpc": "2.0",
+    "result": {
+      "artifacts": [
+        {
+          "artifactId": "cf714d04-148f-4086-9894-54f1de4e55df",
+          "parts": [
+            {
+              "kind": "text",
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) not billed alongside 90686. (Note: 90471 has been added, but this flag indicates the original documentation gap).\n*   **96127:** No scoring documentation in clinical note. PHQ-2 score must be recorded.\n\n### Payer-Specific Notes\n*   **99396:** Modifier 59 is REQUIRED and AUTO-APPLY if 96127 is billed more than once on the same date of service, specifically when depression screening (96127) is billed more than once. (From GetPayerRequirements for 99396)\n*   **96127:** If 96127 is billed more than once on the same date without modifier 59 on the second unit, modifier 59 is required and will be auto-applied to the second instance of 96127. (From GetPayerRequirements for 96127)"
+            }
+          ]
+        }
+      ],
+      "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+      "history": [
+        {
+          "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+          "kind": "message",
+          "messageId": "eval-tamera_preventive_v1",
+          "metadata": {
+            "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
+              "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+              "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+              "payer": "Blue Cross Blue Shield"
+            }
+          },
+          "parts": [
+            {
+              "kind": "text",
+              "text": "Please code the encounter for patient ID: c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a. Produce a complete ClaimAuditLog with confidence scores and payer-specific evidence for all codes."
+            }
+          ],
+          "role": "user",
+          "taskId": "28884819-4375-4f19-ad8e-687bfd5e5516"
+        },
+        {
+          "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+          "kind": "message",
+          "messageId": "eval-tamera_preventive_v1",
+          "metadata": {
+            "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
+              "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+              "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+              "payer": "Blue Cross Blue Shield"
+            }
+          },
+          "parts": [
+            {
+              "kind": "text",
+              "text": "Please code the encounter for patient ID: c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a. Produce a complete ClaimAuditLog with confidence scores and payer-specific evidence for all codes."
+            }
+          ],
+          "role": "user",
+          "taskId": "28884819-4375-4f19-ad8e-687bfd5e5516"
+        },
+        {
+          "kind": "message",
+          "messageId": "fb530652-4aa5-4b0f-bf8b-1f4bf3a04345",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-8ce7407b-dfe4-4c14-b3cc-f3ac5f7710e6",
+                "args": {},
+                "name": "get_patient_demographics"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "Cs0HAb4+9vvMHV3BRT2oQUI/C8PzF3RTT/wsXGiS6E0fVvv+yjXvbjFUbuH2N6P0hjqUiTA+iklyb3n91Gv8kFqqiliABn4NtbkYw5ncmuygADFy3X1z5DHUDKnykxJKHmYlnqaFcAqtolzcG4QKX3VbfhsCN2lePijJzSWInTW3JWX4I463MutGqzCfM6VV6QcVkVPzJ8ROo/AHNHamfdWTKD+08EyW6EFlrBwV/58Zq4CQNoYLzsL016etBJwtuV95ZWG9r9koqgh0Zf+t9vQhKOSz+Ez/ClfQOVeiR9Hn1NLFCaRnZjuJZaGwbe4od0X8cZOUO8gPJXdCYoMAJad4SXCiI3GZA6VktlokdWCi4gXuJsGTmGjOoPnncoCYeahhwCbfsQYIzynBDd3Y1wQp1Zu2TMV7NJ1dZyGOfz3ZaDkPPcP3U2vxNjRVAIZTtr2kog/a+xkfi3AJelI9m1dWV4zmQXTuMzsei8P5EgQGMbEIliSMgvrHN5X2xxdK7njxa1GPdLnGrO+SywUQ3VWd4af7dvipdK507VVR21tvKC1hBZvevWzgJLHlitoUS/0qfGH3RT9TmW/a5n+QtqXVoziuUln5n+o0Vlny/3qbFXt6ecYDeBzaRsqoaEV/Dq57TeId/bSx8ya8egu8QcDvIFh8odOEJScgxgmH8MdbG5jwc0kPf6P8q/wPoguiUSCdb1usLLIDBcqRNlg0AzR58XH7TZRGk/pPVhpsUWvR3q+idBFQXjrvgKC7V5Yly6lbcljihR/a0jPAlRJrNIkZSwxo0H5ik+uDZv0iM/+jr7uwDI0nQEpO1qvYTQiKVbwXxanyCH1W+Tfo2NUlJR3c3UX7kbBvj1pqw8rAenlySMMYXePBZLbgrCP1blCeua93kOz8YkWknSBO64BhZXbz1RtM1VQVSpxNquH4fnsYrjsEBQIZD1znsGlW0/8X+MLUdDyEHy9YBXWUXWK+dCzjkAYln3Ga9eXZQxo4fhjhFzkdD8kfFjIhADj+XBEqgws5qq6gcrojG2NrBa0kNJeImLSZwScyOjGef1GFJwvTs384zvm0A5arXnPBOrQJopIayW4BIBe+bx4RQkzaznik3iRuDiLCcnvT3Y/Mlajk8wA+OzbOFvQnSOXsb1cwP5rfEImafxmo/zZ5iQWMv70V5o7uhx06x0/20wOMdGNO9UjyyBSjA/b3UEJNmytJ5oh+I6KXx3c4RSl9W1JknD3IUnTEn4dDLotFhdBjkKCITl4gAS2KE/OY3b5OHDcauWs/X/3Lgg6r+ckBbtbkPw=="
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "473327ec-373a-42e8-91c0-324b5b95c3cd",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-8ce7407b-dfe4-4c14-b3cc-f3ac5f7710e6",
+                "name": "get_patient_demographics",
+                "response": {
+                  "status": "success",
+                  "patient_id": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "name": "Tamera164 Wisozk929",
+                  "birth_date": "1980-02-03",
+                  "gender": "female",
+                  "active": null,
+                  "contacts": [
+                    {
+                      "system": "phone",
+                      "value": "555-407-9433",
+                      "use": "home"
+                    }
+                  ],
+                  "address": "589 Daniel Center Suite 80, Burlington, MA, 01803, US",
+                  "marital_status": "Married",
+                  "payer": "Blue Cross Blue Shield"
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "14f0e66f-8942-4cc4-aff7-d9f8e82dcae6",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-9477a9b0-e19f-41d0-832f-98804cffea8f",
+                "args": {},
+                "name": "get_clinical_documents"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CogCAb4+9vu+61KvkpDyp7GkYL2o521V8OpPrk+edophltpCW+a4C59AfCeNea6b4k7dUZ9l/ow9MbSjEdyFbkfpLYocyA/hQwpbwktZP0ls2G/EHBcdoiPSOT2y3JFXvR7XGhLWjqInFEHTMkdjviYCtun/InIe0rfNrW1VWivdg+z3bjWPpY7NpLDY4zetzcrdse7J6w38RFicMTJ0dpg09ep38BSV1Is0HEkoRv/ZxTmaDaxNjyRoTrz6FeuRNFcj5xFVw4fRlSN0pGjZYUx9T2fSUa50/qWQp6F/dENAfs/TeEBbmktbTO2WkTHC6jUPWxRMm10TkLgvB5jE2fEs+V60bW4/ID62"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "4b55ec16-a95f-4e3d-b163-14eda7fe4d5a",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-9477a9b0-e19f-41d0-832f-98804cffea8f",
+                "name": "get_clinical_documents",
+                "response": {
+                  "status": "success",
+                  "patient_id": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "count": 10,
+                  "documents": [
+                    {
+                      "document_id": "f30bc872-7d41-460e-ac39-4f7fab035e6f",
+                      "title": "Clinical Document",
+                      "date": "2024-02-18T02:50:11.733-05:00",
+                      "status": "current",
+                      "authors": [
+                        "Dr. Gerard367 Pouros728"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2024-02-18\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 44 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), gingivitis (disorder), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\nPatient is presenting with part-time employment (finding), misuses drugs (finding). \n\n\n## Plan\nPatient was given the following immunizations: influenza, seasonal, injectable, preservative free. \nThe following procedures were conducted:\n- assessment of health and social care needs (procedure)\n- depression screening (procedure)\n- depression screening (procedure)\n- assessment of substance use (procedure)\n- screening for drug abuse (procedure)\nThe following lab reports were completed:\n- patient health questionnaire 2 item (phq-2) [reported]\n- drug abuse screening test-10 [dast-10]\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "1f375db3-1ecb-4a9e-92b3-61b232e85368",
+                      "title": "Clinical Document",
+                      "date": "2022-02-13T02:50:11.733-05:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Gerard367 Pouros728"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2022-02-13\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 42 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), gingivitis (disorder), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\nPatient is presenting with medication review due (situation). \n\n\n## Plan\nPatient was given the following immunizations: influenza, seasonal, injectable, preservative free, td (adult), 5 lf tetanus toxoid, preservative free, adsorbed, hep a, adult. \nThe following procedures were conducted:\n- assessment of health and social care needs (procedure)\n- depression screening (procedure)\n- depression screening (procedure)\nThe following lab reports were completed:\n- lipid panel with direct ldl - serum or plasma\n- patient health questionnaire 2 item (phq-2) [reported]\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "dbf43df6-7078-46cb-b601-fe8f1ff36338",
+                      "title": "Clinical Document",
+                      "date": "2021-04-18T03:50:11.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Luther918 Jakubowski832"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2021-04-18\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 41 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), gingivitis (disorder), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\n\n\n\n## Plan\nPatient was given the following immunizations: covid-19, mrna, lnp-s, pf, 100 mcg/0.5ml dose or 50 mcg/0.25ml dose. \n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "4481b28b-cfa6-4a17-b9a0-7939c508643b",
+                      "title": "Clinical Document",
+                      "date": "2021-03-21T03:50:11.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Luther918 Jakubowski832"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2021-03-21\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 41 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), gingivitis (disorder), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\n\n\n\n## Plan\nPatient was given the following immunizations: covid-19, mrna, lnp-s, pf, 100 mcg/0.5ml dose or 50 mcg/0.25ml dose. \n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "8d9a0291-f404-433e-b5a5-4750d5b918b2",
+                      "title": "Clinical Document",
+                      "date": "2020-02-23T02:50:11.733-05:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Luther918 Jakubowski832"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2020-02-23\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 40 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), gingivitis (disorder), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\n\n\n\n## Plan\n\nThe following procedures were conducted:\n- dental consultation and report (procedure)\n- dental care (regime/therapy)\n- removal of supragingival plaque and calculus from all teeth using dental instrument (procedure)\n- removal of subgingival plaque and calculus from all teeth using dental instrument (procedure)\n- dental plain x-ray bitewing (procedure)\n- examination of gingivae (procedure)\n- dental fluoride treatment (procedure)\n- oral health education (procedure)\nThe patient was prescribed the following medications:\n- sodium fluoride 0.0272 mg/mg oral gel\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "d2d7e83c-5a63-4c5d-878c-616fde861189",
+                      "title": "Clinical Document",
+                      "date": "2020-02-09T02:50:11.733-05:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Gerard367 Pouros728"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2020-02-09\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 40 year-old hispanic white female. Patient has a history of gingival disease (disorder), medication review due (situation), not in labor force (finding), full-time employment (finding), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nsodium fluoride 0.0272 mg/mg oral gel\n\n# Assessment and Plan\nPatient is presenting with full-time employment (finding), gingivitis (disorder). \n\n\n## Plan\nPatient was given the following immunizations: influenza, seasonal, injectable, preservative free, hep a, adult. \nThe following procedures were conducted:\n- medication reconciliation (procedure)\n- assessment of health and social care needs (procedure)\n- assessment of anxiety (procedure)\n- screening for domestic abuse (procedure)\n- depression screening (procedure)\n- depression screening (procedure)\n- patient referral for dental care (procedure)\nThe following lab reports were completed:\n- cbc panel - blood by automated count\n- generalized anxiety disorder 7 item (gad-7)\n- humiliation, afraid, rape, and kick questionnaire [hark]\n- patient health questionnaire 2 item (phq-2) [reported]\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "024297d0-0808-45e6-96ae-be7e827ddacb",
+                      "title": "Clinical Document",
+                      "date": "2017-05-07T03:50:11.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Luther918 Jakubowski832"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2017-05-07\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 37 year-old hispanic white female. Patient has a history of medication review due (situation), not in labor force (finding), full-time employment (finding), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nNo Active Medications.\n\n# Assessment and Plan\nPatient is presenting with gingival disease (disorder). \n\n\n## Plan\n\nThe following procedures were conducted:\n- dental consultation and report (procedure)\n- dental care (regime/therapy)\n- removal of supragingival plaque and calculus from all teeth using dental instrument (procedure)\n- removal of subgingival plaque and calculus from all teeth using dental instrument (procedure)\n- dental plain x-ray bitewing (procedure)\n- examination of gingivae (procedure)\n- dental surgical procedure (procedure)\n- dental application of desensitizing medicament (procedure)\n- gingivectomy or gingivoplasty, per tooth (procedure)\n- postoperative care for dental procedure (regime/therapy)\n- dental fluoride treatment (procedure)\n- oral health education (procedure)\nThe patient was prescribed the following medications:\n- sodium fluoride 0.0272 mg/mg oral gel\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "fd54a38d-8396-441e-9014-66dcd6bb13f1",
+                      "title": "Clinical Document",
+                      "date": "2017-04-23T03:50:11.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Gerard367 Pouros728"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2017-04-23\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 37 year-old hispanic white female. Patient has a history of full-time employment (finding), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nNo Active Medications.\n\n# Assessment and Plan\nPatient is presenting with medication review due (situation), not in labor force (finding). \n\n\n## Plan\nPatient was given the following immunizations: influenza, seasonal, injectable, preservative free. \nThe following procedures were conducted:\n- assessment of health and social care needs (procedure)\n- assessment of anxiety (procedure)\n- assessment of substance use (procedure)\n- screening for drug abuse (procedure)\n- patient referral for dental care (procedure)\nThe following lab reports were completed:\n- lipid panel with direct ldl - serum or plasma\n- generalized anxiety disorder 7 item (gad-7)\n- drug abuse screening test-10 [dast-10]\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "d5780b69-75a0-4409-b191-5621896dcf0d",
+                      "title": "Clinical Document",
+                      "date": "2015-05-09T04:58:31.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Luther918 Jakubowski832"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2015-05-09\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 35 year-old hispanic white female. Patient has a history of full-time employment (finding), stress (finding), social isolation (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nNo Active Medications.\n\n# Assessment and Plan\nPatient is presenting with history of tubal ligation (situation). \n\n\n## Plan\n\n"
+                        }
+                      ]
+                    },
+                    {
+                      "document_id": "301ae1bc-38f7-4536-a431-0d8cdf777ed1",
+                      "title": "Clinical Document",
+                      "date": "2014-04-20T03:50:11.733-04:00",
+                      "status": "superseded",
+                      "authors": [
+                        "Dr. Gerard367 Pouros728"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain; charset=utf-8",
+                          "title": "",
+                          "text": "\n2014-04-20\n\n# Chief Complaint\nNo complaints.\n\n# History of Present Illness\nTamera164 is a 34 year-old hispanic white female. Patient has a history of full-time employment (finding), stress (finding).\n\n# Social History\nPatient is married. Patient has never smoked.\n Patient identifies as heterosexual.\n\nPatient comes from a high socioeconomic background.\n Patient is a college graduate.\nPatient currently has Blue Cross Blue Shield.\n\n# Allergies\nNo Known Allergies.\n\n# Medications\nNo Active Medications.\n\n# Assessment and Plan\nPatient is presenting with social isolation (finding). \n\n\n## Plan\n\n"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "f7662348-32bd-4b59-b052-c64dcc12c94c",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-4fe40a5d-f0c9-45a6-8c2b-93588eb0d879",
+                "args": {
+                  "cptCode": "99396",
+                  "payerName": "Blue Cross Blue Shield",
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "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"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "3b7d5da7-d4a2-4612-b97c-04833b679b04",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-4fe40a5d-f0c9-45a6-8c2b-93588eb0d879",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "=== PAYER REQUIREMENTS: CPT 99396 | Payer: Blue Cross Blue Shield ===\nDescription: Preventive medicine visit, established patient, age 40-64\nCategory: preventive_medicine\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 40\u201364, any, established patient\nFrequency: once_per_calendar_year\n\n--- MODIFIERS ---\nModifier 25 [OPTIONAL]\n  Condition: A separate problem-oriented E&M service is documented and medically necessary on the same date as the preventive visit\nModifier 59 [REQUIRED] [AUTO-APPLY]\n  Condition: A procedure or service is distinct and independent from other services performed on the same day, specifically when depression screening (96127) is billed more than once\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | HARD_STOP | Billed more than once per calendar year for same patient\n  Action: Remove duplicate. Only one preventive visit per year is reimbursable under CMS.\n\ud83d\udd34 HIGH | HARD_STOP | Patient age does not fall within 40-64 range\n  Action: Use 99395 for ages 18-39 or 99397 for ages 65+. Verify patient DOB from FHIR demographics.\n\ud83d\udd34 HIGH | HARD_STOP | Patient listed as new patient \u2014 should be 99386 for new patients age 40-64\n  Action: Confirm established vs new patient status from FHIR encounter history.\n\ud83d\udd34 HIGH | MODIFIER_REQUIRED | Depression screening (96127) billed twice on same date without modifier 59\n  Action: Auto-apply modifier 59 to second 96127 instance. Cite BCBS Modifier 59 Policy if payer is BCBS.\n\ud83d\udfe1 MEDIUM | DOCUMENTATION_GAP | Documentation does not reflect comprehensive preventive exam\n  Action: Flag for human review. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\n90686, 90714, 96127, 99420\n\n--- NOTES ---\nPrimary code for Tamera's encounter. Age 42, established patient, BCBS. Expect 96127 x2 \u2014 modifier 59 required."
+                    }
+                  ],
+                  "isError": false
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "cd071f4b-b076-4ab3-b5ae-d1b27170c9db",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-ca9c6cb9-2efb-4120-a220-4bbb9ff2bd8b",
+                "args": {
+                  "cptCode": "90686",
+                  "payerName": "Blue Cross Blue Shield",
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CskDAb4+9vtpv/EFTRSPT277igUOyObNsCs7c9Gx1HTSPElvAHmJGHv+Po2QPwOJ3LyiQDpxTEIMM3QY78NGf6sLVBXePMcS0jtGaNSeHSMe/scTvTrcCjgUfyXKgLtl5IYrm7me5x9rJ1FWCfFua2jCScXAAs4pwRkx8nD/lRGCFbcotYjFNz1oIsGjZL8sTtabmP7Uya/CrGGsHuq7o6a8EkiEWvN58JFKsMR0OYWGHl8JoqAyLrS2Pbt69hEQGjpS0SFRrUFUMG+6UVW72qlqh2YRkuS3Ycte/KsOqqlpefy0MusKpIwRpUPfv6bdAu6ugOlKpBbPSKN3yk5fSaVY65oOe+R73BKqo0q3VFpgBzOpHp+Q2fgJgb1k4fSQym2h30qOYVcy8MfSo4eegzEu9YRrLnH3uBFFYfXwZDBpBEcRuDuin/YrCFfZuHi5oWaA7iJXpZ5Loyqw8HsK5Sc9j59Xnp9/EhVv40bhG1guvDUI+2u61nR5GIXxlc+mwNBGzLwwr3HGaP0dCfgKya45+SMp/5Vf0yboVLgwH+qCXopS6pmbHWWunr3Vm53X1jxX/jPV/G6LbtYh/Xi50fv+SjDKh3oE1uYFIA=="
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "f5260b44-addc-4c22-b4d5-391db13f2420",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-ca9c6cb9-2efb-4120-a220-4bbb9ff2bd8b",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "=== PAYER REQUIREMENTS: CPT 90686 | Payer: Blue Cross Blue Shield ===\nDescription: Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use\nCategory: immunization\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 3\u2013\u221e, any, any patient\nFrequency: once_per_influenza_season\n\n--- MODIFIERS ---\nModifier SB [OPTIONAL]\n  Condition: Vaccine administered by non-physician provider in specific payer contexts\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | HARD_STOP | Billed more than once in same influenza season\n  Action: Remove duplicate. One influenza vaccine per season unless documented medical necessity.\n\ud83d\udd34 HIGH | HARD_STOP | Wrong vaccine code for patient age or dosage\n  Action: Verify dosage from clinical note. 90685 is for 0.5mL preservative-free alternative. Confirm exact product administered.\n\ud83d\udfe1 MEDIUM | DOCUMENTATION_GAP | Vaccine administration code (90471) not billed alongside 90686\n  Action: Flag for human review. 90471 (first vaccine admin) must accompany 90686. Without it, reimbursement for administration is lost.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\n90471, 99396\n\n--- NOTES ---\nTamera received influenza seasonal injectable preservative free. Maps to 90686. Must pair with 90471."
+                    }
+                  ],
+                  "isError": false
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "e18e61c2-a37a-4988-8f50-30d14dde57ad",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-6e2ca93a-eb0a-4988-be2c-acdd086ae970",
+                "args": {
+                  "payerName": "Blue Cross Blue Shield",
+                  "cptCode": "96127",
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CvUDAb4+9vv1L9wMW2paMb4EZl5cJv+QIu2qnmPXTSbvHZVCertpH1KV6naEEHXlAqpNO5TDr5zgVqEXuaPvZ1wdiVhA4d39Pzig2tjvJCUUL9QyOFLjKspBmz3BZnT+zBeof2N5IEUuQ93IhYFw4E/cEJW/qmM/Wo5lvCXn3BhsWMYwHvOKpM98cKBiGrPmeJTmGOFtqT9sT5GvVVSJB8Sa1d4n5muTvSLQ4TaberuF3djk6axZSIzFOAgZeXyEhtkKGqF9yi80uvAbGmn4zzg3SRY2oLzip/+JI7t3+p7alDUzoq4SS2TiY0dIqmGO6oVCr9vgtOkUgzk3rQjJFe2QJPTft7a006dO+vI9OWCbueJ+Z/W0ERKuC4x+e5noI9B7XVe43Ltl0rkKVkFvpqEe5kbBxzuvMNIb44Bb1QCV1G5uWAyPcHQSy94speNHlxREU4GLYkG0TURUhFn1yJQecUEeWIQ8mUX1T3jKL+ChXifoxBuUTPJ3uYoxPkY3alPCs5LUfPoEdfGkgWH5NFGf1ZwKY0blXgOYMqU01b3AbdOHxhyOo36szZmHHb5pt2eANV9ykNMNfBqiHPYlwj3NYzjd6zdn76V8XoJ04gvU1VRrhkE+y7lCCrw3vQDMzxUabU4EzHG6yuQhAXqNJDEA5IMr0wy4"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "0c4a8bfe-4d4d-4a85-bf8a-eac569449d8a",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-6e2ca93a-eb0a-4988-be2c-acdd086ae970",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "=== PAYER REQUIREMENTS: CPT 96127 | Payer: Blue Cross Blue Shield ===\nDescription: Brief emotional/behavioral assessment with scoring and documentation\nCategory: behavioral_health_screening\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 0\u2013\u221e, any, any patient\nFrequency: up_to_2x_per_encounter_with_modifier\n\n--- MODIFIERS ---\nModifier 59 [REQUIRED] [AUTO-APPLY]\n  Condition: 96127 is billed more than once on the same date of service\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | MODIFIER_REQUIRED | Billed more than once on same date without modifier 59 on second unit\n  Action: Auto-apply modifier 59 to second instance of 96127. Tamera's note documents depression screening x2 \u2014 this trigger is expected to fire.\n\ud83d\udfe1 MEDIUM | DOCUMENTATION_GAP | No scoring documentation in clinical note\n  Action: Flag for human review. PHQ-2 score must be recorded. Tamera's note lists PHQ-2 [reported] \u2014 verify score is captured.\n\ud83d\udfe1 MEDIUM | DOCUMENTATION_GAP | Billed without a corresponding preventive or E&M code\n  Action: 96127 is typically an add-on to a primary E&M or preventive visit. Confirm 99396 is present on the same claim.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\n99396, 99420\n\n--- NOTES ---\nKey code for the Modifier 59 demo. Tamera has depression screening x2 on same date. Second instance requires modifier 59. This is the centerpiece denial predictor scenario."
+                    }
+                  ],
+                  "isError": false
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "e60cb0b9-5ab7-4f83-8f69-5313e287405f",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-c4f1b81d-c833-422e-be8c-910cf271a33b",
+                "args": {
+                  "cptCode": "99408",
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "payerName": "Blue Cross Blue Shield"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CoUJAb4+9vuvjQDTUj5k1QPwjBYbik0rUzQDO4q84FF5Eq6AcW0WU+z5kBarqz63H9az9dGIFHGJy+Ix+hMi2/HkJfFNDDlX/7mpX1Am3jIG822GzG5+J3ePCRkZsLP1T5agC7GpJHSSyswix6tRGCzRvM1ol5fPeQjLOFytnqpxOIDZbIHEdSu1CpXCQeH/2MgKVPTJK8ixiC2PJ+iIlApcI8KUioVW07I1qlPkIwxat34B6r6Z8wmP4TJOZUHre/raIA3dRkQMc+FIKhHDL9OOqHR2cA7Gq2qBXztKKfqYsSxzSd6rutozAFIrfPd58udLklpOAn8OwzZDJxY5h83qUMwYhtLPD++3IlvnVfZRrUtf1DANWWdEo7utskemkLJyRGsJJjCuX3q9W02wVAp/YWAK5UX1de54EkX7NNacuTtlLAisqcdNoAewdVRMNkWomukXeErILNTzDtO22uxlTEXYzNsMGlV7FryRMB/lkjA+IFauYRXnXosoVpOP6v6GOscchtHQyT+8UKsd/pO9eV+qe5C7BZMgOmnYwk1qK0pWm6k7DezeljdOq5hBMkff8eUqaSnP2QOAlOsvZQo1J5a0pPOaRjnkdDoDQq52o8IFrRbznu0wknazRUU7G+4gJn7a0eh2bzn3dnsXy/gV0O39tudPez5EP0bFrq8hFIUcnpcGz+jNmrsikHssR19MVdFHq716/K0KnImpuezBgMAF9qah49F4tu/JvCZlScGbO3psBczyOEep01hjZTObbAXbVRo1KyPqevrCC8gCOC7JHZ+jvxjAVT4lIwD4Wz+cN2TX0JWV4df+8so/c4yrXKLtuDwf9WkascVHb33ABOQPmh5Ru0fZSLuwNuxkMD7NMlg56WFUDkP0MI5/w4vkJfnWqnQoYVh6scZRjKHxrkHQzjwzkp4BOTBd26Kh0F/k1kWiWDc2xc9TzV+fsqNlM0I6/CMskSAEIWjRWGH5b97ij7cQcLk5l3Tij7667DPK+HRbEnjzHPhKXC1a1Yz6zDYKXq7u6LCZGbcOCIJ7bFNgcYbiY0rW7ylnaMiCE3LeErdB8/wTFP40pLpsnVEGF0nVU8ZaJYNNeJtHiM6TGMR9KcVqHH+T7nN9BHzbo7UdZtNsqJEbCEqM57D7VhXKKwR50gkPrN61FwugtHYST9BytA0glTDZ+Pgv879LaleFus3emq3SyzHECkcAFJvNQcTqt2e7A0nc0ldIXgTUAQOCcKMAroH1tug9YBG9sg92/qBVWxiYNmECzuJHXWMpjMTx9GBixMBivNRHbx2S+F2a9lv4xTeplDyJGwBl1msJ2XpKto4Uo0RppqQ9C3mdJ2RDzAvYAEF9E+O6H3h7b7mUjM92PGrt9zMFb73Rg1vv5Mk/FLyD17stkZFGRXgEHMrjV92Qpf6ixg5mladOBycV6u+0k3gmcVqlwmx2SpGzClQLqD8/IpWsuukQP1Q9PkNWElN2Hd0YwjBiP7q/LCiP6OvlurRd+A9h4LPUNVaGs1+yuWspoyiNsA/i3CQWhe0spVQ="
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "1e5786ee-9be2-4075-afa4-1f188c5c0f1f",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-c4f1b81d-c833-422e-be8c-910cf271a33b",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "CPT code 99408 is not in the CMS rules database. Currently supported codes: 90686, 90714, 96127, 99396, 99420. Add the code to rules/cms_rules.json to enable denial prediction."
+                    }
+                  ],
+                  "isError": true
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "560349ed-0d7a-4e72-91e8-40d35692ba41",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-d4cc62fa-cc76-4d94-801e-cdc395ff236c",
+                "args": {
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "payerName": "Blue Cross Blue Shield",
+                  "cptCode": "90471"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "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"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "5b1f1422-22a8-439c-99be-99081d4d1a59",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-d4cc62fa-cc76-4d94-801e-cdc395ff236c",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "CPT code 90471 is not in the CMS rules database. Currently supported codes: 90686, 90714, 96127, 99396, 99420. Add the code to rules/cms_rules.json to enable denial prediction."
+                    }
+                  ],
+                  "isError": true
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "d193e5d5-b14c-433b-8fd7-fdf5fca61812",
+          "parts": [
+            {
+              "kind": "text",
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) not billed alongside 90686. (Note: 90471 has been added, but this flag indicates the original documentation gap).\n*   **96127:** No scoring documentation in clinical note. PHQ-2 score must be recorded.\n\n### Payer-Specific Notes\n*   **99396:** Modifier 59 is REQUIRED and AUTO-APPLY if 96127 is billed more than once on the same date of service, specifically when depression screening (96127) is billed more than once. (From GetPayerRequirements for 99396)\n*   **96127:** If 96127 is billed more than once on the same date without modifier 59 on the second unit, modifier 59 is required and will be auto-applied to the second instance of 96127. (From GetPayerRequirements for 96127)"
+            }
+          ],
+          "role": "agent"
+        }
+      ],
+      "id": "28884819-4375-4f19-ad8e-687bfd5e5516",
+      "kind": "task",
+      "metadata": {
+        "adk_app_name": "claims_coding_agent",
+        "adk_user_id": "A2A_USER_62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+        "adk_session_id": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+        "adk_invocation_id": "e-f08596d7-d4bc-41cb-b741-573107f388e5",
+        "adk_author": "claims_coding_agent",
+        "adk_event_id": "eb6d297e-0302-41ec-ae55-67cf33900c1d",
+        "adk_custom_metadata": "{'a2a_metadata': {'https://app.promptopinion.ai/schemas/a2a/v1/fhir-context': {'fhirUrl': 'https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir', 'fhirToken': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O', 'patientId': 'c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a', 'payer': 'Blue Cross Blue Shield'}}}",
+        "adk_usage_metadata": {
+          "cacheTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 7857
+            }
+          ],
+          "cachedContentTokenCount": 7857,
+          "candidatesTokenCount": 756,
+          "promptTokenCount": 9138,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 9138
+            }
+          ],
+          "thoughtsTokenCount": 651,
+          "totalTokenCount": 10545
+        },
+        "adk_actions": {
+          "stateDelta": {
+            "fhir_url": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+            "fhir_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+            "patient_id": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+            "payer": "Blue Cross Blue Shield"
+          },
+          "artifactDelta": {},
+          "requestedAuthConfigs": {},
+          "requestedToolConfirmations": {}
+        }
+      },
+      "status": {
+        "state": "completed",
+        "timestamp": "2026-04-02T05:50:52.509526+00:00"
+      }
+    }
+  },
+  "extracted_text_preview": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) n",
+  "extracted_text_length": 2680
+}

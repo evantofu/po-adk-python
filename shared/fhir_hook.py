@@ -187,9 +187,11 @@ def extract_fhir_context(callback_context, llm_request):
         callback_context.state["fhir_url"]   = fhir_data.get("fhirUrl",   "")
         callback_context.state["fhir_token"] = fhir_data.get("fhirToken", "")
         callback_context.state["patient_id"] = fhir_data.get("patientId", "")
+        callback_context.state["payer"]      = fhir_data.get("payer",      "")
         logger.info("FHIR_URL_FOUND value=%s",         callback_context.state["fhir_url"]   or "[EMPTY]")
         logger.info("FHIR_TOKEN_FOUND fingerprint=%s", token_fingerprint(callback_context.state["fhir_token"]))
         logger.info("FHIR_PATIENT_FOUND value=%s",     callback_context.state["patient_id"] or "[EMPTY]")
+        logger.info("FHIR_PAYER_FOUND value=%s",       callback_context.state["payer"]      or "[EMPTY]")
         logger.info(
             "hook_called_fhir_found task_id=%s context_id=%s message_id=%s "
             "patient_id=%s fhir_url_set=%s fhir_token=%s",
