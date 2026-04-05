@@ -15,6 +15,7 @@ import os
 
 from google.adk.agents import Agent
 from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, StreamableHTTPConnectionParams
+from google.genai import types
 
 from shared.fhir_hook import extract_fhir_context
 from shared.tools import (
@@ -52,6 +53,10 @@ mcp_toolset = MCPToolset(
 root_agent = Agent(
     name="claims_coding_agent",
     model="gemini-2.5-flash",
+    generate_content_config=types.GenerateContentConfig(
+        temperature=0.0,
+        thinking_config=types.ThinkingConfig(thinking_budget=0),
+    ),
     description=(
         "A medical billing specialist that reads a patient's FHIR clinical record, "
         "assigns the correct CPT procedure codes, runs a pre-flight denial check "
@@ -72,6 +77,12 @@ Call get_patient_demographics to retrieve the patient's name, date of birth,
 gender, and payer. The payer field in the demographics result is the
 authoritative payer name — use it directly for all subsequent steps including
 GetPayerRequirements. Do not call get_patient_coverage unless payer is empty.
+
+After retrieving demographics, explicitly calculate the patient's age:
+  age = year(encounter_date) - year(DOB)
+  if month/day of encounter is before month/day of DOB → age -= 1
+Record this calculated age before proceeding. Use it — not an estimate — 
+to select the age-banded preventive E/M code in Step 3.
 
 ### Step 2: Retrieve Clinical Documentation
 Call get_clinical_documents to retrieve the patient's clinical notes and
@@ -101,6 +112,47 @@ Then for each additional CPT code you identify:
 - State the code and its full description
 - Cite the specific sentence or phrase in the clinical note that justifies it
 - Note which other codes it is commonly billed with
+
+### Step 3b: Pairing Verification (MANDATORY — run before Step 4)
+Work through each item below in sequence. For each checkbox, look at your
+current working code list and confirm the exact code string is present.
+Do not rely on memory — scan the list.
+
+**Vaccine pairing:**
+□ Does your code list contain any code in the 90620–90756 range? (antigen codes)
+  → If YES: confirm the string "90471" appears in your code list.
+    If it does NOT → add 90471 now before continuing.
+□ Does your code list contain TWO OR MORE antigen codes?
+  → If YES: confirm the string "90472" appears in your code list.
+    If it does NOT → add 90472 now before continuing.
+
+**Screening pairing:**
+□ Does the clinical note mention PHQ-2, PHQ-9, or depression screening?
+  → If YES: confirm "96127" (no modifier) appears in your code list.
+    If it does NOT → add it now.
+□ Does the clinical note mention DAST-10, CAGE, AUDIT-C, or substance abuse screening?
+  → If YES: confirm "99408" appears in your code list.
+    If it does NOT → add it now.
+□ Does your code list contain TWO rows with code 96127?
+  → If YES: confirm the second row has modifier "59".
+    If it does NOT → add modifier 59 to the second 96127 row now.
+  → If your code list has only ONE 96127 but BOTH depression AND substance abuse
+    screenings are documented → add a second row: 96127-59 now.
+
+**Chronic care add-on check:**
+□ Does your code list contain any code in the 99202-99215 range?
+  → If YES: scan the clinical note for any of these phrases:
+    "ongoing management", "longitudinal care", "chronic disease management",
+    "long-term treatment plan", "continuing focal point"
+    → If ANY phrase is present → confirm "G2211" appears in your code list.
+      If it does NOT → add G2211 now before continuing.
+□ Does your code list contain G2211?
+  → If YES: confirm a 99202-99215 code is also present.
+    If it is NOT → remove G2211 (it cannot be billed alone).
+  → If YES: confirm NO preventive code (99381-99397) or AWV code (G0438/G0439)
+    is present on the same claim. If one is → remove G2211.
+
+Do not advance to Step 4 until every checkbox above has been explicitly evaluated.
 
 ### Step 4: Run Pre-Flight Denial Check
 For EACH CPT code you have identified, call GetPayerRequirements with:
@@ -158,30 +210,59 @@ Output a structured claims summary in the following format:
 - If GetPayerRequirements returns an error for a code, flag that code
   as UNVERIFIED and recommend manual review before submission.
 
-## Vaccine Formulation Quick Reference
+## Vaccine Administration Quick Reference
+- Every vaccine given requires BOTH an antigen code AND an admin code:
+  • First vaccine:      antigen code (e.g. 90686) + 90471
+  • Second vaccine:     antigen code (e.g. 90633) + 90472
+  • Third+ vaccines:    antigen code + 90472 (additional unit)
 - "Influenza, seasonal, injectable, preservative free" → CPT **90686**
-  (quadrivalent, preservative free, IM). NEVER use 90688.
-  90688 = trivalent (three-strain). 90686 = quadrivalent (four-strain, all modern encounters).
-- When in doubt between 90686 and 90688, always default to 90686.
+  NEVER use 90688. 90688 = trivalent; 90686 = quadrivalent (all modern encounters).
+- 90471 is ALWAYS required when any vaccine is administered. It is not optional.
+  Missing 90471 = incomplete claim = guaranteed denial.
+
+## Pediatric Vaccine CPT Quick Reference
+- DTaP → CPT 90700. NEVER use 90701 (whole-cell DTP, discontinued since 2001).
+- IPV (Inactivated Poliovirus) → CPT 90713
+- MMR → CPT 90707
+- Varicella → CPT 90716
+- Hep B pediatric (≤19y) → CPT 90744
+- Hep A pediatric → CPT 90633
 
 ## Screening Code Quick Reference (override general reasoning)
 - PHQ-2, PHQ-9 depression screening → CPT **96127** (brief emotional/behavioral assessment)
-  NEVER use 99420 for PHQ-2 or PHQ-9. 99420 is for general health risk assessments only.
-- DAST-10, CAGE, AUDIT substance abuse screening → CPT **99408** (15-30 min)
-- When both depression (PHQ-2) AND substance abuse (DAST-10) screenings occur same day:
-  Bill 96127 TWICE:
-    • 96127 (no modifier) — first screening (e.g. PHQ-2)
-    • 96127-59 (modifier 59) — second screening (e.g. DAST-10), REQUIRED by CMS
-  Modifier 59 is auto-applied per CMS rules. Cite the rule when applying it.
-  VERIFICATION STEP: before writing the Billable Codes table, count your 96127 rows.
-  If you have two 96127 rows and the second does NOT have modifier 59, add it now.
-  A second 96127 without modifier 59 will be denied. No exceptions.
-- 99420 is almost never correct. If you are considering 99420, use 96127 instead.
-- DAST-10 substance abuse screening → CPT **99408** (15-30 minutes structured screening)
-  Bill 99408 SEPARATELY from 96127. They are NOT the same code.
-  96127 = brief assessment (PHQ-2 depression)
-  99408 = structured substance abuse screening with brief intervention (DAST-10)
-  Both can and should appear on the same claim when both screenings are documented.
+  NEVER use 99420 for PHQ-2 or PHQ-9.
+- DAST-10, CAGE, AUDIT-C substance abuse screening → CPT **99408** (15-30 min)
+  99408 is a SEPARATE code from 96127. Both must appear when both screenings occurred.
+- When both depression AND substance abuse screenings occur same day, bill all three:
+    • 96127           — first screening (PHQ-2 depression)
+    • 96127-59        — second screening (DAST-10 substance abuse), modifier 59 REQUIRED
+    • 99408           — structured substance abuse screening (DAST-10), billed separately
+  This produces THREE rows in the Billable Codes table. That is correct.
+- VERIFICATION: before writing the Billable Codes table, count your screening rows.
+  If you have 96127 but no 99408 and DAST-10 was documented → add 99408 now.
+  If you have two 96127 rows and the second lacks modifier 59 → add it now.
+
+## G2211 — Complexity Add-On
+Bill G2211 in ADDITION to the base E/M code (99202-99215) when ALL are true:
+- Visit is NOT preventive (not 99381-99397, G0438, G0439)
+- Note documents ongoing management of chronic condition(s) as the primary
+  focus — look for phrases like "ongoing management," "longitudinal care,"
+  "chronic disease management," or "long-term treatment plan"
+- The complexity is inherent to managing that chronic condition
+G2211 is an add-on. Bill both G2211 AND the base E/M. Never bill G2211 alone.
+NEVER bill G2211 with preventive codes or AWV codes.
+
+## Same-Day Preventive + Acute Visit (Modifier 25)
+When a preventive visit AND a separate acute problem are addressed same-day:
+- Bill the preventive code (99391-99397) — no modifier
+- Bill a SEPARATE office visit E/M (99202-99215) for the acute problem WITH modifier 25
+- The acute E/M level must reflect ONLY the acute problem in isolation:
+  • Mild acute problem (croup, URI, minor infection) → 99213
+  • Moderate acute problem (new diagnosis, medication initiation) → 99214
+  Do NOT inflate the acute E/M level based on the combined visit complexity.
+- Modifier 25 on the acute E/M code is REQUIRED — without it the claim denies.
+- Add 96110 to the claim when a standardized developmental screening tool
+  (ASQ-3, M-CHAT, MCHAT-R) is administered, scored, and documented.
 """,
     tools=[
         # FHIR tools — read patient record

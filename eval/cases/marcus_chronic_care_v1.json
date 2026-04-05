@@ -1,41 +1,33 @@
 {
-    "case_id": "marcus_chronic_care_v1",
-    "description": "Marcus Webb — 2024-09-10 subsequent annual wellness visit with same-day E&M for uncontrolled hypertension, DSMT individual session, and CCM (22 min)",
-    "patient_id": "a3f92b11-d541-4c3e-9e17-1b8cd7e0443a",
-    "payer": "Medicare Part B",
-    "expected": {
-      "codes": [
-        { "cpt": "G0439", "modifier": null },
-        { "cpt": "99213", "modifier": "25" },
-        { "cpt": "G0108", "modifier": "59" },
-        { "cpt": "99490", "modifier": null }
-      ],
-      "must_not_include": ["G0438", "99214", "99215", "G0109", "98960"],
-      "hard_stops_expected": []
-    },
-    "scoring": {
-      "required_codes": ["G0439", "99213", "G0108", "99490"],
-      "required_modifier_pairs": [
-        ["99213", "25"],
-        ["G0108", "59"]
-      ],
-      "partial_credit": {
-        "99212": "undercoded_but_acceptable_em_alternative"
+  "case_id": "marcus_chronic_care_v1",
+  "description": "Marcus Johnson \u2014 chronic care office visit. MDM/Time trap: note documents 25min face-to-face (maps to 99213 by time) but MODERATE MDM (maps to 99214). Agent must select 99214. G2211 add-on required for ongoing management of chronic conditions.",
+  "patient_id": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+  "payer": "Aetna",
+  "expected": {
+    "codes": [
+      {
+        "cpt": "99214",
+        "modifier": null
+      },
+      {
+        "cpt": "G2211",
+        "modifier": null
       }
-    },
-    "metadata": {
-      "encounter_type": "annual-wellness-visit",
-      "encounter_date": "2024-09-10",
-      "age": 63,
-      "gender": "male",
-      "complexity": "high",
-      "key_challenges": [
-        "awv_plus_same_day_em_requires_modifier_25",
-        "dsmt_bundling_prevention_modifier_59",
-        "ccm_time_threshold_20_min_minimum",
-        "g0439_not_g0438_subsequent_not_initial",
-        "must_not_bill_g0438_again_if_already_billed"
-      ],
-      "regression_notes": "Key trap: agent must distinguish G0438 (initial AWV) from G0439 (subsequent AWV). Marcus had a prior AWV. Billing G0438 again is a hard coding error and a must_not_include violation."
-    }
+    ],
+    "must_not_include": [
+      "99213"
+    ],
+    "hard_stops_expected": []
+  },
+  "scoring": {
+    "required_modifier_pairs": []
+  },
+  "metadata": {
+    "encounter_type": "office_visit_chronic_care",
+    "complexity": "moderate",
+    "key_challenges": [
+      "MDM vs time-based E/M selection \u2014 25min maps to 99213 by time but MODERATE MDM maps to 99214; higher level governs",
+      "G2211 add-on \u2014 requires recognizing explicit chronic condition ongoing management language in note"
+    ]
   }
+}

@@ -61,6 +61,7 @@ class GoldenCase:
     must_not_include: list[str]          # CPT codes that must not appear
     hard_stops_expected: list[str]       # CPT codes expected to be removed
     required_modifier_pairs: list[tuple[str, str]]  # [(cpt, modifier), ...]
+    alternative_groups: list[list[tuple[str, Optional[str]]]] = field(default_factory=list)
     metadata: dict = field(default_factory=dict)
 
     @property
@@ -103,6 +104,11 @@ def load_case(path: Path) -> GoldenCase:
         for pair in raw.get("scoring", {}).get("required_modifier_pairs", [])
     ]
 
+    alternative_groups = [
+        [(item["cpt"], item.get("modifier")) for item in group]
+        for group in raw.get("scoring", {}).get("alternative_groups", [])
+    ]
+
     return GoldenCase(
         case_id=raw["case_id"],
         description=raw["description"],
@@ -112,6 +118,7 @@ def load_case(path: Path) -> GoldenCase:
         must_not_include=raw["expected"].get("must_not_include", []),
         hard_stops_expected=raw["expected"].get("hard_stops_expected", []),
         required_modifier_pairs=required_modifier_pairs,
+        alternative_groups=alternative_groups,
         metadata=raw.get("metadata", {}),
     )
 

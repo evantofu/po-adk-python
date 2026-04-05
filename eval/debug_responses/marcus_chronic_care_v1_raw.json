@@ -1,0 +1,334 @@
+{
+  "case_id": "marcus_chronic_care_v1",
+  "raw_a2a_response": {
+    "id": "eval-marcus_chronic_care_v1",
+    "jsonrpc": "2.0",
+    "result": {
+      "artifacts": [
+        {
+          "artifactId": "7909ec78-baef-428f-aeb7-3137a4338fd2",
+          "parts": [
+            {
+              "kind": "text",
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Marcus Johnson | **DOB:** 1975-03-15 | **Payer:** Aetna\n**Encounter Date:** 2025-03-10\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99214 | Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Typically, 25 minutes are spent face-to-face with the patient and/or family. | | Requires Review | \"Medical Decision Making (MDM): MODERATE\", \"Number of problems: Two or more chronic illnesses with exacerbation (HbA1c worsening, BP elevated)\", \"Data reviewed: Labs reviewed and interpreted independently (eGFR, HbA1c, BMP)\", \"Risk: Moderate - prescription drug management and lifestyle modification\", \"TOTAL FACE-TO-FACE TIME: 25 minutes\". |\n| G2211 | Visit complexity inherent to evaluation and management associated with primary medical care. | | Requires Review | \"This visit involved ongoing management of multiple chronic conditions (type 2 diabetes and hypertension) with adjustments to the long-term treatment plan. The longitudinal care relationship and ongoing management of these chronic conditions is central to this visit.\" |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99214:** MDM level does not support moderate complexity. Flag for human review. 99214 requires MODERATE MDM: 2+ chronic conditions with exacerbation, or independent data interpretation, plus prescription drug management or other moderate-risk decision.\n*   **G2211:** Clinical note does not document ongoing management of a chronic condition as the primary focus. Flag for human review. Note must explicitly support longitudinal, ongoing management of a serious or complex chronic condition. Look for language like 'ongoing management', 'longitudinal care relationship', 'chronic disease management', or 'long-term treatment plan'.\n\n### Payer-Specific Notes\nNo payer-specific PDF evidence found for Aetna for CPT 99214.\nNo payer-specific PDF evidence found for Aetna for CPT G2211."
+            }
+          ]
+        }
+      ],
+      "contextId": "df9c5065-9728-49f7-b70e-a97b2612f2cf",
+      "history": [
+        {
+          "contextId": "df9c5065-9728-49f7-b70e-a97b2612f2cf",
+          "kind": "message",
+          "messageId": "eval-marcus_chronic_care_v1",
+          "metadata": {
+            "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
+              "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTM1NzAwOCwiaWF0IjoxNzc1MzUzNDA4LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIxMzU4YzQ2Mi04ZTJhLTRkZmQtYTFkMy0wMWRhMDA3N2MwZjYiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDViNGYtMmE5MC03YWZjLWExZWMtYjlhNDk3MTMzOGU3In0.1RqkFy7wbmtfwlDlB_gncYN3Qv5dkl6YgBy_zdkQtqfAj5R46zSpGKVt8mVyDA1DOUhUCgI5LqamVsec65NFdiasLy5mY_7Ml3jSoEr1C_ezIrIxij7gBFJb93zLoNOWx93zp6cyEe9SJWaMvZQ4j8Vswep2qjfx88G-yGmyKZnbFbMUDlBF2JmN52KV47cUhQ1JChX3FNXwchxLBr4-gFfxc0LpPBD8CvNGQ3TZB40Bbr55dJARyl5gHaO0giFe83nP3psD1bCtB2VjPAAIj8tMwItiaLeaAIkjBBMEh5QuL54xNFXHIBm_Rgqzo-xVXLUYrnjDezxQhL4B9e3tK4hF4-hc1O44Mbfg3AjtOutWESk6RSt-yM9IEOXDl8Pea5ewt0y8MXoNXh2PJ-Nr23iEbuvks3umoLirz2UWu3YBbsM-4QM9RxhPX1FTBvxwp62KcrtMMYshz0tAXYLYAEy5-igY-0yXWy_pxnMoDIqy6bT9sehQXhzj5hKKt0nv",
+              "patientId": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+              "payer": "Aetna"
+            }
+          },
+          "parts": [
+            {
+              "kind": "text",
+              "text": "Please code the encounter for patient ID: d61e89c1-e161-4f88-ab66-661ac002ecfc. Produce a complete ClaimAuditLog with confidence scores and payer-specific evidence for all codes."
+            }
+          ],
+          "role": "user",
+          "taskId": "2ea55811-9aa7-4cb0-9c35-b6ed035fecad"
+        },
+        {
+          "contextId": "df9c5065-9728-49f7-b70e-a97b2612f2cf",
+          "kind": "message",
+          "messageId": "eval-marcus_chronic_care_v1",
+          "metadata": {
+            "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
+              "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTM1NzAwOCwiaWF0IjoxNzc1MzUzNDA4LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIxMzU4YzQ2Mi04ZTJhLTRkZmQtYTFkMy0wMWRhMDA3N2MwZjYiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDViNGYtMmE5MC03YWZjLWExZWMtYjlhNDk3MTMzOGU3In0.1RqkFy7wbmtfwlDlB_gncYN3Qv5dkl6YgBy_zdkQtqfAj5R46zSpGKVt8mVyDA1DOUhUCgI5LqamVsec65NFdiasLy5mY_7Ml3jSoEr1C_ezIrIxij7gBFJb93zLoNOWx93zp6cyEe9SJWaMvZQ4j8Vswep2qjfx88G-yGmyKZnbFbMUDlBF2JmN52KV47cUhQ1JChX3FNXwchxLBr4-gFfxc0LpPBD8CvNGQ3TZB40Bbr55dJARyl5gHaO0giFe83nP3psD1bCtB2VjPAAIj8tMwItiaLeaAIkjBBMEh5QuL54xNFXHIBm_Rgqzo-xVXLUYrnjDezxQhL4B9e3tK4hF4-hc1O44Mbfg3AjtOutWESk6RSt-yM9IEOXDl8Pea5ewt0y8MXoNXh2PJ-Nr23iEbuvks3umoLirz2UWu3YBbsM-4QM9RxhPX1FTBvxwp62KcrtMMYshz0tAXYLYAEy5-igY-0yXWy_pxnMoDIqy6bT9sehQXhzj5hKKt0nv",
+              "patientId": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+              "payer": "Aetna"
+            }
+          },
+          "parts": [
+            {
+              "kind": "text",
+              "text": "Please code the encounter for patient ID: d61e89c1-e161-4f88-ab66-661ac002ecfc. Produce a complete ClaimAuditLog with confidence scores and payer-specific evidence for all codes."
+            }
+          ],
+          "role": "user",
+          "taskId": "2ea55811-9aa7-4cb0-9c35-b6ed035fecad"
+        },
+        {
+          "kind": "message",
+          "messageId": "90324fd4-9bd7-46d2-bf35-94f3ef23b4c9",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-08514770-11c0-451d-b43f-53a9ae88b921",
+                "args": {},
+                "name": "get_patient_demographics"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CsYCAb4+9vthbI0XC40A0JtbEOJ1UpIT4VJyqfrPAE/coaeDWMGBeF1O5tWAmtyXnNmlSE79isbcMTySCl3tgxUyG1nRUPwekV2zL6jc8kTcSWzfAHQSiIIHUpOTAcUSWBxc8P7MaHgGJPoCAOEzn0E1BJdOQ6Mmo7J3pzWf588TKdhuj4udSjgIgp25gqIa3asB5MNDTCWkekKKoFlWG0yPGgjlBI8z9vflxQs+REy8Pla/kf6OvHG/IdVH+5UhqcCd7WtqYn/QdES7fgf97ro3LvGUtrq18Ex48Js4ZpPRO23orz55aZoJ9Fc0YVFAIcGY4v7rPKJnfA3bnC9zMnpHIGNlV+dWdiokRY3u8BPQ+TPhgie7cguZjyFhIUlIlDiF31Bjia7vS7cqnrXeUT/d3klGEugIxtOrWsBmOjp2JqpXxAPbC1s="
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "9f2b0bb3-3865-48af-840d-11bd9463fa08",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-08514770-11c0-451d-b43f-53a9ae88b921",
+                "name": "get_patient_demographics",
+                "response": {
+                  "status": "success",
+                  "patient_id": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+                  "name": "Marcus Johnson",
+                  "birth_date": "1975-03-15",
+                  "gender": "male",
+                  "active": null,
+                  "contacts": [
+                    {
+                      "system": "phone",
+                      "value": "555-312-0001",
+                      "use": "home"
+                    }
+                  ],
+                  "address": "1400 S Michigan Ave, Chicago, MA, 60605, US",
+                  "marital_status": null,
+                  "payer": "Aetna"
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "8c42d4bf-4288-43ed-bf90-9171d09e0fa8",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-9b13ba04-19a6-4210-a717-76b210eaef31",
+                "args": {},
+                "name": "get_clinical_documents"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CqwCAb4+9vv0Ifiw/pxXrr7LnytdiO3sGQtpG029YgAuQhUVJNx6NErfNEzn2u9eMWDmZi9v1HXCnqlKhMyAhoBwshES2R03LLlpY51FU/G1wbzo8rQ2G9noqGwBsqTuSvACZJRHfhcsF59XVSJSaqntjoO9sdx/71YQhaRkEHo9BuXjg7QHLoPL5AP7wfXgOhoB/LfCB8KpebmLe3KAJ/zon61YtY0NRYuLvAFZS1Qy8V4jYmdS02otzt4Oecjpg6q0OO7M2nuyDAykuYr9r3R1uhnWMfFMZzjkCJj45dlXfLfyAYN+zAlPokXEFJdDTNy2x6Gr7KzG7vB3vs3DIFtxF55MNLRu+ZPcyEMOIzVKnCD+sV/zxAB1574IpJol852scgZjKyVTjv3AmfTb"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "8c45ce94-d244-41d2-9fff-1eb1ce18871e",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-9b13ba04-19a6-4210-a717-76b210eaef31",
+                "name": "get_clinical_documents",
+                "response": {
+                  "status": "success",
+                  "patient_id": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+                  "count": 1,
+                  "documents": [
+                    {
+                      "document_id": "b7fbf056-4619-41d1-9ef2-059e7f2f2d3b",
+                      "title": "Office Visit Note",
+                      "date": "2025-03-10T09:30:00+00:00",
+                      "status": "current",
+                      "authors": [
+                        "Dr. Samantha Reed, MD"
+                      ],
+                      "contents": [
+                        {
+                          "content_type": "text/plain",
+                          "title": "",
+                          "text": "OFFICE VISIT NOTE\nPatient: Marcus Johnson | DOB: 1975-03-15 | Age: 50 y.o.\nDate of Service: 2025-03-10\nProvider: Dr. Samantha Reed, MD\n\nREASON FOR VISIT\nEstablished patient presenting for routine chronic disease management. Patient has an established history of type 2 diabetes mellitus and essential hypertension, both requiring ongoing management.\n\nSUBJECTIVE\nPatient reports generally adhering to medications but admits occasional lapses with Metformin due to GI discomfort. Denies chest pain, dyspnea, or palpitations. Reports mild fatigue. No hypoglycemic episodes. Diet compliance is fair; exercise is inconsistent.\n\nOBJECTIVE\nVital Signs: BP 148/92 mmHg (BP elevated from prior visit 140/86), Weight: 214 lbs, Height: 5'7\", BMI 30.2, Pulse: 78 bpm, Temp: 98.6F\n\nLabs (drawn 2025-03-10):\n- HbA1c: 7.8% (elevated; prior value 3 months ago: 7.2%)\n- BMP: WNL except BG 136 mg/dL\n- eGFR: 72 mL/min/1.73 m2\n\nPHYSICAL EXAM\nGeneral: Alert and oriented x3. No acute distress.\nCardiovascular: RRR, no murmurs, rubs, or gallops.\nExtremities: No edema. Dorsalis pedis pulses 2+ bilaterally.\nFeet: Intact sensation to monofilament testing bilaterally.\n\nASSESSMENT & PLAN\nMedical Decision Making (MDM): MODERATE\n- Number of problems: Two or more chronic illnesses with exacerbation (HbA1c worsening, BP elevated)\n- Data reviewed: Labs reviewed and interpreted independently (eGFR, HbA1c, BMP)\n- Risk: Moderate - prescription drug management and lifestyle modification\n\n1. Type 2 Diabetes Mellitus (HbA1c 7.8%):\nHbA1c has worsened from 7.2% to 7.8% since last visit. Discussed GI side effects of Metformin; switching to extended-release formulation (Metformin ER 1000 mg BID). Counseled on dietary carbohydrate reduction and adherence. Repeat HbA1c in 3 months. Referral to diabetes educator placed.\n\n2. Essential Hypertension (BP 148/92):\nBP elevated from prior visit. Uptitrating Amlodipine from 5 mg to 10 mg daily. Reiterated low-sodium diet and exercise goals. Recheck BP at next visit.\n\n3. Medication Reconciliation:\nFull medication list reviewed and reconciled:\n- Metformin ER 1000 mg BID (modified)\n- Lisinopril 10 mg daily\n- Amlodipine 10 mg daily (dose increased)\n\nTOTAL FACE-TO-FACE TIME: 25 minutes\n\nThis visit involved ongoing management of multiple chronic conditions (type 2 diabetes and hypertension) with adjustments to the long-term treatment plan. The longitudinal care relationship and ongoing management of these chronic conditions is central to this visit.\n\nRETURN TO CLINIC: 3 months or sooner if symptoms worsen."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "fe55ccaf-7375-431d-9076-68f5d1560c82",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-13db81ef-22bb-42e6-b0a6-353d5ecb6819",
+                "args": {
+                  "cptCode": "99214",
+                  "payerName": "Aetna",
+                  "patientId": "d61e89c1-e161-4f88-ab66-661ac002ecfc"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "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"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "2b2262e5-b2c4-4c19-8825-fd729106359a",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-13db81ef-22bb-42e6-b0a6-353d5ecb6819",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "=== PAYER REQUIREMENTS: CPT 99214 | Payer: Aetna ===\nDescription: Office or other outpatient visit, established patient, moderate complexity\nCategory: office_visit\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 0\u2013\u221e, any, established patient\nFrequency: once_per_encounter\n\n--- MODIFIERS ---\nModifier 25 [REQUIRED]\n  Condition: A separate acute or problem-focused E/M is performed on the same day as a preventive visit\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | DOCUMENTATION_GAP | MDM level does not support moderate complexity\n  Action: Flag for human review. 99214 requires MODERATE MDM: 2+ chronic conditions with exacerbation, or independent data interpretation, plus prescription drug management or other moderate-risk decision.\n\ud83d\udd34 HIGH | MODIFIER_REQUIRED | Billed on same date as preventive visit without modifier 25\n  Action: Add modifier 25 to 99214 when billed same-day as a preventive visit.\n\ud83d\udfe1 MEDIUM | INFORMATIONAL | G2211 not billed when note documents ongoing chronic condition management as primary focus\n  Action: Consider adding G2211 add-on if note documents ongoing management of chronic conditions as the primary focus of the visit and provider serves as continuing focal point for all care.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Aetna. Add Aetna policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\nG2211, 99213, 90471, 96127\n\n--- NOTES ---\nModerate complexity office visit. The 99214 + G2211 combination is the standard billing for established patients with chronic condition management (e.g. T2DM + HTN) where the provider is the continuing focal point."
+                    }
+                  ],
+                  "isError": false
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "ab59cdca-c424-43ab-9175-a75554ab164e",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-6cbfa6bd-0d29-4219-96ee-ac01f53f4b75",
+                "args": {
+                  "patientId": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+                  "payerName": "Aetna",
+                  "cptCode": "G2211"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call",
+                "adk_thought_signature": "CpgGAb4+9vu4YUNjiWlrxftImjsqPDpVMH9m9IaOuhOgjcapmsoyKQid4O8LOXp1TzGFOhNkrQ6OmCmtQ59uztyYskxKqR2hgaPwX6qdudLfPqeHu2LiaEDaz3ijPIoLeAtlAmUIOtsWNa4M+HZ+DSNfgkJe+C/oCHtT/f2ns2WVLN6kUx+kfdqmMcSLYsmq6j/1eeHnauLvnpTLDQ1u0LfKVoyTc5IJ3gawvuzc9TB1NW2NzczvSHWmzqKTxKggFugP1VvHpyOnaLSAXzVqOcX2waC8zKkRftlhCTea4fBKOQu+kYFjnKyxSt+/doRNn1kxLmEANJREosroT86bNqJQ+5OPZ+WGA+I+fK1uzVty3uqgJSXwB3uyDQmIq0lSLwJ7iS8GP4SRd/N8y9XPGj44F26ihMB8w+H8kNG3FmW+RRL8dPa8pxeHxjAL/ks6nUObpZkaJu5lbytGl2j9LEBhM9o2bGP917V8GVEeDewyV9YUBJMfzzS3nKNWTjfMKgUGVyvjkLo/G40VM0a5zQjzFkzQyrRCrfzeAIyoO5uE1v2nKNF4SLR4UXGtJIW/ajMcpGmU3JSUwlFDmZzPjU6W+juIMduYwm/Sb1o6nUo3CRn9dOXWLv6Dq15sciQM0/p2SsE9chLLi9TO9C1fMnVc518hzLqoe22dE7qIKULTDIM5tejblwT2NrOsFCoHF73OpnWhE566kyOK382RcGuIOijsv8Tb/tqLH/fsSWk63KqXh/vJZA55fHKhhsiZJHWmkP+3CPAnyEahOIAf1opafFazyPDSOAtGLeCb4R0t77X0sH3feNZFlNAP6lJwKbPLa1zc6yNGwaEXtBUCArk1CHuL8KZbLvokMLvpC7Q4a0+0RcXYqOFNNmkOaHVVYo8BE21q8aE6eTerSXuFnaKqB5Ow3gJSgGEB95Iv3dSB+iG0fLjpJ4WK2EftGDP+EJ2hyS+QWVljZlDdJirzVChLpmUJXTLyu0Nnoxm6pKkBlvlBT/H95UFcnWsVXZpnoP5HMboZ+cHrNgIPFpCVSnJJoZYV84VAdYQM"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "a6e07485-2813-4120-9f62-dc724dd2294e",
+          "parts": [
+            {
+              "data": {
+                "id": "adk-6cbfa6bd-0d29-4219-96ee-ac01f53f4b75",
+                "name": "GetPayerRequirements",
+                "response": {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "=== PAYER REQUIREMENTS: CPT G2211 | Payer: Aetna ===\nDescription: Visit complexity inherent to evaluation and management associated with medical care services that serve as the continuing focal point for all needed health care services\nCategory: em_complexity_addon\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 0\u2013\u221e, any, established patient\nFrequency: once_per_encounter\n\n--- MODIFIERS ---\nNo standard modifiers for this code.\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | HARD_STOP | Billed without a base E/M code 99202-99215 on the same claim\n  Action: G2211 is an add-on to office/outpatient E/M only. It cannot be billed alone. Confirm 99202-99215 is present on the same claim.\n\ud83d\udd34 HIGH | HARD_STOP | Billed with a preventive visit code (99381-99397) or AWV code (G0438/G0439)\n  Action: G2211 is not payable with preventive medicine codes or Annual Wellness Visit codes. Remove G2211 or reclassify the visit.\n\ud83d\udd34 HIGH | DOCUMENTATION_GAP | Clinical note does not document ongoing management of a chronic condition as the primary focus\n  Action: Flag for human review. Note must explicitly support longitudinal, ongoing management of a serious or complex chronic condition. Look for language like 'ongoing management', 'longitudinal care relationship', 'chronic disease management', or 'long-term treatment plan'.\n\ud83d\udd34 HIGH | HARD_STOP | Billed for an acute, episodic visit with no chronic condition management\n  Action: G2211 is not appropriate for acute episodic visits. It is only payable when the physician serves as the continuing focal point for the patient's overall care.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Aetna. Add Aetna policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\n99214, 99215, 99213\n\n--- NOTES ---\nCMS add-on code effective 2024. Pays ~$16 additional. Requires the visit to involve ongoing management of a chronic condition where the provider is the continuing focal point. Commonly missed by AI coding agents. Trigger phrases in notes: 'ongoing management', 'longitudinal care', 'chronic disease management', 'long-term treatment plan'."
+                    }
+                  ],
+                  "isError": false
+                }
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_response"
+              }
+            }
+          ],
+          "role": "agent"
+        },
+        {
+          "kind": "message",
+          "messageId": "e490696c-97ec-462c-aa50-0914f3770322",
+          "parts": [
+            {
+              "kind": "text",
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Marcus Johnson | **DOB:** 1975-03-15 | **Payer:** Aetna\n**Encounter Date:** 2025-03-10\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99214 | Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Typically, 25 minutes are spent face-to-face with the patient and/or family. | | Requires Review | \"Medical Decision Making (MDM): MODERATE\", \"Number of problems: Two or more chronic illnesses with exacerbation (HbA1c worsening, BP elevated)\", \"Data reviewed: Labs reviewed and interpreted independently (eGFR, HbA1c, BMP)\", \"Risk: Moderate - prescription drug management and lifestyle modification\", \"TOTAL FACE-TO-FACE TIME: 25 minutes\". |\n| G2211 | Visit complexity inherent to evaluation and management associated with primary medical care. | | Requires Review | \"This visit involved ongoing management of multiple chronic conditions (type 2 diabetes and hypertension) with adjustments to the long-term treatment plan. The longitudinal care relationship and ongoing management of these chronic conditions is central to this visit.\" |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99214:** MDM level does not support moderate complexity. Flag for human review. 99214 requires MODERATE MDM: 2+ chronic conditions with exacerbation, or independent data interpretation, plus prescription drug management or other moderate-risk decision.\n*   **G2211:** Clinical note does not document ongoing management of a chronic condition as the primary focus. Flag for human review. Note must explicitly support longitudinal, ongoing management of a serious or complex chronic condition. Look for language like 'ongoing management', 'longitudinal care relationship', 'chronic disease management', or 'long-term treatment plan'.\n\n### Payer-Specific Notes\nNo payer-specific PDF evidence found for Aetna for CPT 99214.\nNo payer-specific PDF evidence found for Aetna for CPT G2211."
+            }
+          ],
+          "role": "agent"
+        }
+      ],
+      "id": "2ea55811-9aa7-4cb0-9c35-b6ed035fecad",
+      "kind": "task",
+      "metadata": {
+        "adk_app_name": "claims_coding_agent",
+        "adk_user_id": "A2A_USER_df9c5065-9728-49f7-b70e-a97b2612f2cf",
+        "adk_session_id": "df9c5065-9728-49f7-b70e-a97b2612f2cf",
+        "adk_invocation_id": "e-8df71b79-240b-43c3-959b-a214659d88a7",
+        "adk_author": "claims_coding_agent",
+        "adk_event_id": "5bc8b8a3-0e03-435d-8adf-0512821402d0",
+        "adk_custom_metadata": "{'a2a_metadata': {'https://app.promptopinion.ai/schemas/a2a/v1/fhir-context': {'fhirUrl': 'https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir', 'fhirToken': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTM1NzAwOCwiaWF0IjoxNzc1MzUzNDA4LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIxMzU4YzQ2Mi04ZTJhLTRkZmQtYTFkMy0wMWRhMDA3N2MwZjYiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDViNGYtMmE5MC03YWZjLWExZWMtYjlhNDk3MTMzOGU3In0.1RqkFy7wbmtfwlDlB_gncYN3Qv5dkl6YgBy_zdkQtqfAj5R46zSpGKVt8mVyDA1DOUhUCgI5LqamVsec65NFdiasLy5mY_7Ml3jSoEr1C_ezIrIxij7gBFJb93zLoNOWx93zp6cyEe9SJWaMvZQ4j8Vswep2qjfx88G-yGmyKZnbFbMUDlBF2JmN52KV47cUhQ1JChX3FNXwchxLBr4-gFfxc0LpPBD8CvNGQ3TZB40Bbr55dJARyl5gHaO0giFe83nP3psD1bCtB2VjPAAIj8tMwItiaLeaAIkjBBMEh5QuL54xNFXHIBm_Rgqzo-xVXLUYrnjDezxQhL4B9e3tK4hF4-hc1O44Mbfg3AjtOutWESk6RSt-yM9IEOXDl8Pea5ewt0y8MXoNXh2PJ-Nr23iEbuvks3umoLirz2UWu3YBbsM-4QM9RxhPX1FTBvxwp62KcrtMMYshz0tAXYLYAEy5-igY-0yXWy_pxnMoDIqy6bT9sehQXhzj5hKKt0nv', 'patientId': 'd61e89c1-e161-4f88-ab66-661ac002ecfc', 'payer': 'Aetna'}}}",
+        "adk_usage_metadata": {
+          "cacheTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 3053
+            }
+          ],
+          "cachedContentTokenCount": 3053,
+          "candidatesTokenCount": 570,
+          "promptTokenCount": 6217,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 6217
+            }
+          ],
+          "thoughtsTokenCount": 661,
+          "totalTokenCount": 7448
+        },
+        "adk_actions": {
+          "stateDelta": {
+            "fhir_url": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
+            "fhir_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTM1NzAwOCwiaWF0IjoxNzc1MzUzNDA4LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIxMzU4YzQ2Mi04ZTJhLTRkZmQtYTFkMy0wMWRhMDA3N2MwZjYiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDViNGYtMmE5MC03YWZjLWExZWMtYjlhNDk3MTMzOGU3In0.1RqkFy7wbmtfwlDlB_gncYN3Qv5dkl6YgBy_zdkQtqfAj5R46zSpGKVt8mVyDA1DOUhUCgI5LqamVsec65NFdiasLy5mY_7Ml3jSoEr1C_ezIrIxij7gBFJb93zLoNOWx93zp6cyEe9SJWaMvZQ4j8Vswep2qjfx88G-yGmyKZnbFbMUDlBF2JmN52KV47cUhQ1JChX3FNXwchxLBr4-gFfxc0LpPBD8CvNGQ3TZB40Bbr55dJARyl5gHaO0giFe83nP3psD1bCtB2VjPAAIj8tMwItiaLeaAIkjBBMEh5QuL54xNFXHIBm_Rgqzo-xVXLUYrnjDezxQhL4B9e3tK4hF4-hc1O44Mbfg3AjtOutWESk6RSt-yM9IEOXDl8Pea5ewt0y8MXoNXh2PJ-Nr23iEbuvks3umoLirz2UWu3YBbsM-4QM9RxhPX1FTBvxwp62KcrtMMYshz0tAXYLYAEy5-igY-0yXWy_pxnMoDIqy6bT9sehQXhzj5hKKt0nv",
+            "patient_id": "d61e89c1-e161-4f88-ab66-661ac002ecfc",
+            "payer": "Aetna"
+          },
+          "artifactDelta": {},
+          "requestedAuthConfigs": {},
+          "requestedToolConfirmations": {}
+        }
+      },
+      "status": {
+        "state": "completed",
+        "timestamp": "2026-04-05T02:41:38.803436+00:00"
+      }
+    }
+  },
+  "extracted_text_preview": "## CLAIMS CODING SUMMARY\n**Patient:** Marcus Johnson | **DOB:** 1975-03-15 | **Payer:** Aetna\n**Encounter Date:** 2025-03-10\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99214 | Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordination of care with other physicians, other qualified health care professionals, or agencies are provided consistent with the nature of the problem(s) and the patient's and/or family's needs. Typically, 25 minutes are spent face-to-face with the patient and/or family. | | Requires Review | \"Medical Decision Making (MDM): MODERATE\", \"Number of problems: Two or more chronic illnesses with exacerbation (HbA1c worsening, BP elevated)\", \"Data reviewed: Labs reviewed and interpreted independently (eGFR, HbA1c, BMP)\", \"Risk: Moderate - prescription drug management and lifestyle modification\", \"TOTAL FACE-TO-FACE TIME: 25 minutes\". |\n| G2211 | Visit complexity inherent to evaluation and management associated with primary medical care. | | Requires Review | \"This visit involved ongoing management of multiple chronic conditions (type 2 diabetes and hypertension) with adjustments to the long-term treatment plan. The longitudinal care relationship and ongoing management of these chronic conditions is central to this visit.\" |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99214:** MDM level does not support moderate complexity. Flag for human review. 99214 requires MODERATE MDM: 2+ chronic conditions with exacerbation, or independent data interpretation, plus prescription drug management or other moderate-risk decision.\n*   **G2211:** Clinical note does not document ongoing m",
+  "extracted_text_length": 2472
+}

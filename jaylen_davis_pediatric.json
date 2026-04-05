@@ -1,0 +1,429 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "371ecd7b-27cd-8130-4722-9389571aa876",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "371ecd7b-27cd-8130-4722-9389571aa876"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "MR",
+                  "display": "Medical Record Number"
+                }
+              ],
+              "text": "Medical Record Number"
+            },
+            "system": "http://hospital.smarthealthit.org",
+            "value": "371ecd7b-27cd-8130-4722-9389571aa876"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Davis",
+            "given": [
+              "Jaylen"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-312-0002",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2018-06-20",
+        "address": [
+          {
+            "line": [
+              "1400 S Michigan Ave"
+            ],
+            "city": "Chicago",
+            "state": "MA",
+            "postalCode": "60605",
+            "country": "US"
+          }
+        ],
+        "communication": [
+          {
+            "language": {
+              "coding": [
+                {
+                  "system": "urn:ietf:bcp:47",
+                  "code": "en-US",
+                  "display": "English (United States)"
+                }
+              ],
+              "text": "English (United States)"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|371ecd7b-27cd-8130-4722-9389571aa876"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:43b7a3a6-9a8d-ca03-580d-7b71d8f56413",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "43b7a3a6-9a8d-ca03-580d-7b71d8f56413",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "43b7a3a6-9a8d-ca03-580d-7b71d8f56413"
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "71186008",
+              "display": "Croup"
+            }
+          ],
+          "text": "Mild croup (laryngotracheobronchitis)"
+        },
+        "subject": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "onsetDateTime": "2025-03-31",
+        "encounter": {
+          "reference": "urn:uuid:5be6128e-18c2-6797-6142-ea7d17be3111"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|43b7a3a6-9a8d-ca03-580d-7b71d8f56413"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5be6128e-18c2-6797-6142-ea7d17be3111",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "5be6128e-18c2-6797-6142-ea7d17be3111",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "5be6128e-18c2-6797-6142-ea7d17be3111"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "410620009",
+                "display": "Well child visit (procedure)"
+              }
+            ],
+            "text": "Well-child visit with acute problem"
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "period": {
+          "start": "2025-04-02T10:00:00Z",
+          "end": "2025-04-02T10:40:00Z"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|5be6128e-18c2-6797-6142-ea7d17be3111"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:759cde66-bacf-b3d0-0b1f-9163ce9ff57f",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "759cde66-bacf-b3d0-0b1f-9163ce9ff57f",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "759cde66-bacf-b3d0-0b1f-9163ce9ff57f"
+          }
+        ],
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "20",
+              "display": "DTaP"
+            }
+          ],
+          "text": "DTaP (Diphtheria, Tetanus, Pertussis) - Pediarix lot #4872A"
+        },
+        "patient": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "occurrenceDateTime": "2025-04-02",
+        "site": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActSite",
+              "code": "LA",
+              "display": "left arm"
+            }
+          ]
+        },
+        "route": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+              "code": "IM",
+              "display": "Injection, intramuscular"
+            }
+          ]
+        },
+        "doseQuantity": {
+          "value": 0.5,
+          "unit": "mL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Immunization",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|759cde66-bacf-b3d0-0b1f-9163ce9ff57f"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ec1b8ca1-f91e-1d4c-1ff4-9b7889463e85",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "ec1b8ca1-f91e-1d4c-1ff4-9b7889463e85",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "ec1b8ca1-f91e-1d4c-1ff4-9b7889463e85"
+          }
+        ],
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "10",
+              "display": "IPV"
+            }
+          ],
+          "text": "IPV (Inactivated Poliovirus) - IPOL lot #2291C"
+        },
+        "patient": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "occurrenceDateTime": "2025-04-02",
+        "site": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActSite",
+              "code": "RA",
+              "display": "right arm"
+            }
+          ]
+        },
+        "route": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+              "code": "IM",
+              "display": "Injection, intramuscular"
+            }
+          ]
+        },
+        "doseQuantity": {
+          "value": 0.5,
+          "unit": "mL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mL"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Immunization",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|ec1b8ca1-f91e-1d4c-1ff4-9b7889463e85"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4b0dbb41-8d52-88f1-142c-3fe860e7a113",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "4b0dbb41-8d52-88f1-142c-3fe860e7a113",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://github.com/synthetichealth/synthea",
+            "value": "4b0dbb41-8d52-88f1-142c-3fe860e7a113"
+          }
+        ],
+        "status": "completed",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "3264",
+              "display": "Dexamethasone"
+            }
+          ],
+          "text": "Dexamethasone 0.6 mg/kg oral, single dose given in office for croup"
+        },
+        "subject": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "authoredOn": "2025-04-02"
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest",
+        "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|4b0dbb41-8d52-88f1-142c-3fe860e7a113"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e2acf72f-9e57-4f7a-a0ee-89aed453dd32",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e2acf72f-9e57-4f7a-a0ee-89aed453dd32",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "urn:ietf:rfc:3986",
+            "value": "urn:uuid:e2acf72f-9e57-4f7a-a0ee-89aed453dd32"
+          }
+        ],
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ],
+          "text": "Well-Child Visit Note with Acute Problem"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                "code": "clinical-note",
+                "display": "Clinical Note"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:371ecd7b-27cd-8130-4722-9389571aa876"
+        },
+        "date": "2025-04-02T10:40:00Z",
+        "author": [
+          {
+            "display": "Dr. Patricia Nguyen, MD"
+          }
+        ],
+        "custodian": {
+          "display": "Tofu Health Clinic"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "V0VMTC1DSElMRCBWSVNJVCBOT1RFClBhdGllbnQ6IEpheWxlbiBEYXZpcyB8IERPQjogMjAxOC0wNi0yMCB8IEFnZTogNiB5Lm8uCkRhdGUgb2YgU2VydmljZTogMjAyNS0wNC0wMgpQcm92aWRlcjogRHIuIFBhdHJpY2lhIE5ndXllbiwgTUQKClJFQVNPTiBGT1IgVklTSVQKRXN0YWJsaXNoZWQgcGF0aWVudCBwcmVzZW50aW5nIGZvciA2LXllYXIgd2VsbC1jaGlsZCB2aXNpdC4gUGFyZW50IGFsc28gcmVwb3J0cyBKYXlsZW4gaGFzIGhhZCBhIGJhcmtpbmcgY291Z2ggYW5kIGxvdy1ncmFkZSBmZXZlciBmb3IgMiBkYXlzIGFuZCBhc2tzIHRoYXQgaXQgYmUgZXZhbHVhdGVkIHRvZGF5LgoKU1VCSkVDVElWRQpXZWxsLWNoaWxkOiBQYXRpZW50IGlzIG1lZXRpbmcgZGV2ZWxvcG1lbnRhbCBtaWxlc3RvbmVzLiBFYXRpbmcgYW5kIHNsZWVwaW5nIHdlbGwuIEVucm9sbGVkIGluIGtpbmRlcmdhcnRlbiwgZG9pbmcgd2VsbCBzb2NpYWxseS4gTm8gYmVoYXZpb3JhbCBjb25jZXJucyByZXBvcnRlZCBieSBwYXJlbnQuCgpBY3V0ZSBjb21wbGFpbnQ6IFBhcmVudCBkZXNjcmliZXMgb25zZXQgMiBkYXlzIGFnbyBvZiBhICJzZWFsLWxpa2UgYmFya2luZyBjb3VnaCwiIHdvcnNlIGF0IG5pZ2h0LCB3aXRoIGxvdy1ncmFkZSBmZXZlciBvZiAxMDAuNEYgYXQgaG9tZS4gTm8gc3RyaWRvciBhdCByZXN0LiBObyBkaWZmaWN1bHR5IHN3YWxsb3dpbmcuIE5vIGRyb29saW5nLiBObyBwcmlvciBlcGlzb2RlcyBvZiBjcm91cC4KCk9CSkVDVElWRQpWaXRhbCBTaWduczogVGVtcCAxMDAuMkYsIEhSIDEwMiBicG0sIFJSIDIyLCBPMiBTYXQgOTglIG9uIHJvb20gYWlyLCBXZWlnaHQ6IDQ2IGxicyAoNTB0aCBwZXJjZW50aWxlKSwgSGVpZ2h0OiA0NSBpbiAoNTB0aCBwZXJjZW50aWxlKSwgQk1JOiAxNS4yCgpQSFlTSUNBTCBFWEFNIC0gUFJFVkVOVElWRSBDT01QT05FTlQKR2VuZXJhbDogQWxlcnQsIGFjdGl2ZSwgd2VsbC1hcHBlYXJpbmcgY2hpbGQgaW4gbm8gYWN1dGUgZGlzdHJlc3MuCkhFRU5UOiBOb3Jtb2NlcGhhbGljLiBUTXMgY2xlYXIgYmlsYXRlcmFsbHkuIE9yb3BoYXJ5bnggY2xlYXIuIE5vIGx5bXBoYWRlbm9wYXRoeS4KQ2FyZGlvdmFzY3VsYXI6IFJSUiwgbm8gbXVybXVycy4KQWJkb21lbjogU29mdCwgbm9uLXRlbmRlciwgbm9uLWRpc3RlbmRlZC4KTXVzY3Vsb3NrZWxldGFsOiBOb3JtYWwgZ2FpdC4gRnVsbCByYW5nZSBvZiBtb3Rpb24uCk5ldXJvbG9naWNhbDogQWdlLWFwcHJvcHJpYXRlIHJlZmxleGVzIGFuZCBjb29yZGluYXRpb24uCkRldmVsb3BtZW50OiBWaXNpb24gYW5kIGhlYXJpbmcgc2NyZWVuaW5nIHBhc3NlZC4gRGV2ZWxvcG1lbnRhbCBzdXJ2ZXkgY29tcGxldGVkLgoKUEhZU0lDQUwgRVhBTSAtIEFDVVRFIENPTVBPTkVOVApMdW5nczogTWlsZCBpbnNwaXJhdG9yeSBzdHJpZG9yIG5vdGVkIG9uIGFnaXRhdGlvbi4gTm8gc3RyaWRvciBhdCByZXN0LiBBaXIgZW50cnkgZXF1YWwgYmlsYXRlcmFsbHkuIE1pbGQgc3ViY29zdGFsIHJldHJhY3Rpb25zLiBCYXJreSBxdWFsaXR5IHRvIGNvdWdoIGNvbmZpcm1lZCBvbiBleGFtLgpBc3Nlc3NtZW50OiBDbGluaWNhbCBwcmVzZW50YXRpb24gY29uc2lzdGVudCB3aXRoIG1pbGQgY3JvdXAgKGxhcnluZ290cmFjaGVvYnJvbmNoaXRpcykuCgpQUkVWRU5USVZFIENBUkUgREVMSVZFUkVECkFudGljaXBhdG9yeSBndWlkYW5jZSBwcm92aWRlZDogbnV0cml0aW9uLCBzY3JlZW4gdGltZSwgc2xlZXAgaHlnaWVuZSwgZGVudGFsIGNhcmUsIHNhZmV0eS9jYXIgc2VhdC4KVmlzaW9uIHNjcmVlbmluZzogUGFzc2VkLgpEZXZlbG9wbWVudGFsIHNjcmVlbmluZyAoQVNRLTMpOiBDb21wbGV0ZWQgYW5kIHdpdGhpbiBub3JtYWwgbGltaXRzLgoKSU1NVU5JWkFUSU9OUyBBRE1JTklTVEVSRUQgVE9EQVkKMS4gRFRhUCAoRGlwaHRoZXJpYSwgVGV0YW51cywgUGVydHVzc2lzKSAtIFBlZGlhcml4IGxvdCAjNDg3MkEgLSAwLjUgbUwgSU0gbGVmdCBkZWx0b2lkCjIuIElQViAoSW5hY3RpdmF0ZWQgUG9saW92aXJ1cykgLSBJUE9MIGxvdCAjMjI5MUMgLSAwLjUgbUwgSU0gcmlnaHQgZGVsdG9pZAoKQVNTRVNTTUVOVCAmIFBMQU4KCjEuIDYtWWVhciBXZWxsLUNoaWxkIFZpc2l0OgpBbGwgcHJldmVudGl2ZSBzY3JlZW5pbmcgYW5kIGFudGljaXBhdG9yeSBndWlkYW5jZSBjb21wbGV0ZWQgcGVyIEFBUCBCcmlnaHQgRnV0dXJlcyBndWlkZWxpbmVzIGZvciBhZ2UgNi4KCjIuIE1pbGQgQ3JvdXAgKExhcnluZ290cmFjaGVvYnJvbmNoaXRpcyk6Ck1pbGQgcHJlc2VudGF0aW9uIG1hbmFnZWQgaW4gb2ZmaWNlLiBUaGlzIHByb2JsZW0gd2FzIHNlcGFyYXRlbHkgaWRlbnRpZmllZCwgZXZhbHVhdGVkLCBhbmQgbWFuYWdlZCBiZXlvbmQgdGhlIHNjb3BlIG9mIHRoZSByb3V0aW5lIHdlbGwtY2hpbGQgdmlzaXQuClBsYW46IFNpbmdsZSBkb3NlIG9mIG9yYWwgRGV4YW1ldGhhc29uZSAwLjYgbWcva2cgZ2l2ZW4gaW4gb2ZmaWNlLiBQYXJlbnQgaW5zdHJ1Y3RlZCBvbiByZXR1cm4gcHJlY2F1dGlvbnMgKHN0cmlkb3IgYXQgcmVzdCwgd29yc2VuaW5nIHJldHJhY3Rpb25zLCBjeWFub3NpcykuIENvb2wgbWlzdCBodW1pZGlmaWVyIGF0IGhvbWUuIEV4cGVjdGVkIHJlc29sdXRpb24gaW4gMy01IGRheXMuIFJldHVybiBpZiB3b3JzZW5pbmcgb3Igbm8gaW1wcm92ZW1lbnQgaW4gNDggaG91cnMuCgozLiBJbW11bml6YXRpb25zOgpEVGFQIGFuZCBJUFYgYWRtaW5pc3RlcmVkIGFzIGFib3ZlLiBWYWNjaW5lIEluZm9ybWF0aW9uIFNoZWV0cyBwcm92aWRlZC4gUGFyZW50IGNvbnNlbnRlZC4KClJFVFVSTiBUTyBDTElOSUM6IDEyLW1vbnRoIHdlbGwtY2hpbGQgdmlzaXQgKGFnZSA3KSwgb3Igc29vbmVyIGZvciBhY3V0ZSBpbGxuZXNzLg=="
+            }
+          }
+        ],
+        "context": {
+          "encounter": [
+            {
+              "reference": "urn:uuid:5be6128e-18c2-6797-6142-ea7d17be3111"
+            }
+          ],
+          "period": {
+            "start": "2025-04-02T10:00:00Z",
+            "end": "2025-04-02T10:40:00Z"
+          }
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "DocumentReference",
+        "ifNoneExist": "identifier=urn:ietf:rfc:3986|urn:uuid:e2acf72f-9e57-4f7a-a0ee-89aed453dd32"
+      }
+    }
+  ]
+}

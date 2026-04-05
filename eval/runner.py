@@ -419,7 +419,7 @@ def _extract_codes_from_markdown(text: str) -> list[dict]:
             status   = _get(col_status)
 
             # Must be a real CPT code
-            if not re.match(r"^\d{4,5}[A-Z]?$", cpt):
+            if not re.match(r"^[A-Z]?\d{4,5}[A-Z]?$", cpt):
                 continue
 
             codes.append({

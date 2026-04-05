@@ -6,25 +6,25 @@
     "result": {
       "artifacts": [
         {
-          "artifactId": "cf714d04-148f-4086-9894-54f1de4e55df",
+          "artifactId": "efbc9547-8977-4d7e-a5dd-ff1aed98dadb",
           "parts": [
             {
               "kind": "text",
-              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) not billed alongside 90686. (Note: 90471 has been added, but this flag indicates the original documentation gap).\n*   **96127:** No scoring documentation in clinical note. PHQ-2 score must be recorded.\n\n### Payer-Specific Notes\n*   **99396:** Modifier 59 is REQUIRED and AUTO-APPLY if 96127 is billed more than once on the same date of service, specifically when depression screening (96127) is billed more than once. (From GetPayerRequirements for 99396)\n*   **96127:** If 96127 is billed more than once on the same date without modifier 59 on the second unit, modifier 59 is required and will be auto-applied to the second instance of 96127. (From GetPayerRequirements for 96127)"
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of appropriate immunization(s) and laboratory/diagnostic procedures, established patient; 40-64 years. | | Requires Review | No complaints. and the overall nature of the visit with multiple screenings and an immunization, for a 44-year-old established patient. |\n| 90686 | Influenza virus vaccine, quadrivalent, split virus, preservative free, for intramuscular use. | | Requires Review | Patient was given the following immunizations: influenza, seasonal, injectable, preservative free. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | | Requires Review | depression screening (procedure) and patient health questionnaire 2 item (phq-2) [reported]. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | 59 | Requires Review | depression screening (procedure) [second instance]. Payer rule: Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: 96127 is billed more than once on the same date of service. |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (e.g., AUDIT, DAST), and brief intervention (e.g., FRAMES), 15-30 minutes. | | Requires Review | assessment of substance use (procedure), screening for drug abuse (procedure), and drug abuse screening test-10 [dast-10]. |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **CPT 99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **CPT 90686:** Vaccine administration code (90471) not billed alongside 90686. Flag for human review. 90471 (first vaccine admin) must accompany 90686. Without it, reimbursement for administration is lost.\n*   **CPT 96127 (both instances):** No scoring documentation in clinical note. PHQ-2 score must be recorded. Tamera's note lists PHQ-2 [reported] \u2014 verify score is captured.\n*   **CPT 99408:** No validated screening instrument documented (e.g. AUDIT, DAST, CAGE). Clinical note must reference a validated substance abuse screening tool. DAST-10 is sufficient.\n\n### Payer-Specific Notes\n*   **CPT 99396:** Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: A procedure or service is distinct and independent from other services performed on the same day, specifically when depression screening (96127) is billed more than once. (Applied to second instance of 96127).\n*   **CPT 96127:** Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: 96127 is billed more than once on the same date of service. Tamera's note documents depression screening x2 \u2014 this trigger is expected to fire.\n*   No payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts."
             }
           ]
         }
       ],
-      "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+      "contextId": "64dfbf8a-e849-4f10-8273-7e0d89338abf",
       "history": [
         {
-          "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+          "contextId": "64dfbf8a-e849-4f10-8273-7e0d89338abf",
           "kind": "message",
           "messageId": "eval-tamera_preventive_v1",
           "metadata": {
             "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
               "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
-              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTI3ODAxNiwiaWF0IjoxNzc1Mjc0NDE2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiI4ODc5N2YxNC0wZGIxLTQzZjUtYmJlOC02NDljYzBjMzA3OTEiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDU2OTktZDk1YS03NDk4LWJjYWYtNjA0ODY3ZjJiNDBkIn0.hdkc8kbxrfPXE7UAQrfWsN-HzPpBhNQFlhP_SQLu9yczS4k_HWDKsb-Jzk-ulq1iH-kwJgpg1Upj2wcDgY3Cowe3X0ptpQ8hrW2ineVNIPCE-PbJ8XSDdgxfdUaiNrCvZsb3bYpth9BWy_1jcS8QCyyI_UMS7mFTiI30Sg-VoYRNRC1IGzX4CpzfZho2KVnEYzoO1knOLWEDRBn_vDNGz23qtqiAWPLcbctxn38j92317Hs7SgRa-eEt2CYyLxE8eAMI3L9W_yLaD7wdY1br9EjAuzk7vUzfIAgrvLuk2cINC7YtmnzFTKEQiFmL_6LuKS6Ev0B8nyqInm4vPqpTc8f_OKwtbCT5pa1VLrTtEJZ875hKEXurrK2EMm2x_TIP3A3dvGQk8silz6Qf6EexRuPi0kR4ik5gZm50r057eoUZ0QHgn6y80bj7sgUexx_-X1Tgyt_31ZUxb5pKp_tuxSbAHNuzphOvIk3ZxHRqzwGwxKKOh77P1S9KswvNsj7f",
               "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
               "payer": "Blue Cross Blue Shield"
             }
@@ -36,16 +36,16 @@
             }
           ],
           "role": "user",
-          "taskId": "28884819-4375-4f19-ad8e-687bfd5e5516"
+          "taskId": "4ebb8aa6-f369-4472-be61-3a04be188bb0"
         },
         {
-          "contextId": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
+          "contextId": "64dfbf8a-e849-4f10-8273-7e0d89338abf",
           "kind": "message",
           "messageId": "eval-tamera_preventive_v1",
           "metadata": {
             "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context": {
               "fhirUrl": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
-              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+              "fhirToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTI3ODAxNiwiaWF0IjoxNzc1Mjc0NDE2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiI4ODc5N2YxNC0wZGIxLTQzZjUtYmJlOC02NDljYzBjMzA3OTEiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDU2OTktZDk1YS03NDk4LWJjYWYtNjA0ODY3ZjJiNDBkIn0.hdkc8kbxrfPXE7UAQrfWsN-HzPpBhNQFlhP_SQLu9yczS4k_HWDKsb-Jzk-ulq1iH-kwJgpg1Upj2wcDgY3Cowe3X0ptpQ8hrW2ineVNIPCE-PbJ8XSDdgxfdUaiNrCvZsb3bYpth9BWy_1jcS8QCyyI_UMS7mFTiI30Sg-VoYRNRC1IGzX4CpzfZho2KVnEYzoO1knOLWEDRBn_vDNGz23qtqiAWPLcbctxn38j92317Hs7SgRa-eEt2CYyLxE8eAMI3L9W_yLaD7wdY1br9EjAuzk7vUzfIAgrvLuk2cINC7YtmnzFTKEQiFmL_6LuKS6Ev0B8nyqInm4vPqpTc8f_OKwtbCT5pa1VLrTtEJZ875hKEXurrK2EMm2x_TIP3A3dvGQk8silz6Qf6EexRuPi0kR4ik5gZm50r057eoUZ0QHgn6y80bj7sgUexx_-X1Tgyt_31ZUxb5pKp_tuxSbAHNuzphOvIk3ZxHRqzwGwxKKOh77P1S9KswvNsj7f",
               "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
               "payer": "Blue Cross Blue Shield"
             }
@@ -57,22 +57,22 @@
             }
           ],
           "role": "user",
-          "taskId": "28884819-4375-4f19-ad8e-687bfd5e5516"
+          "taskId": "4ebb8aa6-f369-4472-be61-3a04be188bb0"
         },
         {
           "kind": "message",
-          "messageId": "fb530652-4aa5-4b0f-bf8b-1f4bf3a04345",
+          "messageId": "330f10b6-aab9-4295-ad9b-a0e56c09bd5e",
           "parts": [
             {
               "data": {
-                "id": "adk-8ce7407b-dfe4-4c14-b3cc-f3ac5f7710e6",
+                "id": "adk-0767868f-14e6-45cd-a2d6-51f6f422e336",
                 "args": {},
                 "name": "get_patient_demographics"
               },
               "kind": "data",
               "metadata": {
                 "adk_type": "function_call",
-                "adk_thought_signature": "Cs0HAb4+9vvMHV3BRT2oQUI/C8PzF3RTT/wsXGiS6E0fVvv+yjXvbjFUbuH2N6P0hjqUiTA+iklyb3n91Gv8kFqqiliABn4NtbkYw5ncmuygADFy3X1z5DHUDKnykxJKHmYlnqaFcAqtolzcG4QKX3VbfhsCN2lePijJzSWInTW3JWX4I463MutGqzCfM6VV6QcVkVPzJ8ROo/AHNHamfdWTKD+08EyW6EFlrBwV/58Zq4CQNoYLzsL016etBJwtuV95ZWG9r9koqgh0Zf+t9vQhKOSz+Ez/ClfQOVeiR9Hn1NLFCaRnZjuJZaGwbe4od0X8cZOUO8gPJXdCYoMAJad4SXCiI3GZA6VktlokdWCi4gXuJsGTmGjOoPnncoCYeahhwCbfsQYIzynBDd3Y1wQp1Zu2TMV7NJ1dZyGOfz3ZaDkPPcP3U2vxNjRVAIZTtr2kog/a+xkfi3AJelI9m1dWV4zmQXTuMzsei8P5EgQGMbEIliSMgvrHN5X2xxdK7njxa1GPdLnGrO+SywUQ3VWd4af7dvipdK507VVR21tvKC1hBZvevWzgJLHlitoUS/0qfGH3RT9TmW/a5n+QtqXVoziuUln5n+o0Vlny/3qbFXt6ecYDeBzaRsqoaEV/Dq57TeId/bSx8ya8egu8QcDvIFh8odOEJScgxgmH8MdbG5jwc0kPf6P8q/wPoguiUSCdb1usLLIDBcqRNlg0AzR58XH7TZRGk/pPVhpsUWvR3q+idBFQXjrvgKC7V5Yly6lbcljihR/a0jPAlRJrNIkZSwxo0H5ik+uDZv0iM/+jr7uwDI0nQEpO1qvYTQiKVbwXxanyCH1W+Tfo2NUlJR3c3UX7kbBvj1pqw8rAenlySMMYXePBZLbgrCP1blCeua93kOz8YkWknSBO64BhZXbz1RtM1VQVSpxNquH4fnsYrjsEBQIZD1znsGlW0/8X+MLUdDyEHy9YBXWUXWK+dCzjkAYln3Ga9eXZQxo4fhjhFzkdD8kfFjIhADj+XBEqgws5qq6gcrojG2NrBa0kNJeImLSZwScyOjGef1GFJwvTs384zvm0A5arXnPBOrQJopIayW4BIBe+bx4RQkzaznik3iRuDiLCcnvT3Y/Mlajk8wA+OzbOFvQnSOXsb1cwP5rfEImafxmo/zZ5iQWMv70V5o7uhx06x0/20wOMdGNO9UjyyBSjA/b3UEJNmytJ5oh+I6KXx3c4RSl9W1JknD3IUnTEn4dDLotFhdBjkKCITl4gAS2KE/OY3b5OHDcauWs/X/3Lgg6r+ckBbtbkPw=="
+                "adk_thought_signature": "CugKAb4+9vsoU+reesBcCIT3PtfuqTRqUpgOlKzWYFU9EB4jXM0Vrmpu/ieXNum3unZBvAwNUPUwn2tnunH1Q+2nIuwmT0ek4mkbXvcSNKI13vNakCzOkzuTJhoaNW0guLNpMwOAZ3ENTSqw0li7qnmFW9Yw/iy/TMb5k5Ios8NwT0rVU5Gg4rDwbcbrDe0WeK43drN6BmuT5PRuQZ3rCjue2igmw+zGGzJ3JrH3BGEAqEKVu1EnQZ2ScFAmy8B4kbbVmW7W7AUcZgeX4ekrg8d31dKl0XksxOXlA24xSe5VpXkDhA6d/xzIO7LcUlRwsmK7YV7a8FIOPz/7+Ke6lMr+Zq58dHyWhIAuiBvSjSIcZpKQjHjyLKhYTXZUAPIecwZ97DBUBman5HtJrtIHTs3fgCYOeOQmn/lFDu9Ds+lIDCiGXDT21DLS7EKOcz6gi9appihX9gEoqGdA4kA9Gb0QIz/8AVlp/sz2NG5RKJDgygF5pbm8yBGRcFkYHNWhjEOjGinvnhFWjX9/3uy40WMNxP5qyawX1agaI8lGuD/cidRV1361LzXCeaD1f8GQ3FdUUwx+3ziNMH5aKv2QbCXOdc7dgE13h/584XK4TkyK7ymz7OcICz9DJ6TBsMo24L6NaFqokcaUtKAwbT5D8grGQl1CRtYxgA/gNOKcUzzNxPt4P1Spl+X1kMETJGDuI5wV+ISeRvRj6urGY92K5R3M0D7zDmlzCOEZG2fbG276zGN1IC5FLk/1NbOh/Nhlhq5cJWvqgG5vNP+TzZYy1QDQUVslyZwu1w46+mwgpwy25EV++e+4aRWjc5LNezrAfUg88L9JLgJjMeHq14FWmTIH7aKyVbLQZnRzKVixAq0gBqpz7wU2iQN8/wgfl+q/IYHbDmzzyCozRHTzD55n376dvIRXiymjhB/19qO5tuHeinrOw3JEcnk9g35SdKUSO0wN+G++UzUsCJRPGxiuPwLWLiof+Gk+9ld0ZKu1TeHrbRKPxsvcoWO3susuA0OREwL7lldt8ivqIw8QsQ0M3pMZ4iXMrfcbJMBqflAyW7zYS6oq4HqYs8NrZCzDFW4ZJEDkfS2qsyiui3ZrDrWjEnRMpVqJKQha/CDqmRNR9/irZEaCl9ED1AMMQK72pGSgKSpCo6XUhaLVvC3JggXgJhoVgXfKv7xuLDYr5gqZWkD91XQDmlFAnE+mPwWZMUOr2WhdwBqYOzzDqGFk35ORxHHM7RFSpVRJVxbE+lwPcxhrLLMjbKKYAnC5P5ymouYuD7xaPBVJFnWR4E1WelAKCsvpFM14Zzm/+wciZxcZ7S3wVf3EfJ6ZBBOyTwFMB74wHS63mGZYMktqjymRpy+PdtgUZn41AtNE5oATXP2t6Zv9N2V6m9rIIWGRaijLS4N2ArnZNQhAsBajhWeL+UD6AgWZiyFyAYwLXUo8z3Ev9R1OXQqB8KKiq3U4g6vioBM6EulqdXrhwgWoTxtezvvRTJXiTuTJLu30mEqvzgylU/Uj5O9q4DratPNMHKSdjRiNlNscx9iTwDSklgozrElOl8if+maI3ks+9VtcxfWteuhHw+rVcBxo6/suswGgI+EtKA26pJb7RYnaeH+oRimrYsXMc2nZL9/pcF8kaZKfPngJFyl3LQ5ZawHh+bctjintNLA95Uaa8+tVZ4KqzuuFNkouC0yhobnEiks08ICiR3rU6MUwkSTTkxvEpuoPHtK/zT1XXrbj6CWlFBXeq3ihTEev7MuT+TbjyB3at89Pjl3FSt8kvKZ7UQJIOfI9YiJ7ROX2EE5gxW0lhigOCpDySkBiiOEGsdGdS1CiKBUjNvkp4VByKRQUikcUqQ=="
               }
             }
           ],
@@ -80,11 +80,11 @@
         },
         {
           "kind": "message",
-          "messageId": "473327ec-373a-42e8-91c0-324b5b95c3cd",
+          "messageId": "4b3475ef-88b1-4ca3-ae42-4d5cd68d4a8a",
           "parts": [
             {
               "data": {
-                "id": "adk-8ce7407b-dfe4-4c14-b3cc-f3ac5f7710e6",
+                "id": "adk-0767868f-14e6-45cd-a2d6-51f6f422e336",
                 "name": "get_patient_demographics",
                 "response": {
                   "status": "success",
@@ -115,18 +115,18 @@
         },
         {
           "kind": "message",
-          "messageId": "14f0e66f-8942-4cc4-aff7-d9f8e82dcae6",
+          "messageId": "92696cff-f41f-4f2d-8360-a11e65c02cab",
           "parts": [
             {
               "data": {
-                "id": "adk-9477a9b0-e19f-41d0-832f-98804cffea8f",
+                "id": "adk-47a56be9-077a-4c6c-aef1-9524cbdcec3c",
                 "args": {},
                 "name": "get_clinical_documents"
               },
               "kind": "data",
               "metadata": {
                 "adk_type": "function_call",
-                "adk_thought_signature": "CogCAb4+9vu+61KvkpDyp7GkYL2o521V8OpPrk+edophltpCW+a4C59AfCeNea6b4k7dUZ9l/ow9MbSjEdyFbkfpLYocyA/hQwpbwktZP0ls2G/EHBcdoiPSOT2y3JFXvR7XGhLWjqInFEHTMkdjviYCtun/InIe0rfNrW1VWivdg+z3bjWPpY7NpLDY4zetzcrdse7J6w38RFicMTJ0dpg09ep38BSV1Is0HEkoRv/ZxTmaDaxNjyRoTrz6FeuRNFcj5xFVw4fRlSN0pGjZYUx9T2fSUa50/qWQp6F/dENAfs/TeEBbmktbTO2WkTHC6jUPWxRMm10TkLgvB5jE2fEs+V60bW4/ID62"
+                "adk_thought_signature": "CqkCAb4+9vvA/6/JMBWIauxA9zsh92WSCxQKZySazVnoaSv+s0KiwzXysodwE+PUIP9KCNvyrtdllG7N5QX/cuxX3xI4DrAQBEc37TjU9H7eHzGe8ARQxne2mpOpDxJmgPIyDse4nXoAVl+QI18d20mU1fgjWNQws6psr1QlQVyPv6KjvfEMq363SpnzQ1/vc834xA993mKOdJzHSwluU8hWuQmNGHEchGMb619agdb/6oi5rdU0ElAIle6G4qnDVU0KRQYCh538soNSZFgeaPTitxTNGoNr2HRUBJTQalDMrrtPGxext52yiZ86tGI+7gaymus7+J7w6TEAGNSmg7cn7LLkeQ31TkUO8NlxbTWJW3yFj+mPRIvtrd6aZ86qJH9GE4owt2bI32ma"
               }
             }
           ],
@@ -134,11 +134,11 @@
         },
         {
           "kind": "message",
-          "messageId": "4b55ec16-a95f-4e3d-b163-14eda7fe4d5a",
+          "messageId": "e38f9c79-cec4-43af-ad44-3e39f926a8ed",
           "parts": [
             {
               "data": {
-                "id": "adk-9477a9b0-e19f-41d0-832f-98804cffea8f",
+                "id": "adk-47a56be9-077a-4c6c-aef1-9524cbdcec3c",
                 "name": "get_clinical_documents",
                 "response": {
                   "status": "success",
@@ -318,11 +318,11 @@
         },
         {
           "kind": "message",
-          "messageId": "f7662348-32bd-4b59-b052-c64dcc12c94c",
+          "messageId": "36304f03-9d88-4811-867b-056b84d0b687",
           "parts": [
             {
               "data": {
-                "id": "adk-4fe40a5d-f0c9-45a6-8c2b-93588eb0d879",
+                "id": "adk-4ea584c8-86a3-4d00-8c51-fce3bb56c805",
                 "args": {
                   "cptCode": "99396",
                   "payerName": "Blue Cross Blue Shield",
@@ -333,7 +333,52 @@
               "kind": "data",
               "metadata": {
                 "adk_type": "function_call",
-                "adk_thought_signature": "Cp8ZAb4+9vvywe/e3yhh7IRmWz8pXsGR/9C9zQM9S39fcuw1MZ1EoANhh65Geiq5vydkKj0flxMfk9ssPIm+wk3vFhMvL3kK0zLJjKlEUV4CvzKj6EZDnd4UL0jubL/X52CJdgSHRmBFNTxJc+yF8AtThkNOakdF5FN/Pk7JpJ4IITzHO19yFdbRTmE+n6d3/To3OYfu+7LDcmeAZ4m3CQRoTW88u/3Rc7VpDStg/hBrVbp1NrNvXffsv4KHjWMB5PnEgX+pln3crC/fSmtN3Gi5B25e+/rZxMWBFggFXwCOcc3Oj+dlYLq38Ch0ES1AGSM0dgCKAbIVDTOD9mFUQAgdVROBu9erK4XXAXuFqddYOng+Sp4aKYIkK9UzmozWRWEZxmjsiBRNclqKvcrSAIbhd18leExv4vQ5ATmAwvCyijUIHzFtHchPEke+JJcQN//NjtVNiXQSMfUbb8zMqYNueG19C+UKMsVl51i63avyi+FChA5L2bCXFS5ZiD/NAdyLf1fYzhfO07Fk3Yr5HKm5hZSr0aI0RJ7DHuoqPevomfXIasyeCLiulHzMCKODSIU3tpD/2M1rOjc5134kr6Oms/3Qug0UHmhwlYVBJxcQ2y2GmHC4B0QzpmhAu4BsbySbAxhZpEoPniWpRGUxATT45JRQRnqQu+2iltn6opEb+/P9xGjZGiz1yGRJXxUN7Uevz6TOHXUvSwabdHTOBTN3I6E8BtCPOu4XAczh8lg2kMGNDDgogAnuuQKQ8QSEcUe149+31+peNd2B8TIdI8CHzUoQ1ZCLmSOiEw7iAMeoPrCG72IqP6okprgEAAXwWKxGCs3s21dPGKgMnCyVqZVPaHSFOODqgYRGX9THNbMAezTuA6WAdMU8/3Ss0C6wuVuEo2YfKQs2y++KKNOvNUtyMBtZ5gk2yuODdOxamFz6CEhISRDxNX2L9KIcSg69Kou6QRe1s8ZbrG/96fpYPzMOSbulaYBjffUOZRN8ohHicMfuvaIAZsYxEQAvuLBhUJrJggEKrw/J4rztrHrh52IMoHRy8OfGyTfFIeduU09eIEePvd62GYmofs1VUIwxvazSDeOIMjrXSSoFubAEf0STqXaH0tM4xVNtZCcPGvFEhrmgLbY1+zm98xPNPvRQy4Q4/vAFr4PeUIVXRveaWtB63Hqd6Ztc5hYf99tKCJJpFsRY9JiFfEERV6715+QT5wfZKfFwk22JGK71AYzyYHSzngM5/Z61VcBixDTcLIsCynhe9vvzs7ve4o97IegGvyn1y4V37PTlNRXfHVFJGWg6FwM21Ii6AH1UuExfsm2JZYZ6MPZfK+k0B79XrOPRa52pNzNfvIywe9ky65MeDK1o8JPy2eludTmMGtKJBbZLDlzhkB0sXSOYrN1obb0HrZMviNSkfF5MjRZYMznaOr9tQnl/k+0/t4M5qJpQLCM6idVcIkUtD9K9bhn8xMAv/jPZU8ncc1DdnjDXhPh2CrIfaA1Dk/GRjkafHKP4h3sxhf/GKOt5tKybyrvD3iagHDPhznvVvuvt3j7U2E3gUQrtVKM4L7MJwJumjHpM4SPqcJAJObjxvgyoM4rl7Ed2nMusg8E5DqwwH2nT2cYWWS64anOKLEGonp2BKgQ1460jLSkOVelH+xA+KcmxAsy896I7KR0SIsIBZciNEyH2Wvu5IAZib4FAhIzQkOJ5Pc0qSivgq+MpuZC7BXNqkT4KZ9gX5a41UDfbEieEev8SSTCUdNc5wY0N9dfSQmzriz6XyKAFyntpp9Jlt16/EyWoRaxAllH2q2I8iuhBn+G4QoGqKq5Dpty8bM1FDbr4HZCO+5VhLZDYop306k1YeJ/2sSnFOz2atXN3LtdBUROmzZyvlnfpr/T+A6vCCSYE6lVZpDs3PCco/3IjP8Ims76BNnFrGlDLHBX0H2Zgpj5ZjaMcWwzHbfexOR/08OxsuPBVQ5rziVQ+Vz56wS7ZKvm6ZeCUACcNgD6tUQOc2PiKQ8V12aRWHndGqwgyk5MjtL1FAsicKllN7gxuCYtZMfy96a3hnEMtOOPgfcZsFuDyqTGuIXHHQWi4J1vd/BzXeyreQ5sOb2G7MqJkB0tQ7DM5Sbg8/EhbJ1Lqf3T3sklTk4OLCnlOsCPe+hs/1S7VsQdoKbXEVzHilgfsgDUE8DmY9yodbMXXLM1bfpiC9b1cS7B8LZSpE09IUGgPRBqhUqfGOGG4s/kaVWSUYfNxXqriEdPFTq05dJwDEELKZGUWLQC3qrYGD1I2xXeDEfGL/WVgly6TKL1D8yqaXyUvIld8QHQTWNigWiG4cHHskA5Z4COg1PCVpI1Huj6YB5Rj7y71eg7f1XfIJYuKkqfnEFetQqp3t8aa46+OdSvxkq95KysV2ls6Y4M1W+Dv0kOxWr62JX0NW2RctxG3mfwhiaehQTwvGyPIaPpsoyvyWw/vtgh/xFJSQXYZ9Xd4/V674c2QiLIPDijiev1SvuMvM2y6vNm7I1U2nmLmCm0Y4zSPJuyYxdRrP3uP4qYrArzGbUUFtHmHuAzoWQJYWL24HSHII6w4ZOou6QbDR4CYHed0DyOWM7f0V6afn3UYeJpQeP2Crnl6bU3WX20KHxsWaeywAszyIPX2E5cH6Vj3qrIdDtorSqiNb9XknFEzEoD0TUvZhnQYSMHlZUIB9L5h4IqztyV7OkY6FYRZeynwknnwFRF8mzOi7Dmu+IikrVTfj7vXvB4APvcoJCak2pYSJxb/UmbqDo6TjcBkUXEpNsLuP84yWMKg7RUOYmcfiHchk1P1VGFjQqKzMk3270wJLkUlwqkjrQ+9AfHGRlGFxhBRaLYUsxKSOa7eikNp7Xp8DybRggJnkvkgdpQ525pxYj5IWYv0+B4d9QbblwAQy2RbZGQmVfdPacXe+H/A9sJAVhDvO0s4yOOPeQPSlj/L158/+henggX8SHAcdcDL53ueX9tvSLBKnQcxe2cbzITQ1Uty2m38cYKOOs44YgHSQJo2dihp9CXbgxUv6Pq+G+Uf/un73HXf3/kvAgXQZWcW37yVTTKMMuQYOp7+8KffS+pbvdin86Br01oFaGSzr9YopiOlK3J1XgRDFExnW5F1RdbfV62ViB1a68xRXzu8AbVj/qlksP/5J1sbznDYDU1qiqJyqUrSR5ksd1SHQPS7JNDuAUVZiLr2SEMVUxH2XDcv00xHglB/ECFmGv1l8iYxxWG3yWRYpl2eun8d2QmrdGD0GlxpysxwPwHGDof5wupl/Yv+36YUtlowBQR5m3uw7NhV76KJGrB9hqfLwEt//xvz05OOjWBZrS2pS0/uFf2CF7kZ29zBKzAq0bMQHv5lF77/Gt2e4bPyzpVNS78IZwug9Rou5EgGpVVnfKGqrrgLkeoa56KRdCkIHjLfaO6eAUOSwwf6WvBP7mldOcRLg8J4Hr7wkmCz3mp9eSUPl9HU2eumEzTcLnf59WuuCRXFM+n4vIRb55PRaFYB1DbhOVZYW8W5m+AaWP5FC+AjqDAG47WFSPJIDz6rBlUF6SaHhbId8H2K3W+84Utgd7LbUnrCvjBrVWzCh3vHP9V45vTnLIPYGGh+CHTukRZ3IY3AjWm0X2we4y9K9V9Dz2vejXra4IuXye1gr0Xd4PDo5kbQE5l/KAOZSHqDdsmHQEv6ja7agJbz9TzriPNvOfGBpCsGmQHGYAwpkXGOPphqOTtQVzxFnrlq+WCkFrg4rVZ1VyQB1USoS/pfYH6HxHUafyNZiqOQEaxJGAGj/LnDwilsacvDGlf7AON6B5LEOUzyO7Sgd6FAi2Rrm2pAYH0MUj4Js2H/zDV+dDSO0xukJclZ50zHH5cGN9COHQIuFf+0wEw7e8llX5bGV28O9AkLNzJNzSb42py/TDW9vmk893XET6Wal6uOkulD460Aj24xvIB8DVDJbwn8UEVoegrHcSUHjrK2zbOAD6gsihU3X84N98zAHOXnE9bYeUULpJI3ci5DRH1E2uzfVRJor9gI+Cp5/2VcoPOweyemrGiJDtjoRZZKuXX/IorzUpt74gC9krJT4DSTIMZo5gBwgODgcXW4PpAOkzYc4UWLaP5VsxCwmmKYpkYO7Ese2Ep3w8ISYSROKGwHEx7o4BT/+/GN12eCgFiL8VwxA1nNbNJXLH5OQxjnOQtW8jaywpjASAKIZn8eJfRmONb8/mA++eE4byTeUZgeq3hf35Ck530HqFqetrg1i1vuzrZBwJp45SrmBZzvY1HF5MVltL8LVu9XPYri621Q0rsMGoBz+umNxyiQan6wI21JrEm6MXtbKzfawfs1"
+                "adk_thought_signature": "CqcjAb4+9vv35xm0/620JzGln4OEiFlCDQ60W1OGRCxkcD2x74QfnScKMON0SUj8yGDVLIrGO/qAq8KaQMUPFH/+cuJMVoLxME0eSJ0xCorOZSvwUKLegABPcDqny2mPyQ999/GaCHFGyv+xWh7JjSQ9PwTH8hDjHpDjF4Y4xDCXCqbuSv0n5y19fg0FKa91sPkXf8QeMIOQXFvU1b9zGlegx72JHyWuS3NW09gTbnFWANPAbho5F9u84uiYhWetwbMK0Iq05wCENoYtlIuWEOFdqS2sSzMnpVMrXsNFWikTcrfcvw6DaJVY1srCEKqKCmPc4imx6y+CZE9zv726+vZHBIIBfgONzXCn5nH5hQIKzDEukbkgAvfM3UWicxRoObXBZUjzKw7p6pxd9w5zHYdbiy7lKMSq57j993JZCmtR621nVmkT99h7IHcJScw46q4MAgO/dIIAo0rkztJIYK0f5GfGu3OttQ9yE15RhhZsgCbb5b3n1GPSfr1Ta57xMYsoxJ4hBs3KQ5bmDsnvyj7izz63Xf0TxyIOfT/kKCDM/XShRBKN03p4CD0LpEirA/9kXFTkWQCeRz24OBNO2hPYb69q5vbcD5esNx7xSvAcn52MkW3/IC1jQV7jiF7v4T2TEicXjB7cSeOzBP/Tezo9D+HyNeGMpl61Al+1Wzc+b1SHddzWKz/M88ivevGb3zWJitjVs/XLOINzCOcDdlWR9ZqZnUv7kbaBpYDixCj9rZqZwSrtlU27kiev6pvQLPODpTV9Rb7SgqntckNdQWqWsZUXOig3DRm1tH+7bMe30qwUgZYvJY7sFWxsekEA/wZSYYUqjSSVs2pVjvf9DISNYD8RO8OyY4x4uJs3ddBbZYyQ+gUxFa/syMK4OyXYgJ8bWA1I4MEPQHSW3PcM/Eap0pjEl8VDzXURrj41QS1yIwQDRA1mVKB6fjDA2Y4a2RDPCvoB4iUU87AIbQC8tTdDxci0Jv+D+636qFky5XUXxZZE2quOw89Do15uag51VuPjhZikZ/et9APX3S6FzoAZFrqpiqF2OFjyJrEUZ5bVGYPh1kr9/fiDabLI0q2sN281TrEZit1rDY3ehTb/5kFCHcvJUrvzjeX6unLvPwtL1xRFl8Efa7BbaDs5DdBFE3FdprkzTrNEbENopKoY9Q/D/vDP+ONyiwva+XNvWfMfBoR7UrlzJfA6gL495Z9zRxVSMLJZHU0xXODQlTenxUTCdD5soSNED+z0Dtrx2qLK1pVcEs+jDpORQQY6JJHDIOvUa8U0tl6r5u0WSZNEKqEqod6qzxFrAv3GMGszSomYVNUShREHFi5oef+1YDHFYlYD45zfZiR8mRsLj6CBJGx+oMTA8EZnl8bPHbdIbgjgsLCsB52t/KQC1E3ONPc+uj4G3bCmBAuu/qj872/3LdYTC1oAL5uRfgZrdT1X4MAA+uDr18knkkAgBu/tyg48Jvlpyb+40E848Dt6NdS9qsl3LKZ2+lfzwsehM5eSqLGaUIj+HoAc6EaZBKnXYHLOgxPUvqvWHCSnTjqRWUvmA88VW14MlsZQybO746mJXCA/mrilMrsK6JIxmn5lFCzGfmc7zMOVtRElmw5asOWHJqzLl2aPv3b7pNqqQh7MbBn+tMmeF50cfWpX3Gvh6+BazKyDGYuPl/7o2OLdPPSLbaNCQa/GzhiqhiCpQ5kZVbazE5ECNfG67UxrsEx3Nrroxrw/+mv2/y4VLG0Cmfth4ki/GFZoD42cBQGJG7g//UH+oN0eM+5TzSfvi/zUOaGQW4QK55cIrAFwR8bsaF6enHtYQl+LGmA7ag88P1MsI2s4b/h8lSG94Ad+2uBh/kDCQB5AupbA0pD55+bdeEascrvqYPiuZzJ/myaStT1187WZKfqatgiYJzFHbzu/75U4ppt1cKtKFVjUtmWkZAGPWacR9wVW4oiewuwNYgQljJShuLyWYNWcFrbX5MrCaioxLcL/hyutVIhMgI0spACZR4yHbwmvdFe07awc1hj+75CF5L4dQVeBz44nwAw1Vi+GiY/DRDSAERyzrSIRaQFp3+FkRWbBb/yoytW3gp64qGtQD/u7Q94ZqTcMy9Ndl58AK56yrRYs/OmwxVAnk7kXxvdFXR9vpL+q/YmQu4VHj4lBzUoJwdJXB6WKGkgzjxioElq0GKmEygvUlEaDZbveWw+nOEwVb2fPhw1+SS4ZL8Gbee5Jy0FI3Qs+qTqB6lO+025SnkXYt/3zfZ7rIoojn5guPUfUnCnwk1B7r+b7TtWmIVKI8PeXE/kSaBwxVswo2uSumWYqktBuoHqVBXfTBT4H9CLk6AKSbJW6IY9crhCpL6sQSZa3qXWoWhaoOwkL0LFxR8s4dbfuDk4MixdErw38xQu3OscQGkmH2Iq/6bALy9VwfSsFkv8Y9pzyYPQF7uOTRXY01zHi3Nzh/x1ElWn6jIKg2i6+g1OhzjmkTdJcR7AO1dHn4DRhFEXwoxEb/o3X05J1k1kvzEUQW/3iNhOQ7/Gg/NDLfoPxiAj65BBFZGnCfe3F5GnF8IDAWXMaoTEDdZaDhBjkvq0QJl3l7d5VnSsNmrD9GVsdGzkdQ/5hG/O4t8hnI7b3cOH18At6obyf0nom9+XlWeIyTSlsG2xmwH30Kw+6u1TtfAfwpiet+56R9tFzU6WPc1OMiD4mUb+3vAcYJxtwj5ly8SYW+fDhN/qlCtI0Ui0DaU/K8CKUPSBhv+DWxjnu01fnhMAegrAhVUI8H9NcgPiKWg4FaCG4jw3co7QE2yFVAhjp3NZBwme5dhNeQHp+r6EpryUIX8KwAj6pFUkAxUzmh+lMLKCHANNVyDtjVQFZkIkpMOG0b62DvGvveYNnA8jtZXvbGGbb8ru1bSWANFRnnYXyJUAshN7B3EenL9DAqFJubVUC8b+eeIN35Y9aMA1fgG3Demv/ifgTqY91AsVYvkEU4K2u+O8wpPAlh+k5vs3oL4Yx3ek5cbSITIgucwwh9QqntbjZFR+CqNi4iULpKxLBkDFwXa/Lv8oj50U/vlzjBCcvV6SsaneNLEyKw1DzTsormM4L3mmBZW0IDxD3U/PJkv2j2qGKNEIBwDBETRiGo1VTeXQOGFFU5JvNdH8Ad/KvdDXUpTW0aB/wzF2PLT+vNqZpPNIoP1KsJDkiQRRlwt6bJxGEHFicy8P0b8VKw3yPKV8S/aXZ8LQaujTRS9FWUs9q9Cv4MnNbap7/Qtemk1j4NPexG2x6fCep4ZYSGqn2gAe4ieu3vul0uLnk8nnLltfIYUJmR5rjsNnqTOJl/xeJ/0udCODnP80huMd3BCvill4uWEpPrAFgaMt2BKOCq0yII5gYjuHZ+AsOW6+hkyyj5xTVlhitns+i7T8VGGgV/mkknyvL/OxfsOybhrwd471jaCWDjLhAAx3+Mji783aVBSKv8O4nrWPHhkHBtZ9PwTKLNREQGYM+dFScpjss1bYWg1GWj9C5MvsKqATnwMxzl6FHVBArV0gnOO8v8b99kVq3+Lhy7eJ6ReNUjQERK7Pm1YL8AOuS/ipzcz9Sz4/xo8g44Ee1C5oFjbhShArlNAZnmJWfe+WLoybnHk1okkEKIq44BOzITBHzTs3e7zbYlYEUsrhuwinaot9fcncY2pVw8MJ4F4GUEXatbPg8bg4H81ULB7SIy4x1c0f/KvLPXO+GxJcHHAiI/Z7BTEGCjuDDYoWEq0zflBQoGJDR63IbRe+W0TCT1Uydm3Eb9MrcOUw7Xd10A6h5+eh3ClsYmAQVZpMR4iNox3noqgHvBt1m0o0ZZg0YnPDRv3GtJCUTDns3nO6f1Fnay+aa6M1AiTe23agmk2m8vOuG2gMk9TZFIIUNdhRp0ur1DRrEMq2zBUmnTweiMhFSMxi+96r8Cs2GRcFmnyJkMtqS+8i1X0uWdMS/nwuOHExlIX7nTs6GKfHsAWwZhNRY2cuLpQyhpHfT+Ck70WDEjuFKgL6qMInPwnEbiOefHZFVDn8yQcKqSM2B+ghZf/0BnY9Qy4Vvwn+a1EEa+hJJeAwj6JZ7CRsTjQVlta0EqePc69Z44dsi6YKWoGg6fj8Yya6swTuddI8HG8bHbAdjvV5uMKmGJcGVLJ6gpF5O9yOLwY4KIXS5QKOhkaH9RXWA41PVW2MH9VlwSjDw/Gc7GenPKcHYSSvC5MB8HJ4u1qRekqjdamNGlb7rianodFr/dHi5iOIUHvJhpZqYfQVGJAjaVlCjEKBRGiAQogiiJIQmFFL2Q8/ArYZI8tm/c1uz/JcU0CnnnCA0NiROL8B1LfUh1jg25KkaiG+OJuPi4uCYnVZjvszaoGLM7QGKIipT2fPYuCju0oDZQb7FSUO/Wc8hJgwoZwBO1rXdysE3+UZRIXNsi+fPZKUvRr3IHxmX5O7UMcYNmTCN6gWY62JrZr+7jTL/nNEJi4S0SroXiNeCu2PrJAR+6l9Q989hfowutexUUxg+s+Pn5gEq5M8qMWvgJJPvizvAXt5xVKfs7YCpEJ7MdADjbtephxn+rq9euyYkFw4NGFtQ08ai8LL/rY5ShB8ESXm5KqVBtVwAykYGtCHcOzt+CELerXnG5bZkmP9OSBrtdqPnRdJT9Hgtpg+VPs+1VYYhzQP+bhKKSKwWPPEEwiacwjX2IqwEeHEZewkdVf4eM8fvR92CBbQbYh/aez+ebpytI7sQTp5ZRQA8dOJ1sJpF9HqRGgm3B/2CeKGoxyswE3ulZHkrzrRgmVjKckXZ2978ev4GAUXz8wNyW4433jvlrQNJIku7mhF02jcLkJIVlwBgpCXMleqVD4zQFzrZQufsiiKZVpsrDeZ4iThh2zOWXcqZi6sksSOoIPqNC5hXT65L5m3EdOetwkhmFtvBSrSDh0+WTJEB7deTiV1WYdMMe5v4w2ewiY2lzEZpsTL+WLn54J6G1qhz9Nsq7zHErbdkCr51Vhkc8Wwhr+EmwGgtEJj2SU1xf1hRFCXQoE4+742XuNwBpwmzFtHdiC1O3CabSUQ0AUTqvGsdOP7ARbzeTjzgwGAkpG4BwPpAiON4kQv9/9O7hB5FB/9HaPlToBb/DqeXtj0p/bE9k4+A6ApCwBUxX/689oa9JopPRxYGGzPKfeUuwF9tr9xnfkbIccny8xLi/U30OvBsiSeR21+EJ+cB/ShUWwCyaSqA67eN2BWvsOcgb+UCj2BkA2RRJ0jhE8B3RxFC3QeOi2WxoM2y8/Vz6DR1NFCHBhqrB1WKNifpxZAla6gPUkB8jDk57kxXP9KVW3WIEOnw/fq4+r/HAUsfMMJBCI8WdTtcOVFRPQ6NZZCbhIQEWTlw+gSb+Dolr9Gmf/t4/2axsJ9HaPRCVfucN/nrDjnIK9PBQK7bZBHibLsXzx7sj4q8B68d+4jlOsWa2HvKbigwpaUHo4c8OVFdFj6Uqd/3ssgrUujSRgxirhDmw3hJVnXxjSOmDrMWPkMT9yQXOvNdlVSQAT733Z/wonuLG9qkL37ja+hEsGu0c+rG7fvASJt/IJOXWrUWttont4JSPMSN3lVGXy5hLZ3lEoWRR7EhanxY8luARdj9dAwNVQinl64a6H0zH2/h5qXkiPgrP4L77goUlWKypSn2kSHIZm9FfFX51VNs6LUUNzldz/qliYYq4oBmZ8+YU2gECKTTqZ7kBbyV8nuqVjSLtNij2YjSShViFhx6krWIMoiZVw2P9ofnpqzgYiCdfD/9Uugfo8DMBvnnGIJgXo62bpyxJUebYe1jO6SIivZiJBDUvLBjBPWpMhXCzgngX5XQmqp0z3XFhHz219wg5fD0ytRys2R8JJv8317rqr9tqyLf/hvdMqjgfl4SfLaT4sxn9H3noiHg3XT2X60VQfSYyl5pjB4An9g78Ay9c9KdAwY6+IZc4CWZK1VXZ7wpz7VwAyRo0vO0qQL/hRyzKSK5IwGP6c/8JwW6cWiMDOnVrcfXXMz6hhcf/7K6FZ2Aol14y1gskUtYeEzksT3x3VejBIlYkZRT6zBVoE52wol5YOzOtfzCKw=="
+              }
+            },
+            {
+              "data": {
+                "id": "adk-95dc628a-45b1-423a-8e49-6692e4e66048",
+                "args": {
+                  "payerName": "Blue Cross Blue Shield",
+                  "cptCode": "90686",
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call"
+              }
+            },
+            {
+              "data": {
+                "id": "adk-f7b1c5c2-09aa-4c57-b810-6705d2092e8a",
+                "args": {
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "cptCode": "96127",
+                  "payerName": "Blue Cross Blue Shield"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call"
+              }
+            },
+            {
+              "data": {
+                "id": "adk-4371a085-1575-4a96-bdb6-1430077101e6",
+                "args": {
+                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
+                  "payerName": "Blue Cross Blue Shield",
+                  "cptCode": "99408"
+                },
+                "name": "GetPayerRequirements"
+              },
+              "kind": "data",
+              "metadata": {
+                "adk_type": "function_call"
               }
             }
           ],
@@ -341,11 +386,11 @@
         },
         {
           "kind": "message",
-          "messageId": "3b7d5da7-d4a2-4612-b97c-04833b679b04",
+          "messageId": "95600dec-1bb6-4cfc-a3f1-a2d443259185",
           "parts": [
             {
               "data": {
-                "id": "adk-4fe40a5d-f0c9-45a6-8c2b-93588eb0d879",
+                "id": "adk-4ea584c8-86a3-4d00-8c51-fce3bb56c805",
                 "name": "GetPayerRequirements",
                 "response": {
                   "content": [
@@ -361,40 +406,10 @@
               "metadata": {
                 "adk_type": "function_response"
               }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "cd071f4b-b076-4ab3-b5ae-d1b27170c9db",
-          "parts": [
+            },
             {
               "data": {
-                "id": "adk-ca9c6cb9-2efb-4120-a220-4bbb9ff2bd8b",
-                "args": {
-                  "cptCode": "90686",
-                  "payerName": "Blue Cross Blue Shield",
-                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
-                },
-                "name": "GetPayerRequirements"
-              },
-              "kind": "data",
-              "metadata": {
-                "adk_type": "function_call",
-                "adk_thought_signature": "CskDAb4+9vtpv/EFTRSPT277igUOyObNsCs7c9Gx1HTSPElvAHmJGHv+Po2QPwOJ3LyiQDpxTEIMM3QY78NGf6sLVBXePMcS0jtGaNSeHSMe/scTvTrcCjgUfyXKgLtl5IYrm7me5x9rJ1FWCfFua2jCScXAAs4pwRkx8nD/lRGCFbcotYjFNz1oIsGjZL8sTtabmP7Uya/CrGGsHuq7o6a8EkiEWvN58JFKsMR0OYWGHl8JoqAyLrS2Pbt69hEQGjpS0SFRrUFUMG+6UVW72qlqh2YRkuS3Ycte/KsOqqlpefy0MusKpIwRpUPfv6bdAu6ugOlKpBbPSKN3yk5fSaVY65oOe+R73BKqo0q3VFpgBzOpHp+Q2fgJgb1k4fSQym2h30qOYVcy8MfSo4eegzEu9YRrLnH3uBFFYfXwZDBpBEcRuDuin/YrCFfZuHi5oWaA7iJXpZ5Loyqw8HsK5Sc9j59Xnp9/EhVv40bhG1guvDUI+2u61nR5GIXxlc+mwNBGzLwwr3HGaP0dCfgKya45+SMp/5Vf0yboVLgwH+qCXopS6pmbHWWunr3Vm53X1jxX/jPV/G6LbtYh/Xi50fv+SjDKh3oE1uYFIA=="
-              }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "f5260b44-addc-4c22-b4d5-391db13f2420",
-          "parts": [
-            {
-              "data": {
-                "id": "adk-ca9c6cb9-2efb-4120-a220-4bbb9ff2bd8b",
+                "id": "adk-95dc628a-45b1-423a-8e49-6692e4e66048",
                 "name": "GetPayerRequirements",
                 "response": {
                   "content": [
@@ -410,40 +425,10 @@
               "metadata": {
                 "adk_type": "function_response"
               }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "e18e61c2-a37a-4988-8f50-30d14dde57ad",
-          "parts": [
+            },
             {
               "data": {
-                "id": "adk-6e2ca93a-eb0a-4988-be2c-acdd086ae970",
-                "args": {
-                  "payerName": "Blue Cross Blue Shield",
-                  "cptCode": "96127",
-                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a"
-                },
-                "name": "GetPayerRequirements"
-              },
-              "kind": "data",
-              "metadata": {
-                "adk_type": "function_call",
-                "adk_thought_signature": "CvUDAb4+9vv1L9wMW2paMb4EZl5cJv+QIu2qnmPXTSbvHZVCertpH1KV6naEEHXlAqpNO5TDr5zgVqEXuaPvZ1wdiVhA4d39Pzig2tjvJCUUL9QyOFLjKspBmz3BZnT+zBeof2N5IEUuQ93IhYFw4E/cEJW/qmM/Wo5lvCXn3BhsWMYwHvOKpM98cKBiGrPmeJTmGOFtqT9sT5GvVVSJB8Sa1d4n5muTvSLQ4TaberuF3djk6axZSIzFOAgZeXyEhtkKGqF9yi80uvAbGmn4zzg3SRY2oLzip/+JI7t3+p7alDUzoq4SS2TiY0dIqmGO6oVCr9vgtOkUgzk3rQjJFe2QJPTft7a006dO+vI9OWCbueJ+Z/W0ERKuC4x+e5noI9B7XVe43Ltl0rkKVkFvpqEe5kbBxzuvMNIb44Bb1QCV1G5uWAyPcHQSy94speNHlxREU4GLYkG0TURUhFn1yJQecUEeWIQ8mUX1T3jKL+ChXifoxBuUTPJ3uYoxPkY3alPCs5LUfPoEdfGkgWH5NFGf1ZwKY0blXgOYMqU01b3AbdOHxhyOo36szZmHHb5pt2eANV9ykNMNfBqiHPYlwj3NYzjd6zdn76V8XoJ04gvU1VRrhkE+y7lCCrw3vQDMzxUabU4EzHG6yuQhAXqNJDEA5IMr0wy4"
-              }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "0c4a8bfe-4d4d-4a85-bf8a-eac569449d8a",
-          "parts": [
-            {
-              "data": {
-                "id": "adk-6e2ca93a-eb0a-4988-be2c-acdd086ae970",
+                "id": "adk-f7b1c5c2-09aa-4c57-b810-6705d2092e8a",
                 "name": "GetPayerRequirements",
                 "response": {
                   "content": [
@@ -459,49 +444,19 @@
               "metadata": {
                 "adk_type": "function_response"
               }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "e60cb0b9-5ab7-4f83-8f69-5313e287405f",
-          "parts": [
+            },
             {
               "data": {
-                "id": "adk-c4f1b81d-c833-422e-be8c-910cf271a33b",
-                "args": {
-                  "cptCode": "99408",
-                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
-                  "payerName": "Blue Cross Blue Shield"
-                },
-                "name": "GetPayerRequirements"
-              },
-              "kind": "data",
-              "metadata": {
-                "adk_type": "function_call",
-                "adk_thought_signature": "CoUJAb4+9vuvjQDTUj5k1QPwjBYbik0rUzQDO4q84FF5Eq6AcW0WU+z5kBarqz63H9az9dGIFHGJy+Ix+hMi2/HkJfFNDDlX/7mpX1Am3jIG822GzG5+J3ePCRkZsLP1T5agC7GpJHSSyswix6tRGCzRvM1ol5fPeQjLOFytnqpxOIDZbIHEdSu1CpXCQeH/2MgKVPTJK8ixiC2PJ+iIlApcI8KUioVW07I1qlPkIwxat34B6r6Z8wmP4TJOZUHre/raIA3dRkQMc+FIKhHDL9OOqHR2cA7Gq2qBXztKKfqYsSxzSd6rutozAFIrfPd58udLklpOAn8OwzZDJxY5h83qUMwYhtLPD++3IlvnVfZRrUtf1DANWWdEo7utskemkLJyRGsJJjCuX3q9W02wVAp/YWAK5UX1de54EkX7NNacuTtlLAisqcdNoAewdVRMNkWomukXeErILNTzDtO22uxlTEXYzNsMGlV7FryRMB/lkjA+IFauYRXnXosoVpOP6v6GOscchtHQyT+8UKsd/pO9eV+qe5C7BZMgOmnYwk1qK0pWm6k7DezeljdOq5hBMkff8eUqaSnP2QOAlOsvZQo1J5a0pPOaRjnkdDoDQq52o8IFrRbznu0wknazRUU7G+4gJn7a0eh2bzn3dnsXy/gV0O39tudPez5EP0bFrq8hFIUcnpcGz+jNmrsikHssR19MVdFHq716/K0KnImpuezBgMAF9qah49F4tu/JvCZlScGbO3psBczyOEep01hjZTObbAXbVRo1KyPqevrCC8gCOC7JHZ+jvxjAVT4lIwD4Wz+cN2TX0JWV4df+8so/c4yrXKLtuDwf9WkascVHb33ABOQPmh5Ru0fZSLuwNuxkMD7NMlg56WFUDkP0MI5/w4vkJfnWqnQoYVh6scZRjKHxrkHQzjwzkp4BOTBd26Kh0F/k1kWiWDc2xc9TzV+fsqNlM0I6/CMskSAEIWjRWGH5b97ij7cQcLk5l3Tij7667DPK+HRbEnjzHPhKXC1a1Yz6zDYKXq7u6LCZGbcOCIJ7bFNgcYbiY0rW7ylnaMiCE3LeErdB8/wTFP40pLpsnVEGF0nVU8ZaJYNNeJtHiM6TGMR9KcVqHH+T7nN9BHzbo7UdZtNsqJEbCEqM57D7VhXKKwR50gkPrN61FwugtHYST9BytA0glTDZ+Pgv879LaleFus3emq3SyzHECkcAFJvNQcTqt2e7A0nc0ldIXgTUAQOCcKMAroH1tug9YBG9sg92/qBVWxiYNmECzuJHXWMpjMTx9GBixMBivNRHbx2S+F2a9lv4xTeplDyJGwBl1msJ2XpKto4Uo0RppqQ9C3mdJ2RDzAvYAEF9E+O6H3h7b7mUjM92PGrt9zMFb73Rg1vv5Mk/FLyD17stkZFGRXgEHMrjV92Qpf6ixg5mladOBycV6u+0k3gmcVqlwmx2SpGzClQLqD8/IpWsuukQP1Q9PkNWElN2Hd0YwjBiP7q/LCiP6OvlurRd+A9h4LPUNVaGs1+yuWspoyiNsA/i3CQWhe0spVQ="
-              }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "1e5786ee-9be2-4075-afa4-1f188c5c0f1f",
-          "parts": [
-            {
-              "data": {
-                "id": "adk-c4f1b81d-c833-422e-be8c-910cf271a33b",
+                "id": "adk-4371a085-1575-4a96-bdb6-1430077101e6",
                 "name": "GetPayerRequirements",
                 "response": {
                   "content": [
                     {
                       "type": "text",
-                      "text": "CPT code 99408 is not in the CMS rules database. Currently supported codes: 90686, 90714, 96127, 99396, 99420. Add the code to rules/cms_rules.json to enable denial prediction."
+                      "text": "=== PAYER REQUIREMENTS: CPT 99408 | Payer: Blue Cross Blue Shield ===\nDescription: Alcohol and/or substance abuse structured screening and brief intervention, 15-30 minutes\nCategory: behavioral_health_screening\nPrior Auth Required: No\n\n--- ELIGIBILITY ---\nEligible: Age range 0\u2013\u221e, any, any patient\nFrequency: once_per_encounter\n\n--- MODIFIERS ---\nNo standard modifiers for this code.\n\n--- DENIAL TRIGGERS ---\n\ud83d\udd34 HIGH | HARD_STOP | Screening duration less than 15 minutes\n  Action: 99408 requires 15-30 minutes. Use 99407 for screenings over 30 minutes. Verify time documented in clinical note.\n\ud83d\udd34 HIGH | DOCUMENTATION_GAP | No validated screening instrument documented (e.g. AUDIT, DAST, CAGE)\n  Action: Flag for human review. Clinical note must reference a validated substance abuse screening tool. DAST-10 is sufficient.\n\ud83d\udd34 HIGH | HARD_STOP | Billed on same claim as 99420 for same screening\n  Action: 99408 and 99420 cannot be billed for the same screening instrument. 99408 is the correct code for DAST-10. Remove 99420 if present.\n\n--- PAYER-SPECIFIC EVIDENCE ---\nNo payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts.\n--- COMMONLY BILLED WITH ---\n96127, 99396\n\n--- NOTES ---\nCorrect code for DAST-10 substance abuse screening 15-30 min. Distinct from 96127 (brief behavioral assessment). Both can appear on the same claim when both screenings are documented."
                     }
                   ],
-                  "isError": true
+                  "isError": false
                 }
               },
               "kind": "data",
@@ -514,98 +469,42 @@
         },
         {
           "kind": "message",
-          "messageId": "560349ed-0d7a-4e72-91e8-40d35692ba41",
-          "parts": [
-            {
-              "data": {
-                "id": "adk-d4cc62fa-cc76-4d94-801e-cdc395ff236c",
-                "args": {
-                  "patientId": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
-                  "payerName": "Blue Cross Blue Shield",
-                  "cptCode": "90471"
-                },
-                "name": "GetPayerRequirements"
-              },
-              "kind": "data",
-              "metadata": {
-                "adk_type": "function_call",
-                "adk_thought_signature": "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"
-              }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "5b1f1422-22a8-439c-99be-99081d4d1a59",
-          "parts": [
-            {
-              "data": {
-                "id": "adk-d4cc62fa-cc76-4d94-801e-cdc395ff236c",
-                "name": "GetPayerRequirements",
-                "response": {
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "CPT code 90471 is not in the CMS rules database. Currently supported codes: 90686, 90714, 96127, 99396, 99420. Add the code to rules/cms_rules.json to enable denial prediction."
-                    }
-                  ],
-                  "isError": true
-                }
-              },
-              "kind": "data",
-              "metadata": {
-                "adk_type": "function_response"
-              }
-            }
-          ],
-          "role": "agent"
-        },
-        {
-          "kind": "message",
-          "messageId": "d193e5d5-b14c-433b-8fd7-fdf5fca61812",
+          "messageId": "8667bc43-b768-45be-9887-94d9adcaa853",
           "parts": [
             {
               "kind": "text",
-              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) not billed alongside 90686. (Note: 90471 has been added, but this flag indicates the original documentation gap).\n*   **96127:** No scoring documentation in clinical note. PHQ-2 score must be recorded.\n\n### Payer-Specific Notes\n*   **99396:** Modifier 59 is REQUIRED and AUTO-APPLY if 96127 is billed more than once on the same date of service, specifically when depression screening (96127) is billed more than once. (From GetPayerRequirements for 99396)\n*   **96127:** If 96127 is billed more than once on the same date without modifier 59 on the second unit, modifier 59 is required and will be auto-applied to the second instance of 96127. (From GetPayerRequirements for 96127)"
+              "text": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of appropriate immunization(s) and laboratory/diagnostic procedures, established patient; 40-64 years. | | Requires Review | No complaints. and the overall nature of the visit with multiple screenings and an immunization, for a 44-year-old established patient. |\n| 90686 | Influenza virus vaccine, quadrivalent, split virus, preservative free, for intramuscular use. | | Requires Review | Patient was given the following immunizations: influenza, seasonal, injectable, preservative free. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | | Requires Review | depression screening (procedure) and patient health questionnaire 2 item (phq-2) [reported]. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | 59 | Requires Review | depression screening (procedure) [second instance]. Payer rule: Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: 96127 is billed more than once on the same date of service. |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (e.g., AUDIT, DAST), and brief intervention (e.g., FRAMES), 15-30 minutes. | | Requires Review | assessment of substance use (procedure), screening for drug abuse (procedure), and drug abuse screening test-10 [dast-10]. |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **CPT 99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **CPT 90686:** Vaccine administration code (90471) not billed alongside 90686. Flag for human review. 90471 (first vaccine admin) must accompany 90686. Without it, reimbursement for administration is lost.\n*   **CPT 96127 (both instances):** No scoring documentation in clinical note. PHQ-2 score must be recorded. Tamera's note lists PHQ-2 [reported] \u2014 verify score is captured.\n*   **CPT 99408:** No validated screening instrument documented (e.g. AUDIT, DAST, CAGE). Clinical note must reference a validated substance abuse screening tool. DAST-10 is sufficient.\n\n### Payer-Specific Notes\n*   **CPT 99396:** Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: A procedure or service is distinct and independent from other services performed on the same day, specifically when depression screening (96127) is billed more than once. (Applied to second instance of 96127).\n*   **CPT 96127:** Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: 96127 is billed more than once on the same date of service. Tamera's note documents depression screening x2 \u2014 this trigger is expected to fire.\n*   No payer-specific PDF evidence found for Blue Cross Blue Shield. Add Blue Cross Blue Shield policy PDFs to the pdfs/ directory and re-run ingest.ts."
             }
           ],
           "role": "agent"
         }
       ],
-      "id": "28884819-4375-4f19-ad8e-687bfd5e5516",
+      "id": "4ebb8aa6-f369-4472-be61-3a04be188bb0",
       "kind": "task",
       "metadata": {
         "adk_app_name": "claims_coding_agent",
-        "adk_user_id": "A2A_USER_62fa995f-6236-491b-b08c-c5c43ba2ecdb",
-        "adk_session_id": "62fa995f-6236-491b-b08c-c5c43ba2ecdb",
-        "adk_invocation_id": "e-f08596d7-d4bc-41cb-b741-573107f388e5",
+        "adk_user_id": "A2A_USER_64dfbf8a-e849-4f10-8273-7e0d89338abf",
+        "adk_session_id": "64dfbf8a-e849-4f10-8273-7e0d89338abf",
+        "adk_invocation_id": "e-741a2e73-9e26-4e5e-af0c-4f2412a5855d",
         "adk_author": "claims_coding_agent",
-        "adk_event_id": "eb6d297e-0302-41ec-ae55-67cf33900c1d",
-        "adk_custom_metadata": "{'a2a_metadata': {'https://app.promptopinion.ai/schemas/a2a/v1/fhir-context': {'fhirUrl': 'https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir', 'fhirToken': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O', 'patientId': 'c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a', 'payer': 'Blue Cross Blue Shield'}}}",
+        "adk_event_id": "748612e4-4bf2-4913-937d-5893d9d48f26",
+        "adk_custom_metadata": "{'a2a_metadata': {'https://app.promptopinion.ai/schemas/a2a/v1/fhir-context': {'fhirUrl': 'https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir', 'fhirToken': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTI3ODAxNiwiaWF0IjoxNzc1Mjc0NDE2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiI4ODc5N2YxNC0wZGIxLTQzZjUtYmJlOC02NDljYzBjMzA3OTEiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDU2OTktZDk1YS03NDk4LWJjYWYtNjA0ODY3ZjJiNDBkIn0.hdkc8kbxrfPXE7UAQrfWsN-HzPpBhNQFlhP_SQLu9yczS4k_HWDKsb-Jzk-ulq1iH-kwJgpg1Upj2wcDgY3Cowe3X0ptpQ8hrW2ineVNIPCE-PbJ8XSDdgxfdUaiNrCvZsb3bYpth9BWy_1jcS8QCyyI_UMS7mFTiI30Sg-VoYRNRC1IGzX4CpzfZho2KVnEYzoO1knOLWEDRBn_vDNGz23qtqiAWPLcbctxn38j92317Hs7SgRa-eEt2CYyLxE8eAMI3L9W_yLaD7wdY1br9EjAuzk7vUzfIAgrvLuk2cINC7YtmnzFTKEQiFmL_6LuKS6Ev0B8nyqInm4vPqpTc8f_OKwtbCT5pa1VLrTtEJZ875hKEXurrK2EMm2x_TIP3A3dvGQk8silz6Qf6EexRuPi0kR4ik5gZm50r057eoUZ0QHgn6y80bj7sgUexx_-X1Tgyt_31ZUxb5pKp_tuxSbAHNuzphOvIk3ZxHRqzwGwxKKOh77P1S9KswvNsj7f', 'patientId': 'c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a', 'payer': 'Blue Cross Blue Shield'}}}",
         "adk_usage_metadata": {
-          "cacheTokensDetails": [
-            {
-              "modality": "TEXT",
-              "tokenCount": 7857
-            }
-          ],
-          "cachedContentTokenCount": 7857,
-          "candidatesTokenCount": 756,
-          "promptTokenCount": 9138,
+          "candidatesTokenCount": 924,
+          "promptTokenCount": 9403,
           "promptTokensDetails": [
             {
               "modality": "TEXT",
-              "tokenCount": 9138
+              "tokenCount": 9403
             }
           ],
-          "thoughtsTokenCount": 651,
-          "totalTokenCount": 10545
+          "thoughtsTokenCount": 972,
+          "totalTokenCount": 11299
         },
         "adk_actions": {
           "stateDelta": {
             "fhir_url": "https://app.promptopinion.ai/api/workspaces/019cc530-0c01-7356-888a-66c9547e10f6/fhir",
-            "fhir_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTExMjMxNCwiaWF0IjoxNzc1MTA4NzE0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiIzY2MzYjJiYS1lYTFkLTRkMGYtODRmOC0wYmQ3NGMyNWQ0M2IiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDRjYjktNzA5ZS03MWNhLWI1ZWMtYmQ2OGE1NDFlY2E3In0.W5fScXg8EN9zBo1zoNRCxcW9dPOxVnt3wFvIoBgvsfdte9XW-zuy-Y8owhFiHc_-rf2LyQE41nyJTD1nMVk0roSQopKh-G-TCyBFAGxeI-ZzLEAIxVKz-OWoaNbVFdSQAZBby-Lx-cN-TZNLvuswP4Q8c_0IjN4fnMfiGD3Ze58MVEyzRv4JuqXid-TtTxsQILURqVas7Swy0roBM59V1y42in4vqz01RK6RpjUdM5ffnFr9BfTLZYseSje9oW-TYbKI_KeLffI6JKNpoPaNaYYeaGMXh5vMtXWPNwNEQ7_KndSZNTRZeuI3uUFmCec-eQW-Q-J_nYJzv1r1sy1KTQoE28j_VRQFysCr2yE7eDOK4i0nBNjgyyz3OzhJ9NvZ7YtrcYX6-CUIhLUiJ4fg9bVBJ50cr5B-FWZn0xL6pvTxNsiKj-kQMt_0Sk_2JzNG0Sk7_hE9_QEllGPg0Ym7LeGYcBRrJheNNFQwEDFnneblMeR-xRE8ubCGlMrsoo9O",
+            "fhir_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRFQjZENTRCMjI3QUNDOTM5QjJCMkQ4NDQ0NkMwODI2RUUxNjVEMEEiLCJ4NXQiOiJUcmJWU3lKNnpKT2JLeTJFUkd3SUp1NFdYUW8iLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2FwcC5wcm9tcHRvcGluaW9uLmFpLyIsImV4cCI6MTc3NTI3ODAxNiwiaWF0IjoxNzc1Mjc0NDE2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIHBvX2ZoaXIiLCJqdGkiOiI4ODc5N2YxNC0wZGIxLTQzZjUtYmJlOC02NDljYzBjMzA3OTEiLCJzdWIiOiIwMTljYzUzMC0wYmE2LTcxZDctOTdiMi03OTRmZjFkNDE2OWYiLCJnaXZlbl9uYW1lIjoiRXZhbiIsImZhbWlseV9uYW1lIjoiRnUiLCJyb2xlIjoiVXNlciIsImlzX2NsaWVudF9jcmVkcyI6ImZhbHNlIiwib2lfcHJzdCI6InBvLWRlZmF1bHQiLCJjbGllbnRfaWQiOiJwby1kZWZhdWx0Iiwib2lfdGtuX2lkIjoiMDE5ZDU2OTktZDk1YS03NDk4LWJjYWYtNjA0ODY3ZjJiNDBkIn0.hdkc8kbxrfPXE7UAQrfWsN-HzPpBhNQFlhP_SQLu9yczS4k_HWDKsb-Jzk-ulq1iH-kwJgpg1Upj2wcDgY3Cowe3X0ptpQ8hrW2ineVNIPCE-PbJ8XSDdgxfdUaiNrCvZsb3bYpth9BWy_1jcS8QCyyI_UMS7mFTiI30Sg-VoYRNRC1IGzX4CpzfZho2KVnEYzoO1knOLWEDRBn_vDNGz23qtqiAWPLcbctxn38j92317Hs7SgRa-eEt2CYyLxE8eAMI3L9W_yLaD7wdY1br9EjAuzk7vUzfIAgrvLuk2cINC7YtmnzFTKEQiFmL_6LuKS6Ev0B8nyqInm4vPqpTc8f_OKwtbCT5pa1VLrTtEJZ875hKEXurrK2EMm2x_TIP3A3dvGQk8silz6Qf6EexRuPi0kR4ik5gZm50r057eoUZ0QHgn6y80bj7sgUexx_-X1Tgyt_31ZUxb5pKp_tuxSbAHNuzphOvIk3ZxHRqzwGwxKKOh77P1S9KswvNsj7f",
             "patient_id": "c6c1ecd9-c786-4fe7-8e2d-0c95dee4117a",
             "payer": "Blue Cross Blue Shield"
           },
@@ -616,10 +515,10 @@
       },
       "status": {
         "state": "completed",
-        "timestamp": "2026-04-02T05:50:52.509526+00:00"
+        "timestamp": "2026-04-04T03:50:36.240070+00:00"
       }
     }
   },
-  "extracted_text_preview": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Preventive medicine E/M, established patient, 40-64 years | | REQUIRES REVIEW | Payer requirements for 99396. Justification: \"No complaints.\" and \"assessment of health and social care needs (procedure)\" and \"Tamera164 is a 44 year-old hispanic white female.\" |\n| 90686 | Influenza virus vaccine, quadrivalent (IIV4), preservative free, 0.5mL dosage, for intramuscular use | | REQUIRES REVIEW | Payer requirements for 90686. Justification: \"Patient was given the following immunizations: influenza, seasonal, injectable, preservative free.\" |\n| 90471 | Immunization administration (includes percutaneous, intradermal, subcutaneous, or intramuscular injections); one vaccine | | UNVERIFIED | Implied by the administration of 90686 as per payer requirements. |\n| 96127 | Brief emotional/behavioral assessment, with scoring and documentation, per standardized instrument | | REQUIRES REVIEW | Payer requirements for 96127. Justification: \"depression screening (procedure)\" and \"patient health questionnaire 2 item (phq-2) [reported]\". |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (eg, AUDIT, DAST, ASSIST), and brief intervention (eg, FRAMES), 15-30 minutes | | UNVERIFIED | Justification: \"assessment of substance use (procedure)\", \"screening for drug abuse (procedure)\", and \"drug abuse screening test-10 [dast-10]\". |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\n*   **99396:** Documentation does not reflect comprehensive preventive exam. Clinical note must evidence comprehensive history, physical exam, and counseling/anticipatory guidance.\n*   **90686:** Vaccine administration code (90471) n",
-  "extracted_text_length": 2680
+  "extracted_text_preview": "## CLAIMS CODING SUMMARY\n**Patient:** Tamera164 Wisozk929 | **DOB:** 1980-02-03 | **Payer:** Blue Cross Blue Shield\n**Encounter Date:** 2024-02-18\n**Coded by:** Claims AI Agent | **Status:** REQUIRES REVIEW\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99396 | Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of appropriate immunization(s) and laboratory/diagnostic procedures, established patient; 40-64 years. | | Requires Review | No complaints. and the overall nature of the visit with multiple screenings and an immunization, for a 44-year-old established patient. |\n| 90686 | Influenza virus vaccine, quadrivalent, split virus, preservative free, for intramuscular use. | | Requires Review | Patient was given the following immunizations: influenza, seasonal, injectable, preservative free. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | | Requires Review | depression screening (procedure) and patient health questionnaire 2 item (phq-2) [reported]. |\n| 96127 | Brief emotional/behavioral assessment (e.g., depression inventory, attention-deficit hyperactivity disorder (ADHD) scale), with scoring and documentation, per standardized instrument. | 59 | Requires Review | depression screening (procedure) [second instance]. Payer rule: Modifier 59 [REQUIRED] [AUTO-APPLY] Condition: 96127 is billed more than once on the same date of service. |\n| 99408 | Alcohol and/or substance (other than tobacco) abuse structured screening (e.g., AUDIT, DAST), and brief intervention (e.g., FRAMES), 15-30 minutes. | | Requires Review | assessment of substance use (procedure), screen",
+  "extracted_text_length": 3564
 }

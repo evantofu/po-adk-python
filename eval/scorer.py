@@ -210,6 +210,21 @@ def score(
     # Ground truth set
     expected_set = case.expected_set
 
+    # Resolve alternative groups — if any predicted code matches an alternative,
+    # treat it as the canonical TP and drop the other group members from expected_set
+    # so they don't generate false negatives.
+    resolved_expected = set(expected_set)
+    for group in case.alternative_groups:
+        group_set = set(group)
+        predicted_from_group = group_set & predicted_set
+        if predicted_from_group:
+            # One or more alternatives predicted — remove the unpredicted ones
+            resolved_expected -= (group_set - predicted_from_group)
+        else:
+            # Nothing predicted from this group — keep only the first as the FN
+            resolved_expected -= (group_set - {group[0]})
+    expected_set = resolved_expected
+
     # True positives
     for pair in predicted_set & expected_set:
         conf, status, citation = predicted_map.get(pair, (None, None, None))
