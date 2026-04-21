@@ -29,6 +29,14 @@ a2a_app = create_a2a_app(
     # The orchestrator supports FHIR context so it can pass credentials through
     # to the healthcare sub-agent.
     fhir_extension_uri=f"{os.getenv('PO_PLATFORM_BASE_URL', 'http://localhost:5139')}/schemas/a2a/v1/fhir-context",
+    # Same SMART scopes as healthcare_agent — the orchestrator delegates to it
+    # in-process and the credentials flow through shared session state.
+    fhir_scopes=[
+        {"name": "patient/Patient.rs",           "required": True},   # via healthcare_agent
+        {"name": "patient/MedicationRequest.rs", "required": True},   # via healthcare_agent
+        {"name": "patient/Condition.rs",         "required": True},   # via healthcare_agent
+        {"name": "patient/Observation.rs",       "required": True},   # via healthcare_agent
+    ],
     skills=[
         AgentSkill(
             id="clinical-orchestration",
