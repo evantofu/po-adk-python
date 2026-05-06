@@ -1,0 +1,33 @@
+{
+  "run_at": "2026-04-14T00:26:44.734134+00:00",
+  "iterations": 10,
+  "total_calls": 40,
+  "flake_rate_pct": 0.0,
+  "infra_failures": 0,
+  "logic_failures": 0,
+  "total_retries": 0,
+  "cases": {
+    "alex_asthma_v1": {
+      "passes": 10,
+      "flakes": 0,
+      "retries": 0
+    },
+    "jaylen_pediatric_v1": {
+      "passes": 10,
+      "flakes": 0,
+      "retries": 0
+    },
+    "marcus_chronic_care_v1": {
+      "passes": 10,
+      "flakes": 0,
+      "retries": 0
+    },
+    "tamera_preventive_v1": {
+      "passes": 10,
+      "flakes": 0,
+      "retries": 0
+    }
+  },
+  "infra_failure_detail": [],
+  "logic_failure_detail": []
+}

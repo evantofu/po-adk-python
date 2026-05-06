@@ -50,7 +50,11 @@ Usage:
         require_api_key=False,
     )
 """
+import json as _json
+import logging as _logging
 from typing import Any
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
 
 from a2a.types import (
     AgentCapabilities,
@@ -60,6 +64,9 @@ from a2a.types import (
 )
 from google.adk.a2a.utils.agent_to_a2a import to_a2a
 from pydantic import Field
+from starlette.middleware.base import BaseHTTPMiddleware as _Base
+
+_shim_logger = _logging.getLogger("method_shim")
 
 
 class AgentExtensionV1(AgentExtension):
@@ -92,7 +99,68 @@ class AgentCardV1(AgentCard):
     supportedInterfaces: list[dict[str, Any]] = Field(default_factory=list)
     securitySchemes: dict[str, Any] | None = None  # override parent's typed field
 
+
 from shared.middleware import ApiKeyMiddleware
+
+# Protobuf-style role enum -> A2A spec role
+_ROLE_MAP = {
+    "ROLE_USER":  "user",
+    "ROLE_AGENT": "agent",
+}
+
+# Non-standard PO method name -> A2A spec method name
+_METHOD_MAP = {
+    "SendStreamingMessage": "message/stream",
+    "SendMessage":          "message/send",
+}
+
+
+def _normalize_roles(obj: Any) -> None:
+    """Recursively rewrite ROLE_USER/ROLE_AGENT -> user/agent in-place."""
+    if isinstance(obj, dict):
+        if "role" in obj and obj["role"] in _ROLE_MAP:
+            obj["role"] = _ROLE_MAP[obj["role"]]
+        for v in obj.values():
+            _normalize_roles(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            _normalize_roles(item)
+
+
+class _MethodShim(_Base):
+    """Temporary shim: normalises non-standard PO requests to A2A spec format.
+
+    Prompt Opinion currently sends:
+      - 'SendMessage' / 'SendStreamingMessage' instead of 'message/send' / 'message/stream'
+      - role: 'ROLE_USER' / 'ROLE_AGENT' instead of 'user' / 'agent'
+
+    This middleware rewrites both before the request reaches the A2A handler.
+    Remove once PO fixes their client.
+    """
+
+    async def dispatch(self, request, call_next):
+        if request.method == "POST":
+            body = await request.body()
+            try:
+                data = _json.loads(body)
+                original_method = data.get("method")
+
+                # Rewrite method name
+                rewritten_method = _METHOD_MAP.get(original_method, original_method)
+                if rewritten_method != original_method:
+                    data["method"] = rewritten_method
+
+                # Rewrite protobuf-style role enums
+                _normalize_roles(data)
+
+                body = _json.dumps(data).encode()
+                _shim_logger.warning(
+                    "SHIM: method %s -> %s", original_method, rewritten_method
+                )
+            except Exception as e:
+                _shim_logger.warning("SHIM parse failed: %s", e)
+            request._body = body
+        return await call_next(request)
 
 
 def create_a2a_app(
@@ -134,10 +202,6 @@ def create_a2a_app(
     Returns:
         A Starlette ASGI application ready to be served with uvicorn.
     """
-    # Optional FHIR extension — only included when the agent supports it.
-    # Uses AgentExtensionV1 to add `params` (SMART scopes) to the serialised JSON.
-    # Per the Po spec the extension-level `required` is false — individual scopes
-    # carry their own required flag inside params.scopes.
     extensions = []
     if fhir_extension_uri:
         extension_params = None
@@ -152,47 +216,34 @@ def create_a2a_app(
             )
         ]
 
-    # Security scheme — advertised in the agent card so callers know what to send.
-    # Uses the A2A v1 nested-key format (apiKeySecurityScheme) which is what
-    # the Po backend parses to produce securityType="ApiKey".  The parent
-    # AgentCard.securitySchemes field is typed as dict[str, SecurityScheme],
-    # which would force the OLD flat format (type/name/in) on serialisation
-    # — hence securitySchemes is overridden to dict[str, Any] in AgentCardV1.
     if require_api_key:
         security_schemes = {
             "apiKey": {
                 "apiKeySecurityScheme": {
                     "name": "X-API-Key",
-                    "location": "header",  # Po backend uses "location", not "in"
+                    "location": "header",
                     "description": "API key required to access this agent.",
                 }
             }
         }
         security = [{"apiKey": []}]
     else:
-        # No security scheme — agent is publicly accessible.
         security_schemes = None
         security = None
 
-    # AgentCardV1 is a local subclass of AgentCard that adds `supportedInterfaces`
-    # as a proper Pydantic field so it is included in the serialised JSON.
-    # `url` is still required by the installed library — kept until the library
-    # ships native A2A v1 support, at which point it can be dropped.
     agent_card = AgentCardV1(
         name=name,
         description=description,
-        url=url,  # still required by installed a2a-sdk; remove when library reaches v1
+        url=url,
         version=version,
         defaultInputModes=["text/plain"],
         defaultOutputModes=["text/plain"],
         capabilities=AgentCapabilities(
             streaming=False,
             pushNotifications=False,
-            stateTransitionHistory=False,  # v1: field kept but must be false
+            stateTransitionHistory=False,
             extensions=extensions,
         ),
-        # supportedInterfaces replaces url + preferredTransport in A2A v1.
-        # First entry is the preferred transport.
         supportedInterfaces=[
             {"url": url, "protocolBinding": "JSONRPC", "protocolVersion": "1.0"},
         ],
@@ -201,9 +252,17 @@ def create_a2a_app(
         security=security,
     )
 
-    app = to_a2a(agent, port=port, agent_card=agent_card)
+    runner = Runner(
+        app_name=name,
+        agent=agent,
+        session_service=InMemorySessionService(),
+    )
 
-    # Only attach the key-enforcement middleware for authenticated agents.
+    app = to_a2a(agent, port=port, agent_card=agent_card, runner=runner)
+
+    # Method shim must be added before ApiKeyMiddleware so it fires first.
+    app.add_middleware(_MethodShim)
+
     if require_api_key:
         app.add_middleware(ApiKeyMiddleware)
 

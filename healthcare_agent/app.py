@@ -21,8 +21,6 @@ from shared.app_factory import create_a2a_app
 
 from .agent import root_agent
 
-print(os.getenv('PO_PLATFORM_BASE_URL'))
-
 a2a_app = create_a2a_app(
     agent=root_agent,
     name="claims_coding_agent",
@@ -35,13 +33,11 @@ a2a_app = create_a2a_app(
     url=os.getenv("HEALTHCARE_AGENT_URL", os.getenv("BASE_URL", "http://localhost:8001")),
     port=8001,
     fhir_extension_uri=f"{os.getenv('PO_PLATFORM_BASE_URL', 'http://localhost:5139')}/schemas/a2a/v1/fhir-context",
-    # SMART-on-FHIR scopes — one per FHIR resource type accessed by the tools.
-    # All are marked required because each tool will fail without its scope.
     fhir_scopes=[
-        {"name": "patient/Patient.rs",           "required": True},   # get_patient_demographics
-        {"name": "patient/MedicationRequest.rs", "required": True},   # get_active_medications
-        {"name": "patient/Condition.rs",         "required": True},   # get_active_conditions
-        {"name": "patient/Observation.rs",       "required": True},   # get_recent_observations
+        {"name": "patient/Patient.rs",           "required": True},
+        {"name": "patient/MedicationRequest.rs", "required": True},
+        {"name": "patient/Condition.rs",         "required": True},
+        {"name": "patient/Observation.rs",       "required": True},
     ],
     skills=[
         AgentSkill(
@@ -75,4 +71,5 @@ a2a_app = create_a2a_app(
             tags=["claims", "summary", "audit", "billing"],
         ),
     ],
+    require_api_key=True,
 )

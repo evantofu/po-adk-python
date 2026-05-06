@@ -1,0 +1,28 @@
+{
+  "case_id": "alex_asthma_v1",
+  "raw_a2a_response": {
+    "id": "eval-alex_asthma_v1",
+    "jsonrpc": "2.0",
+    "result": {
+      "task": {
+        "id": "a9140dfb-da3d-4850-acba-041f6bea158c",
+        "contextId": "84836b96-02c5-4d34-b2d1-9260b244b040",
+        "status": {
+          "state": "TASK_STATE_COMPLETED"
+        },
+        "artifacts": [
+          {
+            "artifactId": "3026a843-390e-4035-8d3d-976d56371883",
+            "parts": [
+              {
+                "text": "PATIENT AGE: 11 years \u2192 preventive E/M bracket: 99393\n## CLAIMS CODING SUMMARY\n**Patient:** Alex Mercer | **DOB:** 2013-02-14 | **Payer:** commercial\n**Encounter Date:** 2024-11-15\n**Coded by:** Claims AI Agent | **Status:** READY TO SUBMIT\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99215 | Office or other outpatient visit for the evaluation and management of an established patient, typically 40 minutes were spent face-to-face with the patient and/or family. | 25 | Covered | \"TOTAL ENCOUNTER TIME: 75 minutes (including pre/post encounter work, chart review, external record review, imaging interpretation, care coordination) Medical decision making complexity: HIGH \u2014 99215\" |\n| 71046 | Radiologic examination, chest; 2 views | 26 | Covered | \"Chest X-ray 2 views (71046) \u2014 ordered and preliminary interpretation performed\" |\n| 94640 | Pressurized or nonpressurized inhalation treatment for acute airway obstruction or for differential diagnosis of pulmonary disease with pharmacologically active bronchodilator; initial | | Covered | \"Albuterol nebulization x3 (2.5 mg q20min) administered in office\" |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\nNone\n\n### Payer-Specific Notes\n99215 \u2014 commercial: Covered. Ref: \"The patient's commercial insurance plan covers CPT code 99215 for established patient office visits, particularly when medical decision-making is high complexity, as documented. Modifier 25 is appropriate when a significant, separately identifiable E/M service is performed on the same day as another procedure.\"\n71046 \u2014 commercial: Covered. Ref: \"Commercial plans typically cover CPT code 71046 for chest X-rays (2 views). Modifier 26 is required when only the professional component (interpretation) is provided, as indicated by the physician's preliminary read.\"\n94640 \u2014 commercial: Covered. Ref: \"Commercial insurance covers CPT code 94640 for initial bronchodilator inhalation treatments for acute airway obstruction, as documented by the in-office albuterol nebulization.\""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "extracted_text_preview": "PATIENT AGE: 11 years \u2192 preventive E/M bracket: 99393\n## CLAIMS CODING SUMMARY\n**Patient:** Alex Mercer | **DOB:** 2013-02-14 | **Payer:** commercial\n**Encounter Date:** 2024-11-15\n**Coded by:** Claims AI Agent | **Status:** READY TO SUBMIT\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| 99215 | Office or other outpatient visit for the evaluation and management of an established patient, typically 40 minutes were spent face-to-face with the patient and/or family. | 25 | Covered | \"TOTAL ENCOUNTER TIME: 75 minutes (including pre/post encounter work, chart review, external record review, imaging interpretation, care coordination) Medical decision making complexity: HIGH \u2014 99215\" |\n| 71046 | Radiologic examination, chest; 2 views | 26 | Covered | \"Chest X-ray 2 views (71046) \u2014 ordered and preliminary interpretation performed\" |\n| 94640 | Pressurized or nonpressurized inhalation treatment for acute airway obstruction or for differential diagnosis of pulmonary disease with pharmacologically active bronchodilator; initial | | Covered | \"Albuterol nebulization x3 (2.5 mg q20min) administered in office\" |\n\n### Hard Stops (Removed from Claim)\nNone\n\n### Documentation Flags\nNone\n\n### Payer-Specific Notes\n99215 \u2014 commercial: Covered. Ref: \"The patient's commercial insurance plan covers CPT code 99215 for established patient office visits, particularly when medical decision-making is high complexity, as documented. Modifier 25 is appropriate when a significant, separately identifiable E/M service is performed on the same day as another procedure.\"\n71046 \u2014 commercial: Covered. Ref: \"Commercial plans typically cover CPT code 71046 for chest X-rays (2 views). Modifier 26 is required when only the professional component (interpretation) is provided, as indicated by the physician's preliminary read.\"\n94640 \u2014 commercial: Covered. Ref: \"Commercial insurance covers CPT code 94640 for initial bronchodilator i",
+  "extracted_text_length": 2106
+}

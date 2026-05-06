@@ -1,0 +1,880 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+      {
+        "fullUrl": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "a772849e-5903-41bf-a1fb-f133442a2e7e",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "a772849e-5903-41bf-a1fb-f133442a2e7e"
+            },
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "MR",
+                    "display": "Medical Record Number"
+                  }
+                ],
+                "text": "Medical Record Number"
+              },
+              "system": "http://hospital.smarthealthit.org",
+              "value": "a772849e-5903-41bf-a1fb-f133442a2e7e"
+            },
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "MC",
+                    "display": "Medicare Number"
+                  }
+                ],
+                "text": "Medicare Number"
+              },
+              "system": "http://hl7.org/fhir/sid/us-medicare",
+              "value": "2HJ7-TE9-PK31"
+            }
+          ],
+          "name": [
+            {
+              "use": "official",
+              "family": "Vásquez",
+              "given": [
+                "Eleanor",
+                "Ruth"
+              ]
+            }
+          ],
+          "telecom": [
+            {
+              "system": "phone",
+              "value": "555-487-2293",
+              "use": "home"
+            }
+          ],
+          "gender": "female",
+          "birthDate": "1950-11-03",
+          "address": [
+            {
+              "line": [
+                "214 Oak Avenue"
+              ],
+              "city": "Northfield",
+              "state": "MA",
+              "postalCode": "01360",
+              "country": "US"
+            }
+          ],
+          "communication": [
+            {
+              "language": {
+                "coding": [
+                  {
+                    "system": "urn:ietf:bcp:47",
+                    "code": "en-US",
+                    "display": "English (United States)"
+                  }
+                ],
+                "text": "English (United States)"
+              }
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Patient",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|a772849e-5903-41bf-a1fb-f133442a2e7e"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:a1b2c3d4-1111-2222-3333-444455556666",
+        "resource": {
+          "resourceType": "Condition",
+          "id": "a1b2c3d4-1111-2222-3333-444455556666",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "a1b2c3d4-1111-2222-3333-444455556666"
+            }
+          ],
+          "clinicalStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active"
+              }
+            ]
+          },
+          "verificationStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                "code": "confirmed"
+              }
+            ]
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                  "code": "problem-list-item",
+                  "display": "Problem List Item"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "44054006",
+                "display": "Diabetes mellitus type 2 (disorder)"
+              },
+              {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "E11.9",
+                "display": "Type 2 diabetes mellitus without complications"
+              }
+            ],
+            "text": "Type 2 diabetes mellitus (T2DM)"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "onsetDateTime": "2006-03-14"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Condition",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|a1b2c3d4-1111-2222-3333-444455556666"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:b2c3d4e5-2222-3333-4444-555566667777",
+        "resource": {
+          "resourceType": "Condition",
+          "id": "b2c3d4e5-2222-3333-4444-555566667777",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "b2c3d4e5-2222-3333-4444-555566667777"
+            }
+          ],
+          "clinicalStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active"
+              }
+            ]
+          },
+          "verificationStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                "code": "confirmed"
+              }
+            ]
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                  "code": "problem-list-item",
+                  "display": "Problem List Item"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "38341003",
+                "display": "Hypertensive disorder (disorder)"
+              },
+              {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "I10",
+                "display": "Essential (primary) hypertension"
+              }
+            ],
+            "text": "Essential hypertension"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "onsetDateTime": "2004-07-22"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Condition",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|b2c3d4e5-2222-3333-4444-555566667777"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:c3d4e5f6-3333-4444-5555-666677778888",
+        "resource": {
+          "resourceType": "Condition",
+          "id": "c3d4e5f6-3333-4444-5555-666677778888",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "c3d4e5f6-3333-4444-5555-666677778888"
+            }
+          ],
+          "clinicalStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                "code": "active"
+              }
+            ]
+          },
+          "verificationStatus": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                "code": "confirmed"
+              }
+            ]
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                  "code": "problem-list-item",
+                  "display": "Problem List Item"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "709044004",
+                "display": "Chronic kidney disease (disorder)"
+              },
+              {
+                "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                "code": "N18.31",
+                "display": "Chronic kidney disease, stage 3a"
+              }
+            ],
+            "text": "Chronic Kidney Disease Stage 3a (CKD)"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "onsetDateTime": "2019-09-05"
+        },
+        "request": {
+          "method": "POST",
+          "url": "Condition",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|c3d4e5f6-3333-4444-5555-666677778888"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:d4e5f6a7-4444-5555-6666-777788889999",
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "d4e5f6a7-4444-5555-6666-777788889999",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+            ]
+          },
+          "identifier": [
+            {
+              "use": "official",
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "d4e5f6a7-4444-5555-6666-777788889999"
+            }
+          ],
+          "status": "finished",
+          "class": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "AMB"
+          },
+          "type": [
+            {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "444971000124105",
+                  "display": "Annual wellness visit (procedure)"
+                }
+              ],
+              "text": "Annual wellness visit — initial (G0438)"
+            }
+          ],
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "period": {
+            "start": "2024-04-10T09:00:00Z",
+            "end": "2024-04-10T10:00:00Z"
+          },
+          "reasonCode": [
+            {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "444971000124105",
+                  "display": "Annual wellness visit"
+                }
+              ]
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Encounter",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|d4e5f6a7-4444-5555-6666-777788889999"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000",
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "e5f6a7b8-5555-6666-7777-888899990000",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+            ]
+          },
+          "identifier": [
+            {
+              "use": "official",
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "e5f6a7b8-5555-6666-7777-888899990000"
+            }
+          ],
+          "status": "finished",
+          "class": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "AMB"
+          },
+          "type": [
+            {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "444971000124105",
+                  "display": "Annual wellness visit (procedure)"
+                }
+              ],
+              "text": "Annual wellness visit — subsequent (G0439)"
+            }
+          ],
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "period": {
+            "start": "2025-04-22T09:15:00Z",
+            "end": "2025-04-22T10:45:00Z"
+          },
+          "reasonCode": [
+            {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "444971000124105",
+                  "display": "Annual wellness visit"
+                }
+              ]
+            }
+          ],
+          "diagnosis": [
+            {
+              "condition": {
+                "reference": "urn:uuid:b2c3d4e5-2222-3333-4444-555566667777"
+              },
+              "rank": 1
+            },
+            {
+              "condition": {
+                "reference": "urn:uuid:a1b2c3d4-1111-2222-3333-444455556666"
+              },
+              "rank": 2
+            },
+            {
+              "condition": {
+                "reference": "urn:uuid:c3d4e5f6-3333-4444-5555-666677778888"
+              },
+              "rank": 3
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Encounter",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|e5f6a7b8-5555-6666-7777-888899990000"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:f6a7b8c9-6666-7777-8888-999900001111",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "f6a7b8c9-6666-7777-8888-999900001111",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "f6a7b8c9-6666-7777-8888-999900001111"
+            }
+          ],
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "85354-9",
+                "display": "Blood pressure panel"
+              }
+            ],
+            "text": "Blood pressure"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "encounter": {
+            "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+          },
+          "effectiveDateTime": "2025-04-22T09:18:00Z",
+          "component": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 162,
+                "unit": "mmHg",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm[Hg]"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 96,
+                "unit": "mmHg",
+                "system": "http://unitsofmeasure.org",
+                "code": "mm[Hg]"
+              }
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Observation",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|f6a7b8c9-6666-7777-8888-999900001111"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:a7b8c9d0-7777-8888-9999-000011112222",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "a7b8c9d0-7777-8888-9999-000011112222",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "a7b8c9d0-7777-8888-9999-000011112222"
+            }
+          ],
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "vital-signs",
+                  "display": "Vital Signs"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "39156-5",
+                "display": "Body mass index (BMI) [Ratio]"
+              }
+            ],
+            "text": "BMI"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "encounter": {
+            "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+          },
+          "effectiveDateTime": "2025-04-22T09:17:00Z",
+          "valueQuantity": {
+            "value": 28.8,
+            "unit": "kg/m2",
+            "system": "http://unitsofmeasure.org",
+            "code": "kg/m2"
+          }
+        },
+        "request": {
+          "method": "POST",
+          "url": "Observation",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|a7b8c9d0-7777-8888-9999-000011112222"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:b8c9d0e1-8888-9999-0000-111122223333",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "b8c9d0e1-8888-9999-0000-111122223333",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "b8c9d0e1-8888-9999-0000-111122223333"
+            }
+          ],
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "laboratory",
+                  "display": "Laboratory"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "62238-1",
+                "display": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)"
+              }
+            ],
+            "text": "eGFR"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "encounter": {
+            "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+          },
+          "effectiveDateTime": "2025-04-22T09:20:00Z",
+          "valueQuantity": {
+            "value": 48,
+            "unit": "mL/min/1.73m2",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL/min/{1.73_m2}"
+          },
+          "interpretation": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                  "code": "L",
+                  "display": "Low"
+                }
+              ]
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Observation",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|b8c9d0e1-8888-9999-0000-111122223333"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:c9d0e1f2-9999-0000-1111-222233334444",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "c9d0e1f2-9999-0000-1111-222233334444",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-screenassessment"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "https://github.com/synthetichealth/synthea",
+              "value": "c9d0e1f2-9999-0000-1111-222233334444"
+            }
+          ],
+          "status": "final",
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "survey",
+                  "display": "Survey"
+                }
+              ]
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "44249-1",
+                "display": "PHQ-9 quick depression assessment panel"
+              }
+            ],
+            "text": "PHQ-9 Depression Screening"
+          },
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "encounter": {
+            "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+          },
+          "effectiveDateTime": "2025-04-22T09:50:00Z",
+          "valueQuantity": {
+            "value": 3,
+            "unit": "score",
+            "system": "http://unitsofmeasure.org",
+            "code": "{score}"
+          },
+          "interpretation": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                  "code": "N",
+                  "display": "Normal"
+                }
+              ]
+            }
+          ]
+        },
+        "request": {
+          "method": "POST",
+          "url": "Observation",
+          "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|c9d0e1f2-9999-0000-1111-222233334444"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:d0e1f2a3-0000-1111-2222-333344445555",
+        "resource": {
+          "resourceType": "DocumentReference",
+          "id": "d0e1f2a3-0000-1111-2222-333344445555",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "urn:ietf:rfc:3986",
+              "value": "urn:uuid:d0e1f2a3-0000-1111-2222-333344445555"
+            }
+          ],
+          "status": "current",
+          "type": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "64298-3",
+                "display": "Claim submitted"
+              }
+            ],
+            "text": "Submitted Claim — PENDING REVIEW"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                  "code": "clinical-note",
+                  "display": "Clinical Note"
+                }
+              ]
+            }
+          ],
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "date": "2025-04-22T18:00:00Z",
+          "author": [
+            {
+              "display": "Billing Department — Northfield Internal Medicine"
+            }
+          ],
+          "description": "SUBMITTED CLAIM — CONTAINS CODING ERRORS — FLAGGED FOR AGENT REVIEW",
+          "content": [
+            {
+              "attachment": {
+                "contentType": "text/plain",
+                "data": "U1VCTUlUVEVEIENMQUlNIOKAlCBFTEVBTk9SIFJVVEggVsOBU1FVRVog4oCUIERPUyAyMDI1LTA0LTIyCkNsYWltIElEOiBDTE0tMjAyNS0wNC0yMi1FVlEtMDAxClN1Ym1pdHRlZCBieTogQmlsbGluZyBEZXB0LCBOb3J0aGZpZWxkIEludGVybmFsIE1lZGljaW5lClN0YXR1czogUEVORElORyBQQVlFUiBSRVZJRVcg4oCUIEZMQUdHRUQgRk9SIENPRElORyBBVURJVAoKU1VCTUlUVEVEIFBST0NFRFVSRSBDT0RFUyAoQVMgQklMTEVEKToKMS4gOTkzOTcg4oCUIFByZXZlbnRpdmUgbWVkaWNpbmUgdmlzaXQsIGVzdGFibGlzaGVkIHBhdGllbnQsIGFnZSA2NSsKMi4gOTkyMTQg4oCUIE9mZmljZSB2aXNpdCwgbW9kZXJhdGUgY29tcGxleGl0eSBFJk0gW05PIE1PRElGSUVSXQozLiBHMjIxMSDigJQgVmlzaXQgY29tcGxleGl0eSBpbmhlcmVudCB0byBldmFsdWF0aW9uIGFuZCBtYW5hZ2VtZW50CgpTVUJNSVRURUQgRElBR05PU0VTOgotIEkxMCAoRXNzZW50aWFsIGh5cGVydGVuc2lvbikKLSBFMTEuOSAoVHlwZSAyIGRpYWJldGVzIG1lbGxpdHVzIHdpdGhvdXQgY29tcGxpY2F0aW9ucykKLSBOMTguMzEgKENocm9uaWMga2lkbmV5IGRpc2Vhc2UsIHN0YWdlIDNhKQoKUEFZRVI6IE1lZGljYXJlIFBhcnQgQgpSRU5ERVJJTkcgUFJPVklERVI6IERyLiBKYW1lcyBXaGl0ZmllbGQsIE1EClBMQUNFIE9GIFNFUlZJQ0U6IDExIChPZmZpY2UpCgoqKiogQ09ESU5HIEVSUk9SUyBQUkVTRU5UIOKAlCBETyBOT1QgU1VCTUlUIFRPIFBBWUVSICoqKgpUaGlzIGNsYWltIGhhcyBiZWVuIGZsYWdnZWQgZm9yIHRoZSBmb2xsb3dpbmcgc3VzcGVjdGVkIGlzc3VlczoKRVJST1IgMTogOTkzOTcgaXMgYSBDUFQgcHJldmVudGl2ZSBtZWRpY2luZSBjb2RlLiBNZWRpY2FyZSBkb2VzIG5vdCByZWltYnVyc2UgOTkzODEtOTkzOTcuCiAgICAgICAgICBDb3JyZWN0IGNvZGUgZm9yIE1lZGljYXJlIEFXViAoc3Vic2VxdWVudCkgaXMgRzA0MzkuCkVSUk9SIDI6IDk5MjE0IHN1Ym1pdHRlZCB3aXRob3V0IG1vZGlmaWVyIDI1LiBXaGVuIEUmTSBpcyBiaWxsZWQgc2FtZSBkYXkgYXMgYSB3ZWxsbmVzcwogICAgICAgICAgdmlzaXQgY29kZSwgbW9kaWZpZXIgMjUgaXMgcmVxdWlyZWQgdG8gaW5kaWNhdGUgc2VwYXJhdGVseSBpZGVudGlmaWFibGUgc2VydmljZS4KRVJST1IgMzogRzIyMTEgKHZpc2l0IGNvbXBsZXhpdHkpIGlzIGV4Y2x1ZGVkIHdoZW4gQVdWIEctY29kZXMgYXJlIHByZXNlbnQgb24gdGhlIGNsYWltLgogICAgICAgICAgQ01TIHByb2hpYml0cyBiaWxsaW5nIEcyMjExIHdpdGggRzA0Mzggb3IgRzA0MzkuCgpDT1JSRUNURUQgQ09ERVMgU0hPVUxEIEJFOgotIEcwNDM5IChyZXBsYWNlcyA5OTM5NykKLSA5OTIxNC0yNSAoYWRkcyBtb2RpZmllciAyNSkKLSA5NjEyNyAoUEhRLTkgc2NvcmluZywgZG9jdW1lbnRlZCBpbiBub3RlIOKAlCBvbWl0dGVkIGZyb20gb3JpZ2luYWwgc3VibWlzc2lvbikKLSBSRU1PVkUgRzIyMTEK"
+              }
+            }
+          ],
+          "context": {
+            "encounter": [
+              {
+                "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+              }
+            ],
+            "period": {
+              "start": "2025-04-22T09:15:00Z",
+              "end": "2025-04-22T10:45:00Z"
+            }
+          }
+        },
+        "request": {
+          "method": "POST",
+          "url": "DocumentReference",
+          "ifNoneExist": "identifier=urn:ietf:rfc:3986|urn:uuid:d0e1f2a3-0000-1111-2222-333344445555"
+        }
+      },
+      {
+        "fullUrl": "urn:uuid:e1f2a3b4-1111-2222-3333-444455556667",
+        "resource": {
+          "resourceType": "DocumentReference",
+          "id": "e1f2a3b4-1111-2222-3333-444455556667",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+            ]
+          },
+          "identifier": [
+            {
+              "system": "urn:ietf:rfc:3986",
+              "value": "urn:uuid:e1f2a3b4-1111-2222-3333-444455556667"
+            }
+          ],
+          "status": "current",
+          "type": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "11488-4",
+                "display": "Consult note"
+              }
+            ],
+            "text": "Annual Wellness Visit Note — Subsequent (G0439)"
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+                  "code": "clinical-note",
+                  "display": "Clinical Note"
+                }
+              ]
+            }
+          ],
+          "subject": {
+            "reference": "urn:uuid:a772849e-5903-41bf-a1fb-f133442a2e7e"
+          },
+          "date": "2025-04-22T10:45:00Z",
+          "author": [
+            {
+              "display": "Dr. James Whitfield, MD"
+            }
+          ],
+          "custodian": {
+            "display": "Northfield Internal Medicine"
+          },
+          "content": [
+            {
+              "attachment": {
+                "contentType": "text/plain",
+                "data": "QU5OVUFMIFdFTExORVNTIFZJU0lUIE5PVEUg4oCUIFNVQlNFUVVFTlQgKEcwNDM5KQpQYXRpZW50OiBFbGVhbm9yIFJ1dGggVsOhc3F1ZXogfCBET0I6IDE5NTAtMTEtMDMgfCBBZ2U6IDc0IHkuby4KRGF0ZSBvZiBTZXJ2aWNlOiAyMDI1LTA0LTIyClByb3ZpZGVyOiBEci4gSmFtZXMgV2hpdGZpZWxkLCBNRApQYXllcjogTWVkaWNhcmUgUGFydCBCClByaW9yIEFXViAoRzA0MzgpOiAyMDI0LTA0LTEwCgpSRUFTT04gRk9SIFZJU0lUCkVzdGFibGlzaGVkIE1lZGljYXJlIHBhdGllbnQgcHJlc2VudGluZyBmb3Igc3Vic2VxdWVudCBBbm51YWwgV2VsbG5lc3MgVmlzaXQuIFBhdGllbnQgY29tcGxldGVkIGhlciBpbml0aWFsIEFXViAoRzA0MzgpIG9uIDIwMjQtMDQtMTAsIGFwcHJveGltYXRlbHkgMTIgbW9udGhzIGFnby4gQWN0aXZlIHByb2JsZW0gbGlzdCBpbmNsdWRlcyBUeXBlIDIgRGlhYmV0ZXMgTWVsbGl0dXMgKFQyRE0sIEUxMS45KSwgRXNzZW50aWFsIEh5cGVydGVuc2lvbiAoSTEwKSwgYW5kIENocm9uaWMgS2lkbmV5IERpc2Vhc2UgU3RhZ2UgM2EgKENLRCwgTjE4LjMxKS4KClVQREFURUQgSEVBTFRIIFJJU0sgQVNTRVNTTUVOVCAoSFJBKQpIUkEgdXBkYXRlZCBwZXIgRzA0MzkgcmVxdWlyZW1lbnRzLiBQYXRpZW50IHJlcG9ydHMgaW5kZXBlbmRlbnQgQURMcyDigJQgZHJlc3NpbmcsIGJhdGhpbmcsIGNvb2tpbmcsIGFuZCBhbWJ1bGF0aW5nIHdpdGhvdXQgYXNzaXN0YW5jZS4gTGl2ZXMgd2l0aCBzcG91c2UuIERlbmllcyBmb29kIGluc2VjdXJpdHkuIFJlcG9ydHMgb25lIG5lYXItZmFsbCBpbiB0aGUgcGFzdCAxMiBtb250aHMgKHNsaXBwZWQgb24gd2V0IGZsb29yLCBubyBpbmp1cnkpLiBObyBuZXcgcHN5Y2hvc29jaWFsIHN0cmVzc29ycy4gTWlsZCBoZWFyaW5nIGxvc3Mgbm90ZWQg4oCUIHJlZmVycmVkIHRvIGF1ZGlvbG9neS4KCk1FRElDQUwgQU5EIEZBTUlMWSBISVNUT1JZIFVQREFURQpNZWRpY2FsIGhpc3Rvcnk6IFQyRE0gKDIwMDYpLCBIVE4gKDIwMDQpLCBDS0QgU3RhZ2UgM2EgKDIwMTkpLiBObyBob3NwaXRhbGl6YXRpb25zIHNpbmNlIGxhc3QgQVdWLgpGYW1pbHkgaGlzdG9yeSB1cGRhdGVkOiBQYXRlcm5hbCBoaXN0b3J5IG9mIHN0cm9rZSBhZGRlZCAoZmF0aGVyIGF0IGFnZSA3MSkuClN1cmdpY2FsIGhpc3Rvcnk6IFVuY2hhbmdlZCDigJQgY2hvbGVjeXN0ZWN0b215IDE5OTUsIGxlZnQgaGlwIGFydGhyb3BsYXN0eSAyMDIxLgoKTUVESUNBVElPTiBSRUNPTkNJTElBVElPTgo4IGFjdGl2ZSBtZWRpY2F0aW9ucyByZXZpZXdlZCBhbmQgcmVjb25jaWxlZDoKLSBNZXRmb3JtaW4gRVIgNTAwIG1nIEJJRCAoVDJETSkg4oCUIE5PVEU6IGRvc2UgcmVkdWNlZCB0b2RheSBkdWUgdG8gZUdGUiA0OCAoc2VlIHNlcGFyYXRlIEUmTSBub3RlKQotIExpc2lub3ByaWwgMjAgbWcgZGFpbHkgKEhUTi9DS0QgbmVwaHJvcHJvdGVjdGlvbikKLSBBbWxvZGlwaW5lIDEwIG1nIGRhaWx5IChIVE4pCi0gQXRvcnZhc3RhdGluIDQwIG1nIGRhaWx5IChIeXBlcmxpcGlkZW1pYS9DViByaXNrKQotIEFzcGlyaW4gODEgbWcgZGFpbHkgKGNhcmRpb3Zhc2N1bGFyIHByb3BoeWxheGlzKQotIEZ1cm9zZW1pZGUgMjAgbWcgZGFpbHkgKGZsdWlkIG1hbmFnZW1lbnQpCi0gVml0YW1pbiBEMyAyMDAwIElVIGRhaWx5Ci0gT21lcHJhem9sZSAyMCBtZyBkYWlseSAoR0kgcHJvcGh5bGF4aXMpCgpWSVRBTCBTSUdOUwpCUDogMTYyLzk2IG1tSGcgKGVsZXZhdGVkIOKAlCBzZWUgc2VwYXJhdGUgRSZNIG5vdGUgZm9yIG1hbmFnZW1lbnQpCldlaWdodDogMTY4IGxicyB8IEhlaWdodDogNSc0IiB8IEJNSTogMjguOApQdWxzZTogNzggYnBtIHwgVGVtcDogOTguNEYgfCBPMiBTYXQ6IDk2JSBvbiByb29tIGFpcgplR0ZSOiA0OCAoQ0tEIFN0YWdlIDNhLCBzdGFibGUpCgpDT0dOSVRJVkUgSU1QQUlSTUVOVCBERVRFQ1RJT04KTWluaS1Db2cgYWRtaW5pc3RlcmVkIGFuZCBzY29yZWQ6IDUvNSAoMy8zIHdvcmQgcmVjYWxsICsgY2xvY2sgZHJhd2luZyBpbnRhY3QpLiBObyBldmlkZW5jZSBvZiBjb2duaXRpdmUgaW1wYWlybWVudC4KCkZVTkNUSU9OQUwgQUJJTElUWSBBTkQgRkFMTCBSSVNLIEFTU0VTU01FTlQKUGF0aWVudCByZXBvcnRzIG9uZSBuZWFyLWZhbGwgaW4gcGFzdCAxMiBtb250aHMgKG5vIGluanVyeSkuIEdhaXQgc2xpZ2h0bHkgY2F1dGlvdXMgb24gZXhhbS4gVFVHIHRlc3Q6IDEzLjUgc2Vjb25kcyAoQk9SREVSTElORSDigJQgdGhyZXNob2xkIGlzIDEyIHNlY29uZHMpLiBGYWxsIHJpc2s6IE1PREVSQVRFLiBTYWZldHkgY291bnNlbGluZyBwcm92aWRlZDsgcmVmZXJyYWwgdG8gUFQgZm9yIGJhbGFuY2UgdHJhaW5pbmcgcGxhY2VkLgoKREVQUkVTU0lPTiBTQ1JFRU5JTkcKUEhRLTkgYWRtaW5pc3RlcmVkIGFuZCBzY29yZWQuIFNjb3JlOiAzIChtaW5pbWFsKS4gUGF0aWVudCBkZW5pZXMgaG9wZWxlc3NuZXNzLCBzdWljaWRhbCBpZGVhdGlvbiwgb3IgZnVuY3Rpb25hbCBpbXBhaXJtZW50LiBTY29yZSBkb2N1bWVudGVkIGluIG1lZGljYWwgcmVjb3JkLiBTdXBwb3J0cyA5NjEyNyBiaWxsaW5nLgoKUFJFVkVOVElWRSBTQ1JFRU5JTkdTIEFORCBJTU1VTklaQVRJT05TIOKAlCBQRVJTT05BTElaRUQgUFJFVkVOVElPTiBQTEFOIFVQREFURQoxLiBNYW1tb2dyYXBoeTogVXAgdG8gZGF0ZSDigJQgYmlsYXRlcmFsIHNjcmVlbmluZyAyMDI0LTA5LCBuZXh0IGR1ZSAyMDI1LTA5LgoyLiBDb2xvcmVjdGFsIGNhbmNlciBzY3JlZW5pbmc6IFVwIHRvIGRhdGUg4oCUIGNvbG9ub3Njb3B5IDIwMjIsIG5leHQgZHVlIDIwMzIuCjMuIEJvbmUgZGVuc2l0eSAoREVYQSk6IENvbXBsZXRlZCAyMDIzIOKAlCBvc3Rlb3BlbmlhIG5vdGVkLCBjYWxjaXVtL1ZpdCBEIG9uZ29pbmcuCjQuIEluZmx1ZW56YSB2YWNjaW5lOiBSZWNvbW1lbmRlZCDigJQgcGF0aWVudCB3aWxsIHJlY2VpdmUgYXQgcGhhcm1hY3kgdGhpcyBmYWxsLiBOb3QgYWRtaW5pc3RlcmVkIGF0IHRoaXMgdmlzaXQuCjUuIENPVklELTE5IGJvb3N0ZXI6IFVwIHRvIGRhdGUgKG1vc3QgcmVjZW50IDIwMjQtMTEpLgo2LiBQbmV1bW9jb2NjYWwgdmFjY2luZSAoUENWMjApOiBBZG1pbmlzdGVyZWQgcHJldmlvdXNseSDigJQgb24gcmVjb3JkLgo3LiBTaGluZ3JpeCAoem9zdGVyKTogU2VyaWVzIGNvbXBsZXRlLgo4LiBFeWUgZXhhbTogUmVmZXJyZWQgdG8gb3BodGhhbG1vbG9neSBmb3IgZGlhYmV0aWMgcmV0aW5vcGF0aHkgc2NyZWVuaW5nIOKAlCBkdWUgYW5udWFsbHkuCjkuIEZvb3QgZXhhbTogTW9ub2ZpbGFtZW50IHRlc3RpbmcgcGVyZm9ybWVkIOKAlCBpbnRhY3Qgc2Vuc2F0aW9uIGJpbGF0ZXJhbGx5LgoKU0VQQVJBVEVMWSBJREVOVElGSUFCTEUgRSZNIFNFUlZJQ0Ug4oCUIFNBTUUgREFZCkJQIDE2Mi85NiBhdCBjaGVjay1pbiDigJQgc2lnbmlmaWNhbnRseSBlbGV2YXRlZCBhYm92ZSBnb2FsIG9mIDwxMzAvODAgKEFEQS9LRElHTyBndWlkZWxpbmVzIGZvciBUMkRNICsgQ0tEKS4gZUdGUiA0OCBmbGFnZ2VkOyBNZXRmb3JtaW4gZG9zZSByZWR1Y3Rpb24gcmVxdWlyZWQgcGVyIEZEQSBzYWZldHkgbGFiZWxpbmcgKGVHRlIgPDQ1IGlzIGNvbnRyYWluZGljYXRpb247IGVHRlIgNDUtNjAgd2FycmFudHMgZG9zZSByZWR1Y3Rpb24gYW5kIG1vbml0b3JpbmcpLiBUaGVzZSBmaW5kaW5ncyB3ZXJlIHNlcGFyYXRlbHkgaWRlbnRpZmllZCwgZXZhbHVhdGVkLCBhbmQgbWFuYWdlZCBiZXlvbmQgdGhlIHNjb3BlIG9mIHRoZSByb3V0aW5lIEFXVi4KQXNzZXNzbWVudDogVW5jb250cm9sbGVkIGh5cGVydGVuc2lvbiB3aXRoIENLRCBTdGFnZSAzYSBhbmQgVDJETS4gUHJlc2NyaXB0aW9uIGRydWcgbWFuYWdlbWVudCDigJQgTWV0Zm9ybWluIGRvc2UgYWRqdXN0ZWQgZm9yIHJlbmFsIGZ1bmN0aW9uLiBUd28gb3IgbW9yZSBjaHJvbmljIGNvbmRpdGlvbnMgd2l0aCBleGFjZXJiYXRpb24uClBsYW46IE1ldGZvcm1pbiBFUiByZWR1Y2VkIGZyb20gMTAwMCBtZyBCSUQgdG8gNTAwIG1nIEJJRC4gTGlzaW5vcHJpbCBjb250aW51ZWQuIEJNUCBvcmRlcmVkIGluIDQgd2Vla3MuIFBhdGllbnQgY291bnNlbGVkIG9uIGxvdy1zb2RpdW0sIHJlbmFsLWZyaWVuZGx5IGRpZXQuIFJldHVybiBpbiA0IHdlZWtzIGZvciBCUCBhbmQgcmVuYWwgcmVjaGVjay4gVGhpcyBjb25zdGl0dXRlcyBhIHNlcGFyYXRlLCBzaWduaWZpY2FudCBFJk0gc2VydmljZSAoOTkyMTQpIGJpbGxlZCB3aXRoIG1vZGlmaWVyIDI1LgpNRE0gbGV2ZWw6IE1PREVSQVRFIOKAlCAyKyBjaHJvbmljIGNvbmRpdGlvbnMgd2l0aCBleGFjZXJiYXRpb24gKEhUTiArIENLRCArIFQyRE0pLCBpbmRlcGVuZGVudCBsYWIgZGF0YSBpbnRlcnByZXRhdGlvbiAoZUdGUiwgQk1QIHJldmlld2VkKSwgcHJlc2NyaXB0aW9uIGRydWcgbWFuYWdlbWVudCAoTWV0Zm9ybWluIGRvc2UgYWRqdXN0bWVudCkuCgpBU1NFU1NNRU5UIEFORCBQTEFOIOKAlCBBV1YgU1VNTUFSWQpBbGwgRzA0MzkgcmVxdWlyZWQgZWxlbWVudHMgY29tcGxldGVkOgoxLiBVcGRhdGVkIEhSQSDigJQgY29tcGxldGVkIChzZWUgYWJvdmUpCjIuIE1lZGljYWwvZmFtaWx5IGhpc3RvcnkgdXBkYXRlIOKAlCBjb21wbGV0ZWQgKHBhdGVybmFsIHN0cm9rZSBoaXN0b3J5IGFkZGVkKQozLiBDdXJyZW50IHByb3ZpZGVycy9zdXBwbGllcnMgbGlzdCDigJQgcmV2aWV3ZWQgYW5kIHVwZGF0ZWQKNC4gVml0YWwgc2lnbnMgaW5jbHVkaW5nIEJNSSDigJQgZG9jdW1lbnRlZAo1LiBDb2duaXRpdmUgaW1wYWlybWVudCBkZXRlY3Rpb24g4oCUIE1pbmktQ29nIDUvNSwgbm9ybWFsCjYuIEZ1bmN0aW9uYWwgYWJpbGl0eSBhbmQgZmFsbCByaXNrIOKAlCBUVUcgMTMuNSBzZWMsIE1PREVSQVRFIHJpc2ssIFBUIHJlZmVycmFsIHBsYWNlZAo3LiBVcGRhdGVkIHBlcnNvbmFsaXplZCBwcmV2ZW50aW9uIHBsYW4g4oCUIGNvbXBsZXRlZCAoc2VlIGFib3ZlKQoKQ09SUkVDVCBDT0RJTkcgU1VNTUFSWSAocGVyIGRvY3VtZW50YXRpb24pCkcwNDM5IOKAlCBTdWJzZXF1ZW50IEFubnVhbCBXZWxsbmVzcyBWaXNpdCAoTWVkaWNhcmUsIG5vIGNvc3Qtc2hhcmluZyB0byBwYXRpZW50KQo5OTIxNC0yNSDigJQgTW9kZXJhdGUgY29tcGxleGl0eSBFJk0sIHNlcGFyYXRlbHkgaWRlbnRpZmlhYmxlLCBIVE4gKyBDS0QgbWFuYWdlbWVudCB3aXRoIG1lZGljYXRpb24gYWRqdXN0bWVudAo5NjEyNyDigJQgUEhRLTkgZGVwcmVzc2lvbiBzY3JlZW5pbmcgd2l0aCBzY29yaW5nIChzY29yZSAzLCBkb2N1bWVudGVkKQpOT1RFOiBHMjIxMSBpcyBOT1QgYmlsbGVkIOKAlCBleGNsdWRlZCB3aGVuIEFXViBjb2RlcyBhcmUgcHJlc2VudCBwZXIgQ01TIHBvbGljeS4KTk9URTogOTkzOTcgaXMgTk9UIGJpbGxlZCDigJQgTWVkaWNhcmUgZG9lcyBub3QgY292ZXIgQ1BUIHByZXZlbnRpdmUgbWVkaWNpbmUgY29kZXMgOTkzODEtOTkzOTcuCgpSRVRVUk4gVE8gQ0xJTklDOiA0IHdlZWtzIGZvciBCUCBhbmQgcmVuYWwgcmVjaGVjay4gTmV4dCBBV1YgKEcwNDM5KSBkdWUgYXBwcm94aW1hdGVseSBBcHJpbCAyMDI2Lgo="
+              }
+            }
+          ],
+          "context": {
+            "encounter": [
+              {
+                "reference": "urn:uuid:e5f6a7b8-5555-6666-7777-888899990000"
+              }
+            ],
+            "period": {
+              "start": "2025-04-22T09:15:00Z",
+              "end": "2025-04-22T10:45:00Z"
+            }
+          }
+        },
+        "request": {
+          "method": "POST",
+          "url": "DocumentReference",
+          "ifNoneExist": "identifier=urn:ietf:rfc:3986|urn:uuid:e1f2a3b4-1111-2222-3333-444455556667"
+        }
+      }
+    ]
+  }

@@ -44,6 +44,7 @@ from pathlib import Path
 from typing import Optional
 
 import httpx
+import uuid
 
 from golden_cases import GoldenCase
 
@@ -270,6 +271,7 @@ def build_a2a_request(case: GoldenCase) -> dict:
         "params": {
             "message": {
                 "messageId": f"eval-{case.case_id}",
+                "contextId": uuid.uuid4().hex,
                 "role": "user",
                 "parts": [
                     {
@@ -476,6 +478,28 @@ def extract_text_from_a2a_response(a2a_response: dict) -> str:
             logger.debug("extract_text: found result.text directly")
             return result["text"]
 
+        # ── Path 1b: result.task.artifacts[*].parts (A2A v1 envelope) ──────
+        # Parts may have kind/type OR just a bare "text" key — handle both.
+        task = result.get("task", {})
+        if isinstance(task, dict) and task:
+            for artifact in task.get("artifacts", []):
+                for part in artifact.get("parts", []):
+                    if isinstance(part, dict) and part.get("text"):
+                        logger.debug(
+                            "extract_text: found text via result.task.artifacts path (%d chars)",
+                            len(part["text"]),
+                        )
+                        return part["text"]
+            # result.task.status.message.parts
+            task_msg = task.get("status", {}).get("message", {})
+            for part in (task_msg.get("parts", []) if isinstance(task_msg, dict) else []):
+                if isinstance(part, dict) and part.get("text"):
+                    logger.debug(
+                        "extract_text: found text via result.task.status.message path (%d chars)",
+                        len(part["text"]),
+                    )
+                    return part["text"]
+
         # ── Fallback: dump the whole response so the parser can try ────────
         logger.warning(
             "extract_text: no text path matched — falling back to full JSON dump.\n"
@@ -496,15 +520,14 @@ def extract_text_from_a2a_response(a2a_response: dict) -> str:
 async def run_case(
     case: GoldenCase,
     client: httpx.AsyncClient,
-) -> tuple[Optional[dict], float]:
+) -> tuple[Optional[dict], float, int]:
     """
     Send a single golden case to the agent and return the parsed audit log.
 
     Returns:
-        (audit_log_dict, latency_seconds)
-        audit_log_dict is None if the agent call failed or parsing failed.
+        (audit_log_dict, latency_seconds, infra_retries)
     """
-    request_body = build_a2a_request(case)   # token freshness checked here
+    request_body = build_a2a_request(case)
     headers = {
         "Content-Type": "application/json",
         "ngrok-skip-browser-warning": "true",
@@ -516,6 +539,7 @@ async def run_case(
     headers["X-API-Key"] = EVAL_API_KEY
 
     start = time.monotonic()
+    infra_retries = 0
     try:
         logger.info("Running case: %s → %s", case.case_id, AGENT_BASE_URL)
         response = await client.post(
@@ -534,7 +558,6 @@ async def run_case(
                 case.case_id,
             )
             _invalidate_token()
-            # Rebuild the request so it picks up the fresh token
             request_body = build_a2a_request(case)
             start = time.monotonic()
             response = await client.post(
@@ -557,6 +580,54 @@ async def run_case(
         response.raise_for_status()
 
         a2a_response = response.json()
+
+        # ── Retry on TASK_STATE_FAILED (Gemini 503 / upstream unavailable) ──
+        # The agent returns HTTP 200 with TASK_STATE_FAILED when the upstream
+        # LLM is unavailable (e.g. Gemini 503 UNAVAILABLE during demand spikes).
+        # These are infra failures, not logic failures — retry with backoff.
+        _MAX_TASK_RETRIES = 3
+        _RETRY_BACKOFF    = [5, 10]  # seconds between attempts
+
+        for _attempt in range(_MAX_TASK_RETRIES):
+            task_state = (
+                a2a_response.get("result", {})
+                .get("task", {})
+                .get("status", {})
+                .get("state", "")
+            )
+            if task_state != "TASK_STATE_FAILED":
+                break  # success or unknown state — proceed normally
+
+            infra_retries += 1
+            wait = _RETRY_BACKOFF[min(_attempt, len(_RETRY_BACKOFF) - 1)]
+            logger.warning(
+                "Case %s: TASK_STATE_FAILED (upstream 503) — "
+                "retry %d/%d in %ds …",
+                case.case_id, infra_retries, _MAX_TASK_RETRIES, wait,
+            )
+            await asyncio.sleep(wait)
+
+            # Rebuild request with a fresh contextId and token
+            request_body = build_a2a_request(case)
+            start = time.monotonic()
+            response = await client.post(
+                f"{AGENT_BASE_URL}/",
+                json=request_body,
+                headers=headers,
+                timeout=AGENT_TIMEOUT,
+            )
+            latency = time.monotonic() - start
+            response.raise_for_status()
+            a2a_response = response.json()
+        else:
+            # All retries exhausted — still TASK_STATE_FAILED
+            logger.error(
+                "Case %s: TASK_STATE_FAILED after %d retries — "
+                "upstream LLM unavailable. [failure_type=infra]",
+                case.case_id, _MAX_TASK_RETRIES,
+            )
+            return None, latency, infra_retries
+
         text = extract_text_from_a2a_response(a2a_response)
         audit_log = extract_audit_log(text)
 
@@ -567,43 +638,37 @@ async def run_case(
         if audit_log is None:
             logger.warning(
                 "Case %s: agent responded (%.1fs) but audit log could not be parsed. "
-                "Re-run with --debug to see the full response.",
+                "[failure_type=logic]  Re-run with --debug to see the full response.",
                 case.case_id,
                 latency,
             )
 
-        return audit_log, latency
+        return audit_log, latency, infra_retries
 
     except httpx.TimeoutException:
         latency = time.monotonic() - start
-        logger.error("Case %s: agent timed out after %.1fs", case.case_id, latency)
-        return None, latency
+        logger.error("Case %s: agent timed out after %.1fs  [failure_type=infra]", case.case_id, latency)
+        return None, latency, infra_retries
     except httpx.HTTPStatusError as e:
         latency = time.monotonic() - start
-        logger.error(
-            "Case %s: HTTP %d — %s",
-            case.case_id, e.response.status_code, e.response.text[:200]
-        )
-        return None, latency
+        logger.error("Case %s: HTTP %d — %s  [failure_type=logic]",
+                     case.case_id, e.response.status_code, e.response.text[:200])
+        return None, latency, infra_retries
     except Exception as e:
         latency = time.monotonic() - start
-        logger.error("Case %s: unexpected error — %s", case.case_id, e)
-        return None, latency
+        logger.error("Case %s: unexpected error — %s  [failure_type=unknown]", case.case_id, e)
+        return None, latency, infra_retries
 
 
 async def run_all_cases(
     cases: list[GoldenCase],
     parallel: bool = False,
-) -> list[tuple[GoldenCase, Optional[dict], float]]:
+) -> list[tuple[GoldenCase, Optional[dict], float, int]]:
     """
     Run all golden cases against the live agent.
 
-    Args:
-        cases    — list of GoldenCase objects
-        parallel — if True, run all cases concurrently (faster but harder to debug)
-
     Returns:
-        List of (case, audit_log, latency) tuples
+        List of (case, audit_log, latency, infra_retries) tuples.
     """
     async with httpx.AsyncClient() as client:
         if parallel:
@@ -611,19 +676,19 @@ async def run_all_cases(
             tasks = [run_case(case, client) for case in cases]
             results_raw = await asyncio.gather(*tasks)
             return [
-                (case, audit_log, latency)
-                for case, (audit_log, latency) in zip(cases, results_raw)
+                (case, audit_log, latency, infra_retries)
+                for case, (audit_log, latency, infra_retries)
+                in zip(cases, results_raw)
             ]
         else:
             logger.info("Running %d cases sequentially", len(cases))
             results = []
             for case in cases:
-                audit_log, latency = await run_case(case, client)
-                results.append((case, audit_log, latency))
-                logger.info(
-                    "  %s: %.1fs — %s",
-                    case.case_id,
-                    latency,
-                    "OK" if audit_log else "FAILED",
-                )
+                audit_log, latency, infra_retries = await run_case(case, client)
+                results.append((case, audit_log, latency, infra_retries))
+                retry_str = (f"  [{infra_retries} infra retr{'y' if infra_retries == 1 else 'ies'}]"
+                             if infra_retries else "")
+                logger.info("  %s: %.1fs — %s%s",
+                            case.case_id, latency,
+                            "OK" if audit_log else "FAILED", retry_str)
             return results

@@ -1,0 +1,28 @@
+{
+  "case_id": "eleanor_wrong_codes_v1",
+  "raw_a2a_response": {
+    "id": "eval-eleanor_wrong_codes_v1",
+    "jsonrpc": "2.0",
+    "result": {
+      "task": {
+        "id": "044bc20c-f0a1-4d10-b4cb-cf7b1b21b0ad",
+        "contextId": "e2264a8d888f4491bcb61c21abc106aa",
+        "status": {
+          "state": "TASK_STATE_COMPLETED"
+        },
+        "artifacts": [
+          {
+            "artifactId": "8756057e-7eae-4813-b0f4-ac3da1f19a2e",
+            "parts": [
+              {
+                "text": "## CLAIMS CODING SUMMARY\n**Patient:** Eleanor Ruth V\u00e1squez | **DOB:** 1950-11-03 | **Payer:** Medicare Part B\n**Encounter Date:** 2025-04-22\n**Coded by:** Claims AI Agent | **Status:** READY TO SUBMIT\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| G0439 | Annual wellness visit (AWV), includes a personalized prevention plan of service (PPPS), subsequent visit | | Documentation Gap | AWV elements not fully documented \u2014 HRA update, medical history review, vitals, cognitive assessment, personalized prevention plan update |\n| 99214 | Office or other outpatient visit, established patient, moderate complexity | 25 | Ready to Submit | Billed on same date as preventive visit without modifier 25 |\n| 96127 | Brief emotional/behavioral assessment with scoring and documentation | | Documentation Gap | No scoring documentation in clinical note |\n\n### Hard Stops (Removed from Claim)\n- **99397**: Medicare does not reimburse 99381-99397. Correct code for Medicare AWV (subsequent) is G0439.\n- **G2211**: G2211 is not payable with AWV codes G0438 or G0439. Removed from the claim.\n\n### Documentation Flags\n- **G0439**: AWV elements not fully documented \u2014 HRA update, medical history review, vitals, cognitive assessment, personalized prevention plan update.\n- **96127**: No scoring documentation in clinical note.\n\n### Payer-Specific Notes\nG0439 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare.\n99214 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare.\n96127 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "extracted_text_preview": "## CLAIMS CODING SUMMARY\n**Patient:** Eleanor Ruth V\u00e1squez | **DOB:** 1950-11-03 | **Payer:** Medicare Part B\n**Encounter Date:** 2025-04-22\n**Coded by:** Claims AI Agent | **Status:** READY TO SUBMIT\n\n### Billable Codes\n| CPT | Description | Modifier | Status | Evidence |\n|-----|-------------|----------|--------|----------|\n| G0439 | Annual wellness visit (AWV), includes a personalized prevention plan of service (PPPS), subsequent visit | | Documentation Gap | AWV elements not fully documented \u2014 HRA update, medical history review, vitals, cognitive assessment, personalized prevention plan update |\n| 99214 | Office or other outpatient visit, established patient, moderate complexity | 25 | Ready to Submit | Billed on same date as preventive visit without modifier 25 |\n| 96127 | Brief emotional/behavioral assessment with scoring and documentation | | Documentation Gap | No scoring documentation in clinical note |\n\n### Hard Stops (Removed from Claim)\n- **99397**: Medicare does not reimburse 99381-99397. Correct code for Medicare AWV (subsequent) is G0439.\n- **G2211**: G2211 is not payable with AWV codes G0438 or G0439. Removed from the claim.\n\n### Documentation Flags\n- **G0439**: AWV elements not fully documented \u2014 HRA update, medical history review, vitals, cognitive assessment, personalized prevention plan update.\n- **96127**: No scoring documentation in clinical note.\n\n### Payer-Specific Notes\nG0439 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare.\n99214 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare.\n96127 \u2014 Medicare: Eligible. Ref: No payer-specific PDF evidence found for Medicare.",
+  "extracted_text_length": 1668
+}

@@ -1,0 +1,118 @@
+{
+  "run_at": "2026-04-14T00:05:10.367319+00:00",
+  "iterations": 20,
+  "total_calls": 80,
+  "flake_rate_pct": 26.25,
+  "infra_failures": 0,
+  "logic_failures": 21,
+  "total_retries": 0,
+  "cases": {
+    "alex_asthma_v1": {
+      "passes": 14,
+      "flakes": 6,
+      "retries": 0
+    },
+    "jaylen_pediatric_v1": {
+      "passes": 15,
+      "flakes": 5,
+      "retries": 0
+    },
+    "marcus_chronic_care_v1": {
+      "passes": 13,
+      "flakes": 7,
+      "retries": 0
+    },
+    "tamera_preventive_v1": {
+      "passes": 17,
+      "flakes": 3,
+      "retries": 0
+    }
+  },
+  "infra_failure_detail": [],
+  "logic_failure_detail": [
+    {
+      "iteration": 9,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 11,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 11,
+      "case_id": "jaylen_pediatric_v1"
+    },
+    {
+      "iteration": 11,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 11,
+      "case_id": "tamera_preventive_v1"
+    },
+    {
+      "iteration": 12,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 13,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 13,
+      "case_id": "jaylen_pediatric_v1"
+    },
+    {
+      "iteration": 13,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 13,
+      "case_id": "tamera_preventive_v1"
+    },
+    {
+      "iteration": 14,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 14,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 16,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 17,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 17,
+      "case_id": "jaylen_pediatric_v1"
+    },
+    {
+      "iteration": 17,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 17,
+      "case_id": "tamera_preventive_v1"
+    },
+    {
+      "iteration": 19,
+      "case_id": "jaylen_pediatric_v1"
+    },
+    {
+      "iteration": 19,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 20,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 20,
+      "case_id": "jaylen_pediatric_v1"
+    }
+  ]
+}

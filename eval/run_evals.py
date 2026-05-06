@@ -117,14 +117,18 @@ async def main(args: argparse.Namespace) -> int:
 
     # Score each result
     eval_results: list[EvalResult] = []
-    for case, audit_log, latency in run_results:
+    for case, audit_log, latency, infra_retries in run_results:
         if audit_log is None:
             result = EvalResult(
                 case_id=case.case_id,
                 patient_id=case.patient_id,
                 payer=case.payer,
                 latency_seconds=latency,
-                error="Agent did not return a parseable ClaimAuditLog",
+                error=(
+                    f"Infra failure after {infra_retries + 1} attempts (ngrok/uvicorn timeout)"
+                    if infra_retries else
+                    "Agent did not return a parseable ClaimAuditLog"
+                ),
             )
         else:
             result = score(case, audit_log, latency_seconds=latency)

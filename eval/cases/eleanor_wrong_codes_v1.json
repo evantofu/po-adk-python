@@ -1,0 +1,94 @@
+{
+  "case_id": "eleanor_wrong_codes_v1",
+  "description": "Eleanor Ruth V\u00e1squez \u2014 2025-04-22 subsequent AWV with three billing errors submitted: 99397 (Medicare non-covered), 99214 missing modifier 25, G2211 excluded with AWV codes. Agent must remove bad codes, substitute G0439, add modifier 25, add omitted 96127, and reject G2211.",
+  "patient_id": "a772849e-5903-41bf-a1fb-f133442a2e7e",
+  "payer": "Medicare Part B",
+  "expected": {
+    "codes": [
+      {
+        "cpt": "G0439",
+        "modifier": null
+      },
+      {
+        "cpt": "99214",
+        "modifier": "25"
+      },
+      {
+        "cpt": "96127",
+        "modifier": null
+      }
+    ],
+    "must_not_include": [
+      "99397",
+      "G2211",
+      "G0438",
+      "99215",
+      "G2210"
+    ],
+    "hard_stops_expected": [
+      "99397_not_covered_medicare",
+      "G2211_excluded_with_awv"
+    ]
+  },
+  "scoring": {
+    "required_codes": [
+      "G0439",
+      "99214",
+      "96127"
+    ],
+    "required_modifier_pairs": [
+      [
+        "99214",
+        "25"
+      ]
+    ],
+    "partial_credit": {
+      "99213": "acceptable_alternative_to_99214_if_mdm_downgraded",
+      "99215": "acceptable_alternative_to_99214_if_mdm_upgraded"
+    }
+  },
+  "metadata": {
+    "encounter_type": "awv_subsequent_with_billing_errors",
+    "encounter_date": "2025-04-22",
+    "age": 74,
+    "gender": "female",
+    "complexity": "high",
+    "key_challenges": [
+      "wrong_code_substitution_99397_to_G0439",
+      "missing_modifier_25_on_same_day_em",
+      "G2211_exclusion_when_awv_present",
+      "omitted_code_recovery_96127",
+      "dual_documentreference_reconciliation",
+      "ckd_metformin_egfr_mdm_complexity"
+    ],
+    "submitted_errors": {
+      "error_1": {
+        "submitted": "99397",
+        "action": "REMOVE",
+        "reason": "Medicare does not cover CPT preventive medicine codes 99381-99397. Correct code for subsequent AWV is G0439.",
+        "citation": "CMS Medicare Benefit Policy Manual Ch.18 \u00a710"
+      },
+      "error_2": {
+        "submitted": "99214",
+        "action": "CORRECT",
+        "correction": "99214-25",
+        "reason": "E&M billed same day as AWV G-code requires modifier 25 to identify it as separately identifiable. Without modifier 25 Medicare bundles the E&M into the AWV and denies it.",
+        "citation": "CMS MLN Matters MM9579"
+      },
+      "error_3": {
+        "submitted": "G2211",
+        "action": "REMOVE",
+        "reason": "G2211 visit complexity add-on is excluded when AWV codes G0438 or G0439 are present on the same claim per CMS policy.",
+        "citation": "CMS CY2024 PFS Final Rule"
+      },
+      "error_4": {
+        "submitted": null,
+        "action": "ADD",
+        "correction": "96127",
+        "reason": "PHQ-9 administered, scored (score 3), and documented in clinical note. Code was omitted from submitted claim. Separately billable with documentation.",
+        "citation": "CPT 96127 \u2014 Brief emotional/behavioral assessment with scoring"
+      }
+    },
+    "regression_notes": "Primary AI Factor demo case. Agent must demonstrate: (1) wrong-code detection and substitution, (2) modifier correction, (3) excluded-code removal, (4) omitted-code recovery \u2014 all in one encounter. Any miss on G2211 removal or 96127 recovery is a demo-day failure."
+  }
+}

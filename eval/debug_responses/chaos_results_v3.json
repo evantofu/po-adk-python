@@ -1,0 +1,58 @@
+{
+  "run_at": "2026-04-13T22:40:41.003469+00:00",
+  "iterations": 20,
+  "total_calls": 80,
+  "flake_rate_pct": 25.0,
+  "infra_failures": 0,
+  "logic_failures": 6,
+  "total_retries": 0,
+  "cases": {
+    "alex_asthma_v1": {
+      "passes": 19,
+      "flakes": 1,
+      "retries": 0
+    },
+    "jaylen_pediatric_v1": {
+      "passes": 6,
+      "flakes": 14,
+      "retries": 0
+    },
+    "marcus_chronic_care_v1": {
+      "passes": 18,
+      "flakes": 2,
+      "retries": 0
+    },
+    "tamera_preventive_v1": {
+      "passes": 17,
+      "flakes": 3,
+      "retries": 0
+    }
+  },
+  "infra_failure_detail": [],
+  "logic_failure_detail": [
+    {
+      "iteration": 2,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 2,
+      "case_id": "tamera_preventive_v1"
+    },
+    {
+      "iteration": 9,
+      "case_id": "marcus_chronic_care_v1"
+    },
+    {
+      "iteration": 9,
+      "case_id": "tamera_preventive_v1"
+    },
+    {
+      "iteration": 12,
+      "case_id": "alex_asthma_v1"
+    },
+    {
+      "iteration": 16,
+      "case_id": "tamera_preventive_v1"
+    }
+  ]
+}

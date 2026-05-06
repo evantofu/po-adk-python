@@ -1,0 +1,53 @@
+{
+    "case_id": "alex_asthma_v1",
+    "description": "Pediatric acute severe asthma exacerbation \u2014 high-complexity MDM. Tests: (1) 99215 vs under-coding to 99214, (2) CXR professional component with modifier 26, (3) high-MDM recognition from systemic steroids + hospital admission considered.",
+    "patient_id": "cc1b7f96-b239-4ab7-9fe3-51eeb476c2b8",
+    "payer": "commercial",
+    "expected": {
+      "codes": [
+        {
+          "cpt": "99215",
+          "modifier": null
+        },
+        {
+          "cpt": "71046",
+          "modifier": "26"
+        }
+      ],
+      "must_not_include": [
+        "99214",
+        "99213",
+        "99291"
+      ],
+      "hard_stops_expected": []
+    },
+    "scoring": {
+      "required_modifier_pairs": [
+        [
+          "71046",
+          "26"
+        ]
+      ],
+      "alternative_groups": [
+        [
+          {
+            "cpt": "71046",
+            "modifier": "26"
+          },
+          {
+            "cpt": "71045",
+            "modifier": "26"
+          }
+        ]
+      ]
+    },
+    "metadata": {
+      "encounter_type": "office_visit_acute",
+      "complexity": "high",
+      "key_challenges": [
+        "under-coding trap: 99214 vs 99215 \u2014 agent must recognise HIGH MDM from systemic steroids + hospital admission considered",
+        "modifier 26 required on CXR: physician interpreted imaging without owning equipment",
+        "two simultaneous problems: severe asthma exacerbation (chronic with acute exacerbation) + possible pneumonia (new acute)"
+      ]
+    }
+  }

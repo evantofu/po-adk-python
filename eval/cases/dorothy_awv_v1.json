@@ -1,0 +1,37 @@
+{
+  "case_id": "dorothy_awv_v1",
+  "description": "Dorothy Mae Harmon — 2025-03-12 subsequent Annual Wellness Visit (G0439) with same-day hypertension E&M (99214+25) and PHQ-9 depression screening (96127). Medicare patient age 72, prior G0438 on 2024-03-05.",
+  "patient_id": "63d11e0d-3cea-4247-a3da-6b6303d0d3a3",
+  "payer": "Medicare",
+  "expected": {
+    "codes": [
+      { "cpt": "G0439", "modifier": null },
+      { "cpt": "99214", "modifier": "25" },
+      { "cpt": "96127", "modifier": null }
+    ],
+    "must_not_include": ["99397", "G0438", "G2211", "99396", "G0402"],
+    "hard_stops_expected": []
+  },
+  "scoring": {
+    "required_codes": ["G0439", "99214", "96127"],
+    "required_modifier_pairs": [["99214", "25"]],
+    "partial_credit": {
+      "99213": "acceptable_downcode_for_99214_if_mdm_disputed"
+    }
+  },
+  "metadata": {
+    "encounter_type": "awv_subsequent",
+    "encounter_date": "2025-03-12",
+    "age": 72,
+    "gender": "female",
+    "complexity": "high",
+    "key_challenges": [
+      "awv_code_selection_G0439_not_G0438",
+      "medicare_only_code_G0439_not_99397",
+      "modifier_25_on_same_day_em",
+      "G2211_exclusion_with_awv",
+      "prior_awv_history_required_for_G0439_eligibility"
+    ],
+    "regression_notes": "5th golden case. Tests Medicare AWV code knowledge, G0438-vs-G0439 disambiguation via encounter history, and G2211 exclusion rule. Failure on must_not_include is a critical error."
+  }
+}
