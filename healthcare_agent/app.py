@@ -31,7 +31,7 @@ a2a_app = create_a2a_app(
         "cited evidence for every coding decision."
     ),
     url=os.getenv("HEALTHCARE_AGENT_URL", os.getenv("BASE_URL", "http://localhost:8001")),
-    port=8001,
+    port=int(os.getenv("PORT", "8001")),
     fhir_extension_uri=f"{os.getenv('PO_PLATFORM_BASE_URL', 'http://localhost:5139')}/schemas/a2a/v1/fhir-context",
     fhir_scopes=[
         {"name": "patient/Patient.rs",           "required": True},
